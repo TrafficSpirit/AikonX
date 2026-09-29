@@ -1,4 +1,22 @@
 (function () {
+  var nav = document.querySelector(".nav");
+  if (!nav) return;
+
+  var scheduled = false;
+  function updateSticky() {
+    nav.classList.toggle("is-sticky", window.scrollY > 48);
+    scheduled = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(updateSticky);
+  }, { passive: true });
+  updateSticky();
+})();
+
+(function () {
   var burger = document.querySelector(".nav__burger");
   var menu = document.getElementById("mobile-menu");
   if (!burger || !menu) return;
@@ -28,6 +46,61 @@
 
   menu.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", close);
+  });
+})();
+
+/* Animate FAQ panels while retaining native details/summary behavior without JS. */
+(function () {
+  var items = Array.from(document.querySelectorAll(".faq__item"));
+  if (!items.length) return;
+
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var intendedOpen = new WeakMap();
+  var animations = new WeakMap();
+
+  function setOpen(item, shouldOpen) {
+    var panel = item.querySelector(".faq__answer");
+    if (!panel) return;
+
+    var fromHeight = item.open ? panel.getBoundingClientRect().height : 0;
+    var fromOpacity = item.open ? Number(getComputedStyle(panel).opacity) : 0;
+    var previous = animations.get(item);
+    if (previous) previous.cancel();
+    intendedOpen.set(item, shouldOpen);
+
+    if (reducedMotion.matches || !panel.animate) {
+      item.open = shouldOpen;
+      return;
+    }
+
+    if (shouldOpen) item.open = true;
+    var toHeight = shouldOpen ? panel.scrollHeight : 0;
+    var animation = panel.animate([
+      { height: fromHeight + "px", opacity: fromOpacity, transform: shouldOpen ? "translateY(-6px)" : "translateY(0)" },
+      { height: toHeight + "px", opacity: shouldOpen ? 1 : 0, transform: shouldOpen ? "translateY(0)" : "translateY(-6px)" }
+    ], {
+      duration: shouldOpen ? 420 : 320,
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+    });
+
+    animations.set(item, animation);
+    animation.onfinish = function () {
+      if (!shouldOpen) item.open = false;
+      animations.delete(item);
+    };
+  }
+
+  items.forEach(function (item) {
+    item.querySelector("summary").addEventListener("click", function (event) {
+      event.preventDefault();
+      var shouldOpen = !(intendedOpen.get(item) ?? item.open);
+      if (shouldOpen) {
+        items.forEach(function (other) {
+          if (other !== item && (intendedOpen.get(other) ?? other.open)) setOpen(other, false);
+        });
+      }
+      setOpen(item, shouldOpen);
+    });
   });
 })();
 
@@ -76,6 +149,7 @@
     if (revealed) return;
     revealed = true;
     page.classList.add("is-ready");
+    document.body.classList.add("is-ready");
   }
 
   if (!video) {

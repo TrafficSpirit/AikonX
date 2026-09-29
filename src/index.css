@@ -1,0 +1,26 @@
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+@theme {
+  --color-background: #ffffff;
+  --color-primary: #006cd2;
+  --color-primary-foreground: #ffffff;
+  --color-muted-foreground: #6b7378;
+}
+
+#testimonials-root .testimonials-heading {
+  max-width: 540px;
+}
+
+#testimonials-root .testimonials-stream {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #testimonials-root .testimonials-stream {
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

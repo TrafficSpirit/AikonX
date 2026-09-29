@@ -8,30 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="styles.css">
-  <script type="importmap">
-  {
-    "imports": {
-      "react": "https://esm.sh/react@18.3.1",
-      "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-      "react-dom": "https://esm.sh/react-dom@18.3.1?external=react",
-      "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?external=react",
-      "scheduler": "https://esm.sh/scheduler@0.23.2",
-      "three": "https://esm.sh/three@0.169.0",
-      "three/examples/jsm/loaders/GLTFLoader.js": "https://esm.sh/three@0.169.0/examples/jsm/loaders/GLTFLoader.js?external=three",
-      "three/examples/jsm/loaders/DRACOLoader.js": "https://esm.sh/three@0.169.0/examples/jsm/loaders/DRACOLoader.js?external=three",
-      "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.17.10?external=react,react-dom,three,scheduler"
-    }
-  }
-  </script>
 </head>
 <body>
-  <div class="page">
-    <div class="bg">
-      <video class="bg-video" autoplay muted playsinline>
-        <source src="assets/videos/hero.mp4" type="video/mp4">
-      </video>
-    </div>
-
     <header class="nav">
       <nav class="nav__links" aria-label="Primary">
         <a href="#" style="--d:0.02s">Platform</a>
@@ -73,6 +51,13 @@
           </svg>
         </span>
       </button>
+    </div>
+
+  <div class="page">
+    <div class="bg">
+      <video class="bg-video" autoplay muted playsinline>
+        <source src="assets/videos/hero.mp4" type="video/mp4">
+      </video>
     </div>
 
     <section class="hero">
@@ -197,31 +182,7 @@
 
     <!-- Process -->
     <section class="section reveal" id="process">
-      <p class="section__eyebrow">How we work</p>
-      <h2 class="section__title">A clear path from spend to results.</h2>
-      <p class="section__intro">No black boxes. You always know what stage we're in, what we're testing, and what it's doing for your revenue.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">01</div>
-          <h3>Audit &amp; discovery</h3>
-          <p>We dig into your data, funnel and market to find the fastest paths to growth.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">02</div>
-          <h3>Strategy &amp; plan</h3>
-          <p>A channel plan with targets, budgets and timelines mapped straight to revenue.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">03</div>
-          <h3>Launch &amp; build</h3>
-          <p>We build the campaigns, creative and tracking, then take everything live.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">04</div>
-          <h3>Optimize &amp; scale</h3>
-          <p>Weekly testing and budget shifts compound results month over month.</p>
-        </div>
-      </div>
+      <div id="process-root"></div>
     </section>
 
     <!-- Results -->
@@ -247,26 +208,8 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="section section--alt reveal" id="testimonials">
-      <p class="section__eyebrow">What clients say</p>
-      <h2 class="section__title">Teams that grew with AIkonX.</h2>
-      <div class="quotes">
-        <figure class="quote">
-          <div class="quote__stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote><p>&ldquo;They rebuilt our paid search from the ground up and cut our cost per lead by a third in the first quarter. The reporting alone changed how we run the business.&rdquo;</p></blockquote>
-          <figcaption class="quote__by"><strong>Head of Growth</strong><span>B2B SaaS platform</span></figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote><p>&ldquo;Finally an agency that talks in revenue, not impressions. We doubled ad spend and our ROAS actually went up.&rdquo;</p></blockquote>
-          <figcaption class="quote__by"><strong>Founder</strong><span>Direct-to-consumer brand</span></figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote><p>&ldquo;Senior people on our account from day one. Every test is documented and every dollar is accounted for. Genuinely a partner.&rdquo;</p></blockquote>
-          <figcaption class="quote__by"><strong>VP Marketing</strong><span>Fintech scale-up</span></figcaption>
-        </figure>
-      </div>
+    <section class="section section--testimonials reveal" id="testimonials">
+      <div id="testimonials-root"></div>
     </section>
 
     <!-- About -->
@@ -287,33 +230,38 @@
 
     <!-- FAQ -->
     <section class="section section--alt reveal" id="faq">
-      <p class="section__eyebrow">FAQ</p>
-      <h2 class="section__title">Questions, answered.</h2>
-      <div class="faq">
-        <details class="faq__item">
-          <summary>How quickly will we see results?</summary>
-          <p>Most clients see meaningful movement within the first 30 to 60 days as we clean up tracking and cut wasted spend. Compounding gains build from there, quarter over quarter.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Is there a minimum ad spend or contract?</summary>
-          <p>We work best with brands investing at least a few thousand dollars a month in media. Engagements are month-to-month after an initial 90-day ramp &mdash; we'd rather earn the renewal.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Which channels do you manage?</summary>
-          <p>Paid search (Google, Microsoft), paid social (Meta, LinkedIn, TikTok), SEO and content, plus analytics and conversion rate optimization to tie it all together.</p>
-        </details>
-        <details class="faq__item">
-          <summary>How do you report on performance?</summary>
-          <p>You get a live dashboard connected to every channel, plus a plain-English monthly review focused on revenue, pipeline and cost per acquisition &mdash; not vanity metrics.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Do we own our accounts and data?</summary>
-          <p>Always. Your ad accounts, analytics and creative are yours. If we ever part ways, everything stays with you &mdash; no hostage situations.</p>
-        </details>
-        <details class="faq__item">
-          <summary>What makes AIkonX different?</summary>
-          <p>Senior specialists on every account, radical transparency, and a relentless focus on durable growth instead of short-term spikes that fade next quarter.</p>
-        </details>
+      <div class="faq-layout">
+        <div class="faq-layout__intro">
+          <p class="section__eyebrow">FAQ</p>
+          <h2 class="section__title">Questions, answered.</h2>
+          <p class="section__intro">The practical details behind a partnership built around measurable growth.</p>
+        </div>
+        <div class="faq">
+          <details class="faq__item">
+            <summary><span class="faq__number">01</span><span class="faq__question">How quickly will we see results?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>Most clients see meaningful movement within the first 30 to 60 days as we clean up tracking and cut wasted spend. Compounding gains build from there, quarter over quarter.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary><span class="faq__number">02</span><span class="faq__question">Is there a minimum ad spend or contract?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>We work best with brands investing at least a few thousand dollars a month in media. Engagements are month-to-month after an initial 90-day ramp &mdash; we'd rather earn the renewal.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary><span class="faq__number">03</span><span class="faq__question">Which channels do you manage?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>Paid search (Google, Microsoft), paid social (Meta, LinkedIn, TikTok), SEO and content, plus analytics and conversion rate optimization to tie it all together.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary><span class="faq__number">04</span><span class="faq__question">How do you report on performance?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>You get a live dashboard connected to every channel, plus a plain-English monthly review focused on revenue, pipeline and cost per acquisition &mdash; not vanity metrics.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary><span class="faq__number">05</span><span class="faq__question">Do we own our accounts and data?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>Always. Your ad accounts, analytics and creative are yours. If we ever part ways, everything stays with you &mdash; no hostage situations.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary><span class="faq__number">06</span><span class="faq__question">What makes AIkonX different?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer"><p>Senior specialists on every account, radical transparency, and a relentless focus on durable growth instead of short-term spikes that fade next quarter.</p></div>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -425,13 +373,7 @@
     </footer>
   </main>
 
-  <script src="main.js"></script>
-  <script type="module">
-    import { createElement } from "react";
-    import { createRoot } from "react-dom/client";
-    import { PlanetStageHero } from "./orbit-hero.js";
-    const host = document.getElementById("orbit-stage");
-    if (host) createRoot(host).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
-  </script>
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
