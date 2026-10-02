@@ -1,0 +1,189 @@
+# =============================================================================
+# AiKonX – Apache mod_rewrite canonical-origin redirects
+# Canonical target: https://aikonx.com.au/
+#
+# Deployment path
+# ---------------
+# This file lives in public/.htaccess.  Vite copies every file under public/
+# verbatim into dist/ during `npm run build`, so after deployment dist/.htaccess
+# (or its equivalent at the Apache DocumentRoot) is this file.
+# The _redirects file alongside this one is Netlify-format only and is ignored
+# by Apache.
+#
+# Apache requirements
+# -------------------
+#   - mod_rewrite enabled  (a2enmod rewrite)
+#   - AllowOverride FileInfo (or AllowOverride All) for this directory in
+#     the VirtualHost / <Directory> block - otherwise .htaccess is silently
+#     ignored.
+#   - The file must be readable by the Apache process (chmod 644, owned root
+#     or the web-user).
+#   - If Apache serves dotfiles through a CDN / object-store proxy, ensure
+#     the proxy passes .htaccess to Apache rather than blocking it.
+#
+# TLS / proxy termination note
+# ----------------------------
+# Two redirect strategies are provided below.  Choose ONE block and remove
+# the other before deploying.
+#
+#   BLOCK A - Direct Apache TLS (Apache handles HTTPS itself)
+#     Apache sees the real protocol on the incoming connection.  The
+#     HTTPS server variable is reliably set by mod_ssl.  Use this when
+#     the VirtualHost listens on port 443 with an SSL certificate.
+#
+#   BLOCK B - Trusted reverse-proxy / TLS offload (e.g. load balancer,
+#     cPanel EasyApache with a front-end proxy, Cloudflare in Full/Strict
+#     mode with Apache behind it)
+#     The proxy terminates TLS and forwards plain HTTP to Apache on port 80.
+#     Apache never sees HTTPS, so %{HTTPS} is always "off".  The proxy
+#     signals the original scheme via the X-Forwarded-Proto header.
+#     WARNING: Only use BLOCK B when you fully control or implicitly trust
+#     the proxy.  Never trust X-Forwarded-Proto from arbitrary clients on
+#     a direct-Apache setup - it would allow anyone to bypass the redirect
+#     by spoofing the header.
+#
+# Both blocks:
+#   - Scope exclusively to aikonx.com.au and www.aikonx.com.au (no other
+#     virtual hosts or port variants are caught).
+#   - Preserve the full request path and query string via %{REQUEST_URI}.
+#   - Issue a single 301 permanent redirect with no chains or loops.
+#   - Place redirect rules BEFORE the SPA fallback so the SPA rewrite is
+#     never reached for non-canonical requests.
+# =============================================================================
+
+Options -MultiViews
+RewriteEngine On
+
+# ---------------------------------------------------------------------------
+# BLOCK A - Direct Apache TLS  (Apache owns the SSL certificate)
+# Remove BLOCK B entirely if you use this block.
+# ---------------------------------------------------------------------------
+
+# Rule A1: HTTP non-www -> HTTPS non-www
+# Matches:  http://aikonx.com.au/*
+# Skips when already on HTTPS (HTTPS=on) to avoid loops.
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^aikonx\.com\.au$ [NC]
+RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+
+# Rule A2: HTTP www -> HTTPS non-www
+# Matches:  http://www.aikonx.com.au/*
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+
+# Rule A3: HTTPS www -> HTTPS non-www
+# Matches:  https://www.aikonx.com.au/*
+# HTTPS is already on so only the www host needs checking.
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+
+# ---------------------------------------------------------------------------
+# END BLOCK A
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# BLOCK B - Trusted reverse-proxy / TLS offload
+# COMMENT OUT BLOCK A ABOVE and UNCOMMENT this block if your setup uses a
+# front-end proxy that terminates TLS and forwards plain HTTP to Apache.
+# Only enable when you trust the proxy not to pass spoofed headers.
+# ---------------------------------------------------------------------------
+
+## Rule B1: non-HTTPS non-www -> HTTPS non-www
+## Matches:  http://aikonx.com.au/*  (proxy signals http via X-Forwarded-Proto)
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+#RewriteCond %{HTTP_HOST} ^aikonx\.com\.au$ [NC]
+#RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+#
+## Rule B2: non-HTTPS www -> HTTPS non-www
+## Matches:  http://www.aikonx.com.au/*
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+#RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+#RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+#
+## Rule B3: HTTPS www -> HTTPS non-www
+## Matches:  https://www.aikonx.com.au/*  (proxy signals https, but wrong host)
+#RewriteCond %{HTTP:X-Forwarded-Proto} https [NC]
+#RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+#RewriteRule ^ https://aikonx.com.au%{REQUEST_URI} [L,R=301]
+
+# ---------------------------------------------------------------------------
+# END BLOCK B
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# SPA fallback - must come AFTER the redirect rules above
+# Route all non-file, non-directory requests to index.html so React Router
+# can handle client-side navigation.
+# ---------------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+
+# =============================================================================
+# DEPLOYMENT CHECKLIST & TEST COMMANDS
+# =============================================================================
+#
+# 1. Build
+#      npm run build
+#    Vite copies public/.htaccess -> dist/.htaccess automatically.
+#
+# 2. Deploy dist/ contents to your Apache DocumentRoot (e.g. public_html/).
+#    Verify the .htaccess file is present:
+#      ls -la /path/to/public_html/.htaccess
+#
+# 3. Apache prerequisites (run as root or via cPanel):
+#      a2enmod rewrite          # enable mod_rewrite
+#      apachectl configtest     # syntax check
+#      apachectl graceful       # reload without dropping connections
+#    In your VirtualHost <Directory> block ensure:
+#      AllowOverride FileInfo   # minimum required; AllowOverride All also works
+#    If cPanel manages the VirtualHost, set it via:
+#      cPanel -> Apache Configuration -> Include Editor, or use .htaccess
+#      (AllowOverride is typically already set to All in cPanel environments).
+#
+# 4. Choose ONE block (A or B) and remove the other before going live.
+#    Default active: BLOCK A (direct Apache TLS).
+#    If unsure, check whether Apache has an SSL VirtualHost on port 443 with
+#    a certificate; if yes, use Block A.  If a proxy sits in front (Cloudflare,
+#    load balancer, cPanel proxy), use Block B instead.
+#
+# 5. Test with curl (replace with actual server IP if DNS not yet propagated):
+#
+#    a) HTTP non-www -> should 301 to https://aikonx.com.au/
+#       curl -I http://aikonx.com.au/
+#       Expected:  HTTP/1.1 301   Location: https://aikonx.com.au/
+#
+#    b) HTTP www -> should 301 to https://aikonx.com.au/
+#       curl -I http://www.aikonx.com.au/
+#       Expected:  HTTP/1.1 301   Location: https://aikonx.com.au/
+#
+#    c) HTTPS www -> should 301 to https://aikonx.com.au/
+#       curl -I https://www.aikonx.com.au/
+#       Expected:  HTTP/1.1 301   Location: https://aikonx.com.au/
+#
+#    d) Canonical origin -> should 200 (no redirect loop)
+#       curl -I https://aikonx.com.au/
+#       Expected:  HTTP/1.1 200 OK
+#
+#    e) Path + query preservation
+#       curl -I http://www.aikonx.com.au/services?ref=test
+#       Expected:  Location: https://aikonx.com.au/services?ref=test
+#
+#    f) No redirect for unrelated hosts (must not match these rules)
+#       curl -I http://localhost/
+#       curl -I http://staging.example.com/
+#
+# 6. Once live 301s are confirmed, the earlier Netlify/Cloudflare config files
+#    (netlify.toml, public/_redirects) may be removed if Apache is the sole
+#    server.  They are harmless to Apache if left in place.
+#
+# NOTE: Source changes are prepared in this PR.  Live redirect behaviour
+# remains unverified until the branch is merged, dist/ is rebuilt, and the
+# .htaccess is deployed to the production Apache DocumentRoot.  An open PR
+# is not a completed live fix.
+# =============================================================================
