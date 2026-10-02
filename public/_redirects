@@ -1,0 +1,11 @@
+# Redirect all non-canonical variants to the single HTTPS non-www origin
+# Each rule is a direct single 301 — no chaining, no loops
+
+# HTTP non-www → HTTPS non-www
+http://aikonx.com.au/*        https://aikonx.com.au/:splat  301!
+
+# HTTP www → HTTPS non-www
+http://www.aikonx.com.au/*    https://aikonx.com.au/:splat  301!
+
+# HTTPS www → HTTPS non-www
+https://www.aikonx.com.au/*   https://aikonx.com.au/:splat  301!

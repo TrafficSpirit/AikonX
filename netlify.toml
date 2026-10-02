@@ -1,0 +1,27 @@
+[build]
+  command   = "npm run build"
+  publish   = "dist"
+
+# Force all traffic to HTTPS at the Netlify CDN edge
+[[plugins]]
+
+# Redirect HTTP non-www → HTTPS non-www (single 301, no chain)
+[[redirects]]
+  from   = "http://aikonx.com.au/*"
+  to     = "https://aikonx.com.au/:splat"
+  status = 301
+  force  = true
+
+# Redirect HTTP www → HTTPS non-www (single 301, no chain)
+[[redirects]]
+  from   = "http://www.aikonx.com.au/*"
+  to     = "https://aikonx.com.au/:splat"
+  status = 301
+  force  = true
+
+# Redirect HTTPS www → HTTPS non-www (single 301, no chain)
+[[redirects]]
+  from   = "https://www.aikonx.com.au/*"
+  to     = "https://aikonx.com.au/:splat"
+  status = 301
+  force  = true
