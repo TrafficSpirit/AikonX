@@ -1,0 +1,17 @@
+# Redirect all non-canonical homepage variants to https://aikonx.com.au/ in a single 301
+RewriteEngine On
+
+# Rule 1: HTTP non-www -> HTTPS non-www (single 301)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^aikonx\.com\.au$ [NC]
+RewriteRule ^(.*)$ https://aikonx.com.au/$1 [R=301,L]
+
+# Rule 2: HTTP www -> HTTPS non-www (single 301)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+RewriteRule ^(.*)$ https://aikonx.com.au/$1 [R=301,L]
+
+# Rule 3: HTTPS www -> HTTPS non-www (single 301)
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
+RewriteRule ^(.*)$ https://aikonx.com.au/$1 [R=301,L]
