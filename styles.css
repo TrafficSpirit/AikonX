@@ -65,6 +65,7 @@ button{ font:inherit; border:0; cursor:pointer; }
   bottom:0;
   height:min(82vh, 720px);
   width:auto;
+  max-width:52vw;
   object-fit:contain;
   --edge-fade:0%;
   -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 var(--edge-fade));
