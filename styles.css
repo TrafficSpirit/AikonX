@@ -294,6 +294,10 @@ button{ font:inherit; border:0; cursor:pointer; }
   margin-top:auto;
   margin-bottom:auto;
   max-width:none;
+  /* On desktop the video occupies the right ~55% of the viewport.
+     Constrain the hero text to the left 50% so it never sits
+     on top of the video — without resizing the video itself. */
+  width:50%;
 }
 
 .badge{
