@@ -465,11 +465,18 @@ body.is-ready .nav{ opacity:1; }
   .headline{ font-size:calc(clamp(2.75rem, 10vw, 3.85rem) + 3px); }
   .actions{ flex-wrap:wrap; }
   .actions .btn{ max-width:100%; white-space:normal; }
+  /* Ghost button (no icon): full width on very small screens so label can wrap */
+  .actions .btn--ghost{ width:100%; text-align:center; justify-content:center; }
   .lede{ width:100%; max-width:700px; margin-top:24px; }
   /* Re-enable the button inside the mobile menu (scoped out of the .nav hide) */
   .mobile-menu .btn--nav{ display:inline-flex; }
-  /* Prevent the hero background video from creating horizontal overflow */
-  .bg-video{ right:0; max-width:100%; }
+  /* Hide the hero background video completely on mobile — it is wide/tall
+     and positioned off-screen (right:-5vw), making it the primary source
+     of horizontal overflow on narrow viewports. */
+  .bg-video{ display:none; }
+  /* Prevent any remaining element from causing horizontal scroll */
+  html,body{ overflow-x:hidden; }
+  .page{ overflow-x:hidden; }
 }
 
 [hidden]{ display:none !important; }
