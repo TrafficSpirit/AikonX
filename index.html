@@ -6,12 +6,13 @@
   <title>AIkonX | Digital Marketing Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fonts and full stylesheet are loaded non-blocking from main.js after
-       first paint. The critical <style> block below covers all above-the-fold
-       content so the page renders immediately without any external CSS. -->
+  <!-- Google Fonts is loaded non-blocking from main.js (loadNonCriticalCSS).
+       The compiled site stylesheet is made non-blocking by the Vite build
+       plugin (non-blocking-css in vite.config.ts) which transforms Vite's
+       injected <link rel="stylesheet"> to use media="print" onload at build
+       time. The inline <style> below covers all ATF content immediately. -->
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="styles.css">
   </noscript>
   <!-- Critical above-the-fold CSS inlined to eliminate render-blocking stylesheet request -->
   <style>
