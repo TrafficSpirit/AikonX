@@ -442,12 +442,10 @@ body.is-ready .nav{ opacity:1; }
   .headline__accent{ color:#006cd2 !important; }
   .headline__accent::before,
   .headline__accent::after{ content:none !important; }
-  body:not(.is-ready) .nav,
-  .page:not(.is-ready) .hero,
-  .page:not(.is-ready) .lede{ opacity:0 !important; }
-  body.is-ready .nav,
-  .page.is-ready .hero,
-  .page.is-ready .lede{ opacity:1 !important; }
+  /* is-ready fires immediately in JS, so these selectors resolve to
+     the .is-ready variants within the first frame. */
+  body:not(.is-ready) .nav{ opacity:0 !important; }
+  body.is-ready .nav{ opacity:1 !important; }
 }
 
 /* ---------- Responsive: <=820px ---------- */
