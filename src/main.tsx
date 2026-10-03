@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Testimonials } from "./demo";
 import { Process } from "./process";
 import "./index.css";
+import "../styles.css";
 
 // Render UI components that are likely above or near the fold first.
 const testimonialsHost = document.getElementById("testimonials-root");
