@@ -6,6 +6,8 @@
   <title>AIkonX | Digital Marketing Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload the LCP logo image so discovery + fetch begin immediately -->
+  <link rel="preload" as="image" href="assets/images/logo.png" fetchpriority="high">
   <!-- Google Fonts is loaded non-blocking from main.js (loadNonCriticalCSS).
        The compiled site stylesheet is made non-blocking by the Vite build
        plugin (non-blocking-css in vite.config.ts) which transforms Vite's
@@ -147,7 +149,7 @@
       </nav>
 
       <a class="logo" href="#" aria-label="AIkonX">
-        <img src="assets/images/logo.png" alt="AIkonX">
+        <img src="assets/images/logo.png" alt="AIkonX" width="201" height="81" fetchpriority="high">
       </a>
 
       <button class="btn btn--nav" type="button">
@@ -227,10 +229,10 @@
       <div class="marquee">
         <div class="marquee__track">
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/googleads/4285F4" alt="" aria-hidden="true" width="24" height="24">Google Ads</span>
-          <span class="marquee__item"><img src="https://cdn.simpleicons.org/microsoftadvertising/008272" alt="" aria-hidden="true" width="24" height="24">Microsoft Ads</span>
+          <span class="marquee__item"><img src="https://cdn.simpleicons.org/microsoftbing/008272" alt="" aria-hidden="true" width="24" height="24">Microsoft Ads</span>
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/meta/0082FB" alt="" aria-hidden="true" width="24" height="24">Meta</span>
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="" aria-hidden="true" width="24" height="24">Instagram</span>
-          <span class="marquee__item"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="" aria-hidden="true" width="24" height="24">LinkedIn</span>
+          <span class="marquee__item"><img src="https://cdn.simpleicons.org/linkedin" alt="" aria-hidden="true" width="24" height="24">LinkedIn</span>
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/tiktok/000000" alt="" aria-hidden="true" width="24" height="24">TikTok</span>
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="" aria-hidden="true" width="24" height="24">YouTube</span>
           <span class="marquee__item"><img src="https://cdn.simpleicons.org/googleanalytics/E37400" alt="" aria-hidden="true" width="24" height="24">Google Analytics</span>
@@ -431,7 +433,7 @@
       <div class="footer__top">
         <div class="footer__brand-col">
           <div class="footer__brand">
-            <img src="assets/images/logo.png" alt="AIkonX">
+            <img src="assets/images/logo.png" alt="AIkonX" width="160" height="64">
           </div>
           <p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p>
           <div class="footer__social">
