@@ -1,12 +1,12 @@
 /* ─── Non-critical CSS loader ────────────────────────────────────────────────
-   Vite rewrites <link rel="stylesheet"> tags in index.html to blocking assets
-   during the production build, stripping any media=print/onload attributes.
-   Loading stylesheets dynamically from JS is invisible to Vite's HTML plugin
-   and is the reliable way to keep them non-blocking post-build.
+   The compiled site stylesheet (assets/index-HASH.css) is made non-blocking
+   by the "non-blocking-css" Vite plugin in vite.config.ts, which transforms
+   every Vite-injected <link rel="stylesheet"> in the built index.html to use
+   media="print" onload="this.media='all'" at build time.
 
-   The inline <style> block in <head> covers all above-the-fold content so the
-   page paints immediately. This function loads the full stylesheet and Google
-   Fonts after first paint, preventing them from delaying LCP.
+   This file handles only Google Fonts, which is a third-party stylesheet not
+   managed by Vite. The inline <style> in <head> covers all above-the-fold
+   content so the page paints immediately without any external CSS.
 ─────────────────────────────────────────────────────────────────────────── */
 (function loadNonCriticalCSS() {
   function loadCSS(href, crossorigin) {
@@ -22,8 +22,7 @@
   }
   // Google Fonts — fetched non-blocking; display=swap prevents FOIT
   loadCSS('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap', 'anonymous');
-  // Full site stylesheet — critical ATF styles are already inlined in <head>
-  loadCSS('styles.css');
+  // The full site stylesheet is handled non-blocking by the Vite build plugin.
 })();
 
 (function () {
