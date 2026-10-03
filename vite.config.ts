@@ -18,15 +18,29 @@ export default defineConfig({
     // never delays LCP. The inline <style> in index.html covers all ATF
     // content; the full stylesheet applies after first paint via the
     // media=print → onload swap (standard web.dev recommendation).
+    // Also inject a correct fetchpriority preload for the LCP logo image
+    // after Vite has rewritten its src to the fingerprinted asset URL.
     {
       name: "non-blocking-css",
       transformIndexHtml(html: string): string {
-        // Vite injects: <link rel="stylesheet" crossorigin href="/assets/index-HASH.css">
-        // We add media="print" onload so it loads without blocking rendering.
-        return html.replace(
+        // 1. Make Vite-injected stylesheets non-blocking
+        let out = html.replace(
           /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+)">/g,
           '<link rel="stylesheet" crossorigin href="$1" media="print" onload="this.media=\'all\'">'
         );
+        // 2. Extract the Vite-hashed logo URL from the nav <img> and inject
+        //    a matching <link rel="preload"> so the LCP image is fetched at
+        //    highest priority from the very first HTML parse.
+        const logoMatch = out.match(/<img src="(\/assets\/logo-[^"]+)" alt="AIkonX" width="201"/);
+        if (logoMatch) {
+          const logoUrl = logoMatch[1];
+          const preloadTag = `<link rel="preload" as="image" href="${logoUrl}" fetchpriority="high">`;
+          out = out.replace(
+            '<!-- Preload the LCP logo image so discovery + fetch begin immediately -->\n  <link rel="preload" as="image" href="assets/images/logo.png" fetchpriority="high">',
+            `<!-- Preload the LCP logo image (Vite-hashed URL) at highest priority -->\n  ${preloadTag}`
+          );
+        }
+        return out;
       },
     },
   ],
