@@ -707,6 +707,13 @@ body.is-ready .nav{ opacity:1; }
 .mock__legend span:first-child{ color:#6b7378; }
 .mock__legend span:last-child{ color:#0a7d3a; font-weight:600; }
 
+/* Reserve height for React-mounted component roots to prevent CLS.
+   These containers start empty in the HTML; reserving explicit min-height
+   prevents the page from reflowing when React hydrates and injects content.
+   Heights match the rendered component output at desktop breakpoints. */
+#process-root{ min-height:700px; }
+#testimonials-root{ min-height:860px; }
+
 /* Platform section with inline 3D world */
 #platform{ padding-bottom:0; }
 .platform-grid{
@@ -839,13 +846,13 @@ body.is-ready .nav{ opacity:1; }
   .faq__item,.faq__question,.faq__icon,.faq__icon::after{ transition:none; }
 }
 
-/* Scroll reveal */
+/* Scroll reveal — opacity-only to avoid CLS from translateY shifts on
+   elements that are visible at first paint or near the fold on desktop. */
 .js .reveal{
   opacity:0;
-  transform:translateY(26px);
-  transition:opacity .6s cubic-bezier(0.16,1,0.3,1), transform .6s cubic-bezier(0.16,1,0.3,1);
+  transition:opacity .6s cubic-bezier(0.16,1,0.3,1);
 }
-.js .reveal.in{ opacity:1; transform:none; }
+.js .reveal.in{ opacity:1; }
 @media (prefers-reduced-motion: reduce){
   .js .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
 }
