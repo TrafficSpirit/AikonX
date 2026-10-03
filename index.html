@@ -6,11 +6,13 @@
   <title>AIkonX | Digital Marketing Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Load Google Fonts non-blocking: media=print means it doesn't block render;
-       onload switches to all so it applies once the network response arrives. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <!-- Fonts and full stylesheet are loaded non-blocking from main.js after
+       first paint. The critical <style> block below covers all above-the-fold
+       content so the page renders immediately without any external CSS. -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+  </noscript>
   <!-- Critical above-the-fold CSS inlined to eliminate render-blocking stylesheet request -->
   <style>
     :root{
@@ -125,9 +127,7 @@
       body.is-ready .nav{opacity:1!important;}
     }
   </style>
-  <!-- Full stylesheet loaded non-blocking; critical styles above cover first paint -->
-  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  <!-- Full stylesheet injected non-blocking by main.js; see loadNonCriticalCSS() -->
   <link rel="canonical" href="https://aikonx.com.au/">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

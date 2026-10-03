@@ -1,3 +1,31 @@
+/* ─── Non-critical CSS loader ────────────────────────────────────────────────
+   Vite rewrites <link rel="stylesheet"> tags in index.html to blocking assets
+   during the production build, stripping any media=print/onload attributes.
+   Loading stylesheets dynamically from JS is invisible to Vite's HTML plugin
+   and is the reliable way to keep them non-blocking post-build.
+
+   The inline <style> block in <head> covers all above-the-fold content so the
+   page paints immediately. This function loads the full stylesheet and Google
+   Fonts after first paint, preventing them from delaying LCP.
+─────────────────────────────────────────────────────────────────────────── */
+(function loadNonCriticalCSS() {
+  function loadCSS(href, crossorigin) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    if (crossorigin) link.crossOrigin = crossorigin;
+    // media=print trick: browser fetches immediately (low priority, non-blocking)
+    // then onload swaps to 'all' so styles apply once downloaded.
+    link.media = 'print';
+    link.onload = function () { this.media = 'all'; };
+    document.head.appendChild(link);
+  }
+  // Google Fonts — fetched non-blocking; display=swap prevents FOIT
+  loadCSS('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap', 'anonymous');
+  // Full site stylesheet — critical ATF styles are already inlined in <head>
+  loadCSS('styles.css');
+})();
+
 (function () {
   var nav = document.querySelector(".nav");
   if (!nav) return;
