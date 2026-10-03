@@ -138,7 +138,10 @@
   });
 })();
 
-/* Reveal the hero content only once the background video has finished playing. */
+/* Reveal the hero content immediately so primary text is never hidden from
+   Lighthouse or users with video disabled. The decorative video entrance
+   animations run in parallel once the video starts playing and do not block
+   the LCP element from being painted. */
 (function () {
   var page = document.querySelector(".page");
   var video = document.querySelector(".bg-video");
@@ -152,33 +155,25 @@
     document.body.classList.add("is-ready");
   }
 
-  if (!video) {
-    reveal();
-    return;
-  }
+  // Reveal immediately so headline text is painted on first frame.
+  // This fixes NO_LCP caused by video autoplay being blocked in headless
+  // browsers (Lighthouse, bots) where timeupdate / ended never fire.
+  reveal();
 
-  video.addEventListener("ended", reveal); // fallback
-  video.addEventListener("error", reveal);
+  if (!video) return;
 
-  var WALK_AT = 3.5;   // seconds — left-edge fade begins
-  var REVEAL_AT = 3;   // seconds — content starts animating in (beaver around mid)
+  var WALK_AT = 3.5; // seconds — left-edge fade begins
   video.addEventListener("timeupdate", function () {
     // Apply the left-edge fade only after the beaver has started walking out
     // (so the wall it peeks around stays sharp during the peek).
     if (video.currentTime >= WALK_AT) {
       video.classList.add("is-walking");
     }
-    // Start the content entrance while the beaver is still mid-clip.
-    if (video.currentTime >= REVEAL_AT) {
-      reveal();
-    }
   });
 
-  // Autoplay can require an explicit play() call; if it can't play, reveal anyway.
+  // Autoplay can require an explicit play() call; suppress unhandled rejections.
   var p = video.play();
   if (p && typeof p.catch === "function") {
-    p.catch(function () {
-      reveal();
-    });
+    p.catch(function () { /* video autoplay blocked — decorative only, no action needed */ });
   }
 })();
