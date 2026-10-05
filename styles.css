@@ -163,6 +163,9 @@ button{ font:inherit; border:0; cursor:pointer; }
   width:auto;
   display:block;
   transition:height .42s cubic-bezier(.16,1,.3,1);
+  /* Reserve intrinsic space so the nav does not reflow when the image loads.
+     aspect-ratio matches the source PNG dimensions (1983 × 793). */
+  aspect-ratio:1983/793;
 }
 .nav.is-sticky .logo img{ height:42px; }
 .logo:hover{ transform:scale(1.1); }
@@ -479,6 +482,15 @@ body.is-ready .nav{ opacity:1; }
 }
 
 [hidden]{ display:none !important; }
+
+/* Reserve layout space for React-mounted components to prevent CLS
+   (process steps and testimonials sections are empty divs until React hydrates). */
+#process-root:empty{
+  min-height:600px;
+}
+#testimonials-root:empty{
+  min-height:480px;
+}
 
 /* ---------- Responsive: short + wide ---------- */
 @media (max-height:700px) and (min-width:821px){

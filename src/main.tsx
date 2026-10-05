@@ -1,30 +1,50 @@
-import { createElement } from "react";
-import { createRoot } from "react-dom/client";
-import { Testimonials } from "./demo";
-import { Process } from "./process";
 import "./index.css";
 import "../styles.css";
 
-// Render UI components that are likely above or near the fold first.
-const testimonialsHost = document.getElementById("testimonials-root");
-if (testimonialsHost) createRoot(testimonialsHost).render(createElement(Testimonials));
+// All React components are below the fold. Defer ALL mounting until after
+// the browser has painted the above-the-fold content and reported LCP.
+// This removes React's initial render work from the critical path entirely,
+// reducing TBT and allowing LCP to be measured as fast as possible.
 
-const processHost = document.getElementById("process-root");
-if (processHost) createRoot(processHost).render(createElement(Process));
+function idle(cb: () => void) {
+  if (typeof requestIdleCallback !== "undefined") {
+    requestIdleCallback(cb, { timeout: 4000 });
+  } else {
+    // Fallback: defer past first paint using two rAF + setTimeout
+    requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(cb, 0)));
+  }
+}
 
-// Defer the heavy Three.js orbit scene until after the browser is idle so it
-// does not contribute to TBT / long tasks during the critical loading window.
-// The orbit stage is below the fold and does not affect LCP.
-function mountOrbit() {
-  // Dynamic import splits orbit-hero.js into its own chunk and defers parsing.
-  import("../orbit-hero.js").then(({ PlanetStageHero }) => {
-    const orbitHost = document.getElementById("orbit-stage");
-    if (orbitHost) createRoot(orbitHost).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
+// Mount Testimonials and Process after browser is idle.
+// These are deep below the fold and have no impact on LCP.
+idle(function mountBelowFold() {
+  import("react").then(({ createElement }) => {
+    import("react-dom/client").then(({ createRoot }) => {
+      const testimonialsHost = document.getElementById("testimonials-root");
+      if (testimonialsHost) {
+        import("./demo").then(({ Testimonials }) => {
+          createRoot(testimonialsHost).render(createElement(Testimonials));
+        });
+      }
+      const processHost = document.getElementById("process-root");
+      if (processHost) {
+        import("./process").then(({ Process }) => {
+          createRoot(processHost).render(createElement(Process));
+        });
+      }
+    });
   });
-}
+});
 
-if (typeof requestIdleCallback !== "undefined") {
-  requestIdleCallback(mountOrbit, { timeout: 3000 });
-} else {
-  setTimeout(mountOrbit, 200);
-}
+// Mount the Three.js orbit scene after the below-fold components,
+// using a second idle callback so it does not race with React hydration.
+idle(function mountOrbit() {
+  import("../orbit-hero.js").then(({ PlanetStageHero }) => {
+    import("react").then(({ createElement }) => {
+      import("react-dom/client").then(({ createRoot }) => {
+        const orbitHost = document.getElementById("orbit-stage");
+        if (orbitHost) createRoot(orbitHost).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
+      });
+    });
+  });
+});
