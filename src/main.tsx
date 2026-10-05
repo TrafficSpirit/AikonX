@@ -1,30 +1,58 @@
-import { createElement } from "react";
-import { createRoot } from "react-dom/client";
-import { Testimonials } from "./demo";
-import { Process } from "./process";
 import "./index.css";
 import "../styles.css";
 
-// Render UI components that are likely above or near the fold first.
-const testimonialsHost = document.getElementById("testimonials-root");
-if (testimonialsHost) createRoot(testimonialsHost).render(createElement(Testimonials));
-
-const processHost = document.getElementById("process-root");
-if (processHost) createRoot(processHost).render(createElement(Process));
-
-// Defer the heavy Three.js orbit scene until after the browser is idle so it
-// does not contribute to TBT / long tasks during the critical loading window.
-// The orbit stage is below the fold and does not affect LCP.
-function mountOrbit() {
-  // Dynamic import splits orbit-hero.js into its own chunk and defers parsing.
-  import("../orbit-hero.js").then(({ PlanetStageHero }) => {
-    const orbitHost = document.getElementById("orbit-stage");
-    if (orbitHost) createRoot(orbitHost).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
-  });
+// Mount each below-the-fold React component only when it enters the viewport.
+// This ensures React and framer-motion never run on the critical path that
+// determines LCP, and only runs when the user actually scrolls near the section.
+function mountWhenVisible(hostId: string, loader: () => Promise<void>) {
+  const el = document.getElementById(hostId);
+  if (!el) return;
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        if (entries[0].isIntersecting) {
+          observer.disconnect();
+          loader();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(el);
+  } else {
+    // Fallback for browsers without IntersectionObserver: defer briefly
+    setTimeout(loader, 500);
+  }
 }
 
-if (typeof requestIdleCallback !== "undefined") {
-  requestIdleCallback(mountOrbit, { timeout: 3000 });
-} else {
-  setTimeout(mountOrbit, 200);
-}
+mountWhenVisible("testimonials-root", () =>
+  Promise.all([
+    import("react"),
+    import("react-dom/client"),
+    import("./demo"),
+  ]).then(([{ createElement }, { createRoot }, { Testimonials }]) => {
+    const el = document.getElementById("testimonials-root");
+    if (el && !el.hasChildNodes()) createRoot(el).render(createElement(Testimonials));
+  })
+);
+
+mountWhenVisible("process-root", () =>
+  Promise.all([
+    import("react"),
+    import("react-dom/client"),
+    import("./process"),
+  ]).then(([{ createElement }, { createRoot }, { Process }]) => {
+    const el = document.getElementById("process-root");
+    if (el && !el.hasChildNodes()) createRoot(el).render(createElement(Process));
+  })
+);
+
+mountWhenVisible("orbit-stage", () =>
+  Promise.all([
+    import("react"),
+    import("react-dom/client"),
+    import("../orbit-hero.js"),
+  ]).then(([{ createElement }, { createRoot }, { PlanetStageHero }]) => {
+    const el = document.getElementById("orbit-stage");
+    if (el && !el.hasChildNodes()) createRoot(el).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
+  })
+);
