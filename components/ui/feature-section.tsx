@@ -112,8 +112,8 @@ export function FeatureSteps({
                   src={features[currentFeature].image}
                   alt={`${features[currentFeature].title || features[currentFeature].step} abstract illustration`}
                   className="h-full w-full object-cover"
-                  width={1536}
-                  height={1024}
+                  width={660}
+                  height={536}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent" aria-hidden="true" />
               </motion.div>

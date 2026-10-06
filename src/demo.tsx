@@ -13,7 +13,7 @@ const photos = [
   "photo-1535713875002-d1d0cf377fde",
 ];
 
-const image = (index: number) => `https://images.unsplash.com/${photos[index]}?auto=format&fit=crop&w=96&h=96&q=80`;
+const image = (index: number) => `https://images.unsplash.com/${photos[index]}?auto=format&fit=crop&w=80&h=80&q=80`;
 
 const testimonials: Testimonial[] = [
   { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", image: image(0), name: "Briana Patton", role: "Operations Manager" },
