@@ -5,13 +5,13 @@ const features: Feature[] = [
     step: "01",
     title: "Audit & discovery",
     content: "We dig into your data, funnel and market to find the fastest paths to growth.",
-    image: "/assets/images/process-audit.png?v=user-art-1",
+    image: "/assets/images/process-audit.webp",
   },
   {
     step: "02",
     title: "Strategy & plan",
     content: "A channel plan with targets, budgets and timelines mapped straight to revenue.",
-    image: "/assets/images/process-strategy.png?v=user-art-1",
+    image: "/assets/images/process-strategy.webp",
   },
   {
     step: "03",

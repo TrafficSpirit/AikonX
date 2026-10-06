@@ -31,4 +31,9 @@ export default defineConfig({
     },
   ],
   resolve: { alias: { "@": resolve(".") } },
+  build: {
+    // Prevent Vite from inlining small images as data URIs so they remain
+    // external files with correct dimensions for the image-size CI check.
+    assetsInlineLimit: 0,
+  },
 });
