@@ -5,9 +5,11 @@ import { motion, useReducedMotion } from "motion/react";
 
 export type Testimonial = {
   text: string;
-  image: string;
   name: string;
   role: string;
+  initials?: string;
+  avatarBg?: string;
+  avatarFg?: string;
 };
 
 type TestimonialsColumnProps = {
@@ -28,7 +30,7 @@ export const TestimonialsColumn = ({ className = "", testimonials, duration = 10
       >
         {(reduceMotion ? [0] : [0, 1]).map((copy) => (
           <React.Fragment key={copy}>
-            {testimonials.map(({ text, image, name, role }, i) => (
+            {testimonials.map(({ text, name, role, initials, avatarBg, avatarFg }, i) => (
               <div
                 className="p-10 rounded-3xl border border-neutral-200 shadow-lg shadow-primary/10 w-full"
                 key={`${copy}-${i}`}
@@ -36,7 +38,10 @@ export const TestimonialsColumn = ({ className = "", testimonials, duration = 10
               >
                 <div>{text}</div>
                 <div className="flex items-center gap-2 mt-5">
-                  <img width={40} height={40} src={image} alt={name} className="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <svg width={40} height={40} viewBox="0 0 40 40" aria-hidden="true" className="h-10 w-10 rounded-full flex-shrink-0">
+                    <rect width="40" height="40" rx="20" fill={avatarBg ?? "#006cd2"} />
+                    <text x="20" y="26" textAnchor="middle" fontSize="15" fontWeight="600" fontFamily="sans-serif" fill={avatarFg ?? "#ffffff"}>{initials ?? name.slice(0,2).toUpperCase()}</text>
+                  </svg>
                   <div className="flex flex-col">
                     <div className="font-medium tracking-tight leading-5">{name}</div>
                     <div className="leading-5 opacity-60 tracking-tight">{role}</div>
