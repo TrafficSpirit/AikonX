@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: '8286bd36c7db8ea8afb9d928a45803d0c393ccfa'
+          ref: 'e9e291f9efae99b587bab127add57c359a1f9f1d'
           path: baseline
       - uses: actions/setup-node@v4
         with:

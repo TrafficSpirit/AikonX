@@ -1,16 +1,29 @@
 import { motion } from "motion/react";
 import { TestimonialsColumn, type Testimonial } from "@/components/ui/testimonials-columns-1";
 
+// Avatar colours — distinct hues for each testimonial person.
+const avatarColors: [string, string][] = [
+  ["#006cd2","#bfe0ff"], ["#0a7d3a","#bbf0d4"], ["#8b2fc9","#e9d5ff"],
+  ["#c94f0a","#fde4cc"], ["#0a6b7d","#c8f0f8"], ["#7d0a44","#fdd5e8"],
+  ["#3d7d0a","#d8f5bb"], ["#7d4f0a","#fdeacc"], ["#0a3d7d","#c8d8f8"],
+];
+
+const avatar = (index: number, name: string) => {
+  const initials = name.split(" ").map((w: string) => w[0]).join("").slice(0, 2).toUpperCase();
+  const [bg, fg] = avatarColors[index % avatarColors.length];
+  return { initials, avatarBg: bg, avatarFg: fg };
+};
+
 const testimonials: Testimonial[] = [
-  { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", name: "Briana Patton", role: "Operations Manager", initials: "BP", avatarBg: "#006cd2", avatarFg: "#ffffff" },
-  { text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.", name: "Bilal Ahmed", role: "IT Manager", initials: "BA", avatarBg: "#0a7d3a", avatarFg: "#ffffff" },
-  { text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.", name: "Saman Malik", role: "Customer Support Lead", initials: "SM", avatarBg: "#7c3aed", avatarFg: "#ffffff" },
-  { text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.", name: "Omar Raza", role: "CEO", initials: "OR", avatarBg: "#b45309", avatarFg: "#ffffff" },
-  { text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.", name: "Zainab Hussain", role: "Project Manager", initials: "ZH", avatarBg: "#0e7490", avatarFg: "#ffffff" },
-  { text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.", name: "Aliza Khan", role: "Business Analyst", initials: "AK", avatarBg: "#be185d", avatarFg: "#ffffff" },
-  { text: "Our business functions improved with a user-friendly design and positive customer feedback.", name: "Farhan Siddiqui", role: "Marketing Director", initials: "FS", avatarBg: "#1d4ed8", avatarFg: "#ffffff" },
-  { text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.", name: "Sana Sheikh", role: "Sales Manager", initials: "SS", avatarBg: "#047857", avatarFg: "#ffffff" },
-  { text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.", name: "Hassan Ali", role: "E-commerce Manager", initials: "HA", avatarBg: "#9333ea", avatarFg: "#ffffff" },
+  { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", image: "", name: "Briana Patton", role: "Operations Manager", ...avatar(0, "Briana Patton") },
+  { text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.", image: "", name: "Bilal Ahmed", role: "IT Manager", ...avatar(1, "Bilal Ahmed") },
+  { text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.", image: "", name: "Saman Malik", role: "Customer Support Lead", ...avatar(2, "Saman Malik") },
+  { text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.", image: "", name: "Omar Raza", role: "CEO", ...avatar(3, "Omar Raza") },
+  { text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.", image: "", name: "Zainab Hussain", role: "Project Manager", ...avatar(4, "Zainab Hussain") },
+  { text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.", image: "", name: "Aliza Khan", role: "Business Analyst", ...avatar(5, "Aliza Khan") },
+  { text: "Our business functions improved with a user-friendly design and positive customer feedback.", image: "", name: "Farhan Siddiqui", role: "Marketing Director", ...avatar(6, "Farhan Siddiqui") },
+  { text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.", image: "", name: "Sana Sheikh", role: "Sales Manager", ...avatar(7, "Sana Sheikh") },
+  { text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.", image: "", name: "Hassan Ali", role: "E-commerce Manager", ...avatar(8, "Hassan Ali") },
 ];
 
 export function Testimonials() {

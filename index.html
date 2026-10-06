@@ -48,7 +48,7 @@
       /* opacity NOT transitioned — nav appears instantly when is-ready fires so
          the LCP image is not delayed by a 300 ms fade. */}
     body:not(.is-ready) .nav{opacity:0;}
-    body.is-ready .nav{opacity:1;}
+    body.is-ready .nav{opacity:1;transition:none;}
     /* Hero */
     .hero{margin-top:auto;margin-bottom:auto;max-width:none;position:relative;z-index:1;}
     .lede{position:relative;z-index:1;margin-top:clamp(22px,2.6vw,32px);max-width:700px;
@@ -436,7 +436,7 @@
       <div class="footer__top">
         <div class="footer__brand-col">
           <div class="footer__brand">
-            <img src="assets/images/logo-footer.webp" alt="AIkonX" width="290" height="116">
+            <img src="assets/images/logo-footer.webp" alt="AIkonX" width="290" height="116" loading="lazy">
           </div>
           <p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p>
           <div class="footer__social">
