@@ -1,30 +1,29 @@
 import { motion } from "motion/react";
 import { TestimonialsColumn, type Testimonial } from "@/components/ui/testimonials-columns-1";
 
-const photos = [
-  "photo-1534528741775-53994a69daeb",
-  "photo-1500648767791-00dcc994a43e",
-  "photo-1494790108377-be9c29b29330",
-  "photo-1507003211169-0a1dd7228f2d",
-  "photo-1531123897727-8f129e1688ce",
-  "photo-1552058544-f2b08422138a",
-  "photo-1544005313-94ddf0286df2",
-  "photo-1527980965255-d3b416303d12",
-  "photo-1535713875002-d1d0cf377fde",
+// Avatar colours — distinct hues for each testimonial person.
+const avatarColors: [string, string][] = [
+  ["#006cd2","#bfe0ff"], ["#0a7d3a","#bbf0d4"], ["#8b2fc9","#e9d5ff"],
+  ["#c94f0a","#fde4cc"], ["#0a6b7d","#c8f0f8"], ["#7d0a44","#fdd5e8"],
+  ["#3d7d0a","#d8f5bb"], ["#7d4f0a","#fdeacc"], ["#0a3d7d","#c8d8f8"],
 ];
 
-const image = (index: number) => `https://images.unsplash.com/${photos[index]}?auto=format&fit=crop&w=96&h=96&q=80`;
+const image = (index: number, name: string) => {
+  const initials = name.split(" ").map((w: string) => w[0]).join("").slice(0, 2).toUpperCase();
+  const [bg, fg] = avatarColors[index % avatarColors.length];
+  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' rx='40' fill='${encodeURIComponent(bg)}'/%3E%3Ctext x='40' y='40' dominant-baseline='central' text-anchor='middle' font-family='Inter%2CHelvetica%2CArial%2Csans-serif' font-size='28' font-weight='600' fill='${encodeURIComponent(fg)}'%3E${initials}%3C/text%3E%3C/svg%3E`;
+};
 
 const testimonials: Testimonial[] = [
-  { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", image: image(0), name: "Briana Patton", role: "Operations Manager" },
-  { text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.", image: image(1), name: "Bilal Ahmed", role: "IT Manager" },
-  { text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.", image: image(2), name: "Saman Malik", role: "Customer Support Lead" },
-  { text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.", image: image(3), name: "Omar Raza", role: "CEO" },
-  { text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.", image: image(4), name: "Zainab Hussain", role: "Project Manager" },
-  { text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.", image: image(5), name: "Aliza Khan", role: "Business Analyst" },
-  { text: "Our business functions improved with a user-friendly design and positive customer feedback.", image: image(6), name: "Farhan Siddiqui", role: "Marketing Director" },
-  { text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.", image: image(7), name: "Sana Sheikh", role: "Sales Manager" },
-  { text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.", image: image(8), name: "Hassan Ali", role: "E-commerce Manager" },
+  { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", image: image(0, "Briana Patton"), name: "Briana Patton", role: "Operations Manager" },
+  { text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.", image: image(1, "Bilal Ahmed"), name: "Bilal Ahmed", role: "IT Manager" },
+  { text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.", image: image(2, "Saman Malik"), name: "Saman Malik", role: "Customer Support Lead" },
+  { text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.", image: image(3, "Omar Raza"), name: "Omar Raza", role: "CEO" },
+  { text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.", image: image(4, "Zainab Hussain"), name: "Zainab Hussain", role: "Project Manager" },
+  { text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.", image: image(5, "Aliza Khan"), name: "Aliza Khan", role: "Business Analyst" },
+  { text: "Our business functions improved with a user-friendly design and positive customer feedback.", image: image(6, "Farhan Siddiqui"), name: "Farhan Siddiqui", role: "Marketing Director" },
+  { text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.", image: image(7, "Sana Sheikh"), name: "Sana Sheikh", role: "Sales Manager" },
+  { text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.", image: image(8, "Hassan Ali"), name: "Hassan Ali", role: "E-commerce Manager" },
 ];
 
 export function Testimonials() {

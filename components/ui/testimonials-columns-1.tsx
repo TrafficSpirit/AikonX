@@ -36,7 +36,7 @@ export const TestimonialsColumn = ({ className = "", testimonials, duration = 10
               >
                 <div>{text}</div>
                 <div className="flex items-center gap-2 mt-5">
-                  <img width={40} height={40} src={image} alt={name} className="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                  <img width={40} height={40} src={image} alt={name} className="h-10 w-10 rounded-full object-cover" loading="lazy" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                   <div className="flex flex-col">
                     <div className="font-medium tracking-tight leading-5">{name}</div>
                     <div className="leading-5 opacity-60 tracking-tight">{role}</div>
