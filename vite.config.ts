@@ -30,11 +30,10 @@ export default defineConfig({
       },
     },
   ],
+  resolve: { alias: { "@": resolve(".") } },
   build: {
-    // Disable asset inlining so all images are served as external files.
-    // This ensures the LCP logo image has a real URL (not data:) and its
-    // size can be verified correctly by Lighthouse/CI tools.
+    // Prevent Vite from inlining small images as data URIs so they remain
+    // external files with correct dimensions for the image-size CI check.
     assetsInlineLimit: 0,
   },
-  resolve: { alias: { "@": resolve(".") } },
 });
