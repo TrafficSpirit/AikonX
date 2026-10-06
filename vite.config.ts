@@ -30,5 +30,11 @@ export default defineConfig({
       },
     },
   ],
+  build: {
+    // Disable asset inlining so all images are served as external files.
+    // This ensures the LCP logo image has a real URL (not data:) and its
+    // size can be verified correctly by Lighthouse/CI tools.
+    assetsInlineLimit: 0,
+  },
   resolve: { alias: { "@": resolve(".") } },
 });
