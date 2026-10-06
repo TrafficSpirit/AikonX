@@ -1,0 +1,8 @@
+# Applies only to this assets directory and its descendants.
+# FilesMatch is valid in .htaccess; LocationMatch is not.
+# Media URLs are not necessarily content-hashed, so do not mark them immutable.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|mp4|webp|png|jpe?g|svg|woff2?)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
