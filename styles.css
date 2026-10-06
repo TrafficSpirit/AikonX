@@ -589,6 +589,8 @@ body.is-ready .nav{ opacity:1; }
   grid-template-columns:1fr 1fr;
   gap:16px;
   background:#ffffff;
+  border-top:4px solid #0053a3;
+  box-shadow:0 24px 60px -30px rgba(0,40,90,0.55);
   padding:clamp(24px, 3vw, 36px);
 }
 .field{ display:flex; flex-direction:column; gap:7px; }
@@ -598,15 +600,16 @@ body.is-ready .nav{ opacity:1; }
   font:inherit;
   font-size:0.98rem;
   color:#0a0a0a;
-  background:#f5f6f7;
-  border:1px solid #e2e5e8;
+  background:#eef4fb;
+  border:1px solid #dfe7ef;
   border-radius:0;
   padding:12px 14px;
   width:100%;
   transition:border-color .15s ease, background .15s ease;
 }
-.field input::placeholder,.field textarea::placeholder{ color:#9aa1a7; }
-.field input:focus,.field textarea:focus{ outline:none; border-color:#006cd2; background:#fff; }
+.field input::placeholder,.field textarea::placeholder{ color:#6b7378; opacity:.7; }
+.field input:hover,.field textarea:hover{ border-color:#b8cfe5; }
+.field input:focus,.field textarea:focus{ outline:none; border-color:#006cd2; background:#fff; box-shadow:0 0 0 3px rgba(0,108,210,.15); }
 .field textarea{ resize:vertical; min-height:96px; }
 .btn--cta{ grid-column:1 / -1; justify-self:start; background:#006cd2; color:#fff; }
 .btn--cta::before{ background:#004a96; }
