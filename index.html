@@ -56,7 +56,7 @@
       overflow:hidden;color:#1a1a1a;font-size:clamp(17px,1.8vw,20px);font-weight:300;
       line-height:1.5;letter-spacing:-0.01em;}
     .headline{margin-top:clamp(22px,2.8vw,36px);
-      font-size:calc(clamp(2.9rem,5.9vw,5rem) + 3px);font-weight:600;
+      font-size:min(calc(clamp(2.9rem,5.9vw,5rem) + 3px), 3.9vw);font-weight:600;
       line-height:1.18;letter-spacing:-0.038em;}
     .headline__mask{display:block;overflow:hidden;}
     .headline__rise{display:block;
@@ -64,7 +64,7 @@
     .lede__rise{display:block;
       animation:type-rise .9s cubic-bezier(0.16,1,0.3,1) var(--d) backwards;}
     .headline__muted{color:#6b7378;font-weight:600;}
-    .headline__accent{position:relative;color:#6b7378;}
+    .headline__accent{position:relative;color:#6b7378;white-space:nowrap;}
     .headline__accent::before,.headline__accent::after{content:attr(data-text);
       position:absolute;left:0;top:0;white-space:nowrap;
       -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 calc(100% - 72px),transparent 100%);
@@ -263,11 +263,8 @@
     <section class="hero">
       <h1 class="headline">
         <span class="headline__mask">
-          <span class="headline__rise" style="--d:0.26s">Marketing That</span>
-        </span>
-        <span class="headline__mask">
-          <span class="headline__rise" style="--d:0.4s">
-            <span class="headline__line"><span class="headline__accent" data-text="Pays You Back.">Pays You Back.</span></span>
+          <span class="headline__rise" style="--d:0.26s">
+            <span class="headline__line">Marketing That <span class="headline__accent" data-text="Pays You Back.">Pays You Back.</span></span>
           </span>
         </span>
       </h1>

@@ -61,10 +61,7 @@ button{ font:inherit; border:0; cursor:pointer; }
 }
 .bg-video{
   position:absolute;
-  /* On wide screens, pull the character in toward the hero text instead of
-     pinning it to the far right edge. Below ~1280px this resolves to -5vw,
-     exactly as before. */
-  right:max(-5vw, calc((100vw - 1280px) / 2 - 5vw));
+  right:-5vw;
   bottom:0;
   height:min(82vh, 720px);
   width:auto;
@@ -327,7 +324,9 @@ button{ font:inherit; border:0; cursor:pointer; }
 
 .headline{
   margin-top:clamp(22px, 2.8vw, 36px);
-  font-size:calc(clamp(2.9rem, 5.9vw, 5rem) + 3px);
+  /* Desktop: headline sits on one line; capped at 3.9vw so it always ends
+     well before the beaver on the right. Mobile overrides below. */
+  font-size:min(calc(clamp(2.9rem, 5.9vw, 5rem) + 3px), 3.9vw);
   font-weight:600;
   line-height:1.18;
   letter-spacing:-0.038em;
@@ -345,7 +344,7 @@ button{ font:inherit; border:0; cursor:pointer; }
 }
 .headline__muted{ color:#6b7378; font-weight:600; }
 
-.headline__accent{ position:relative; color:#6b7378; }
+.headline__accent{ position:relative; color:#6b7378; white-space:nowrap; }
 .headline__accent::before,
 .headline__accent::after{
   content:attr(data-text);
@@ -550,7 +549,7 @@ body.is-ready .nav{ opacity:1; }
 /* ---------- Responsive: short + wide ---------- */
 @media (max-height:700px) and (min-width:821px){
   .hero{ margin-top:36px; }
-  .headline{ font-size:calc(clamp(2.75rem, 7.2vh, 4.15rem) + 3px); }
+  .headline{ font-size:min(calc(clamp(2.75rem, 7.2vh, 4.15rem) + 3px), 3.9vw); }
 }
 
 /* ==================================================================
