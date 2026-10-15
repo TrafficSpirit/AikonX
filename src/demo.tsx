@@ -15,15 +15,15 @@ const avatar = (index: number, name: string) => {
 };
 
 const testimonials: Testimonial[] = [
-  { text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.", image: "", name: "Briana Patton", role: "Operations Manager", ...avatar(0, "Briana Patton") },
-  { text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.", image: "", name: "Bilal Ahmed", role: "IT Manager", ...avatar(1, "Bilal Ahmed") },
-  { text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.", image: "", name: "Saman Malik", role: "Customer Support Lead", ...avatar(2, "Saman Malik") },
-  { text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.", image: "", name: "Omar Raza", role: "CEO", ...avatar(3, "Omar Raza") },
-  { text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.", image: "", name: "Zainab Hussain", role: "Project Manager", ...avatar(4, "Zainab Hussain") },
-  { text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.", image: "", name: "Aliza Khan", role: "Business Analyst", ...avatar(5, "Aliza Khan") },
-  { text: "Our business functions improved with a user-friendly design and positive customer feedback.", image: "", name: "Farhan Siddiqui", role: "Marketing Director", ...avatar(6, "Farhan Siddiqui") },
-  { text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.", image: "", name: "Sana Sheikh", role: "Sales Manager", ...avatar(7, "Sana Sheikh") },
-  { text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.", image: "", name: "Hassan Ali", role: "E-commerce Manager", ...avatar(8, "Hassan Ali") },
+  { text: "Our cost per lead dropped by a third within two months. For the first time, we actually know which ads are paying for themselves.", image: "", name: "Lachlan Mitchell", role: "Marketing Manager", ...avatar(0, "Lachlan Mitchell") },
+  { text: "Onboarding was quick and painless. They had our tracking cleaned up and campaigns live in under three weeks.", image: "", name: "Chloe Henderson", role: "Operations Manager", ...avatar(1, "Chloe Henderson") },
+  { text: "The monthly reviews are in plain English. No jargon, just what's working, what isn't, and what's next.", image: "", name: "Jack O'Brien", role: "Managing Director", ...avatar(2, "Jack O'Brien") },
+  { text: "Our Google Ads were bleeding money before AIkonX took over. Now every dollar is accountable.", image: "", name: "Matilda Nguyen", role: "Founder", ...avatar(3, "Matilda Nguyen") },
+  { text: "They rebuilt our Meta campaigns from scratch and doubled qualified enquiries without increasing spend.", image: "", name: "Riley Thompson", role: "Head of Growth", ...avatar(4, "Riley Thompson") },
+  { text: "Our organic traffic has grown steadily every month since they took on our SEO. It's compounding exactly like they said it would.", image: "", name: "Sophie Walker", role: "Digital Marketing Lead", ...avatar(5, "Sophie Walker") },
+  { text: "Having one live dashboard for every channel has changed how our leadership team makes decisions.", image: "", name: "Harrison Kelly", role: "CEO", ...avatar(6, "Harrison Kelly") },
+  { text: "A genuinely senior team. We deal directly with the specialists running our account, not a junior account manager.", image: "", name: "Isla Campbell", role: "Brand Manager", ...avatar(7, "Isla Campbell") },
+  { text: "Our online sales jumped after they restructured our Shopping campaigns. ROAS has never been healthier.", image: "", name: "Cooper Davies", role: "E-commerce Manager", ...avatar(8, "Cooper Davies") },
 ];
 
 export function Testimonials() {
