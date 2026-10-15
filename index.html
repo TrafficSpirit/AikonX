@@ -35,7 +35,7 @@
     /* Page shell */
     .page{position:relative;width:100%;height:100vh;height:100dvh;
       display:flex;flex-direction:column;overflow:hidden;
-      padding:calc(var(--nav-top) + 72px) var(--pad-x) clamp(28px,4.9vw,48px);}
+      padding:calc(var(--sx-h,116px) + 16px) var(--pad-x) clamp(28px,4.9vw,48px);}
     .bg{position:absolute;inset:0;z-index:0;
       background:linear-gradient(180deg,#ffffff 58%,#f7f2ed 82%,#f1eae4 100%);
       pointer-events:none;overflow:hidden;}
@@ -175,6 +175,7 @@
   </script>
 </head>
 <body>
+    <script src="/site-nav.js"></script>
     <header class="nav">
       <nav class="nav__links" aria-label="Primary">
         <a href="/" style="--d:0.02s">Home</a>

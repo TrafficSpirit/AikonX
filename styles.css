@@ -43,7 +43,7 @@ button{ font:inherit; border:0; cursor:pointer; }
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  padding:calc(var(--nav-top) + 72px) var(--pad-x) clamp(28px, 4.9vw, 48px);
+  padding:calc(var(--sx-h, 116px) + 16px) var(--pad-x) clamp(28px, 4.9vw, 48px);
 }
 
 .bg{
@@ -63,9 +63,10 @@ button{ font:inherit; border:0; cursor:pointer; }
   position:absolute;
   right:-5vw;
   bottom:0;
-  height:min(82vh, 720px);
+  /* Bigger beaver, clamped so its head always stays below the fixed header. */
+  height:min(calc((100vh - 128px) / 0.92), 840px);
   width:auto;
-  max-width:52vw;
+  max-width:56vw;
   object-fit:contain;
   --edge-fade:0%;
   -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 var(--edge-fade));
