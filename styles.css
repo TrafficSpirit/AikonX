@@ -61,7 +61,10 @@ button{ font:inherit; border:0; cursor:pointer; }
 }
 .bg-video{
   position:absolute;
-  right:-5vw;
+  /* On wide screens, pull the character in toward the hero text instead of
+     pinning it to the far right edge. Below ~1280px this resolves to -5vw,
+     exactly as before. */
+  right:max(-5vw, calc((100vw - 1280px) / 2 - 5vw));
   bottom:0;
   height:min(82vh, 720px);
   width:auto;
