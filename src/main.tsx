@@ -42,16 +42,4 @@ observeOnce("process-root", () => {
   );
 });
 
-observeOnce("orbit-stage", () => {
-  import("react").then(({ createElement }) =>
-    import("react-dom/client").then(({ createRoot }) =>
-      import("../orbit-hero.js").then(({ PlanetStageHero }: any) => {
-        const host = document.getElementById("orbit-stage");
-        if (host && !host.dataset.mounted) {
-          host.dataset.mounted = "1";
-          createRoot(host).render(createElement(PlanetStageHero, { theme: "auto", assetBaseUrl: "assets/" }));
-        }
-      })
-    )
-  );
-});
+
