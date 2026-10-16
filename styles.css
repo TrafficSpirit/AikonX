@@ -60,13 +60,15 @@ button{ font:inherit; border:0; cursor:pointer; }
   initial-value:0%;
 }
 .bg-video{
+  /* Size by height (head stays below the fixed header) and by width (<=57vw).
+     No max-width cap: a cap letterboxed the video and made the beaver look small. */
+  --bv-h:min(calc((100vh - 126px) / 0.85), 57vw, 920px);
   position:absolute;
-  right:-5vw;
-  bottom:0;
-  /* Bigger beaver, clamped so its head always stays below the fixed header. */
-  height:min(calc((100vh - 128px) / 0.92), 840px);
+  right:1vw;
+  bottom:calc(var(--bv-h) * -0.05);
+  height:var(--bv-h);
   width:auto;
-  max-width:56vw;
+  max-width:none;
   object-fit:contain;
   --edge-fade:0%;
   -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 var(--edge-fade));
