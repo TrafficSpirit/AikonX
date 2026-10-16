@@ -17,30 +17,39 @@
     shield: '<path d="M12 3l8 3v6c0 4.8-3.4 7.9-8 9-4.6-1.1-8-4.2-8-9V6z"/>'
   };
 
-  var SERVICES = [
-    { t: 'Get found', i: 'search', l: [
-      ['SEO', '/services/seo/'],
+  var AISEO = [
+    { t: 'AI &amp; Search Visibility', i: 'search', l: [
       ['AI Search Optimization (GEO)', '/services/ai-search-optimization/'],
-      ['Local SEO', '/services/local-seo/'],
-      ['Content Marketing', '/services/content-marketing/']] },
-    { t: 'Drive traffic', i: 'cursor', l: [
+      ['SEO', '/services/seo/'],
+      ['Local SEO', '/services/local-seo/']] },
+    { t: 'Content &amp; Nurture', i: 'book', l: [
+      ['Content Marketing', '/services/content-marketing/'],
+      ['Email Marketing &amp; Lead Nurture', '/services/email-marketing/']] }
+  ];
+
+  var PAID = [
+    { t: 'Search Ads', i: 'search', l: [
       ['Google &amp; Microsoft Ads', '/services/google-ads/'],
-      ['Paid Social Advertising', '/services/paid-social/'],
-      ['Display &amp; Remarketing', '/services/display-remarketing/'],
       ['Google Local Services Ads', '/services/local-services-ads/']] },
-    { t: 'Convert', i: 'funnel', l: [
-      ['Conversion Rate Optimization', '/services/conversion-rate-optimization/'],
-      ['Landing Pages &amp; Funnels', '/services/landing-pages/'],
+    { t: 'Social &amp; Display', i: 'cursor', l: [
+      ['Paid Social Advertising', '/services/paid-social/'],
+      ['Display &amp; Remarketing', '/services/display-remarketing/']] },
+    { t: 'Track the Results', i: 'chart', l: [
+      ['Call Tracking', '/services/call-tracking/']] }
+  ];
+
+  var UX = [
+    { t: 'Design &amp; Conversion', i: 'funnel', l: [
       ['Website Design &amp; Development', '/services/web-design/'],
-      ['Email Marketing &amp; Lead Nurture', '/services/email-marketing/']] },
-    { t: 'Measure', i: 'chart', l: [
+      ['Landing Pages &amp; Funnels', '/services/landing-pages/'],
+      ['Conversion Rate Optimization', '/services/conversion-rate-optimization/']] },
+    { t: 'Data &amp; Insight', i: 'chart', l: [
       ['Analytics &amp; Tracking Setup', '/services/analytics-tracking/'],
-      ['Call Tracking', '/services/call-tracking/'],
       ['Attribution &amp; Reporting', '/services/attribution-reporting/'],
       ['Marketing Audits', '/services/marketing-audits/']] }
   ];
 
-  var COMPANY = [
+  var ABOUT = [
     { t: 'Who we are', i: 'users', l: [
       ['About AIkonX', '/about/'],
       ['Our results', '/#results'],
@@ -102,6 +111,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-mega__in{max-width:1400px;margin:0 auto;display:grid;gap:28px 40px;padding:34px var(--sx-pad) 22px;align-items:start}
 .sx-cols-4{grid-template-columns:repeat(4,minmax(0,1fr)) minmax(240px,300px)}
 .sx-cols-3{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(240px,300px)}
+.sx-cols-2{grid-template-columns:repeat(2,minmax(0,320px)) minmax(240px,300px);justify-content:start}
 .sx-group__h{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:15px;font-weight:600;color:#0a0a0a}
 .sx-ico{display:grid;place-items:center;width:38px;height:38px;flex:0 0 auto;border-radius:50%;background:#eaf3fc;color:var(--sx-blue)}
 .sx-ico svg{width:19px;height:19px}
@@ -119,6 +129,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 @media(max-width:1240px){
 .sx-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .sx-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sx-cols-2{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:normal}
 .sx-group li a{padding-left:0}
 .sx-feature{grid-column:1/-1;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .sx-feature h3,.sx-feature p{margin:0}
@@ -174,6 +185,25 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
       (all ? '<a class="sx-m-all" href="' + all[0] + '">' + all[1] + ' &rarr;</a>' : '') + '</div></details>';
   }
 
+  var MENUS = [
+    { id: 'sx-mega-seo', label: 'AI Search &amp; SEO', href: '/services/seo/', list: AISEO,
+      f: { tag: 'Free', title: 'SEO &amp; AI visibility review', text: 'See where you rank in search, where AI assistants mention you, and what to fix first.', href: '/contact/', cta: 'Get my free review' },
+      all: ['/services/', 'View all services'] },
+    { id: 'sx-mega-paid', label: 'Paid Search', href: '/services/google-ads/', list: PAID,
+      f: { tag: 'Free', title: 'Ad account audit', text: 'We review your Google, Microsoft and social ad accounts and show where budget is leaking.', href: '/contact/', cta: 'Get my free audit' },
+      all: ['/services/', 'View all services'] },
+    { id: 'sx-mega-ux', label: 'UX &amp; AI Services', href: '/services/web-design/', list: UX,
+      f: { tag: 'Free', title: 'Conversion review', text: 'We look at your site, tracking and funnel and show where visitors drop off.', href: '/contact/', cta: 'Get my free review' },
+      all: ['/services/', 'View all services'] },
+    { id: 'sx-mega-about', label: 'About', href: '/about/', list: ABOUT,
+      f: { tag: 'Let\'s talk', title: 'Ready to grow?', text: 'Tell us your goals and we will come back with a plan within two business days.', href: '/contact/', cta: 'Get a Proposal' },
+      all: null }
+  ];
+  var navItems = MENUS.map(function (m) {
+    return '<li class="sx-item sx-item--mega"><a class="sx-link" href="' + m.href + '" aria-haspopup="true" aria-expanded="false" aria-controls="' + m.id + '">' + m.label + CARET + '</a>' + mega(m.id, m.list, m.f, m.all) + '</li>';
+  }).join('');
+  var mobItems = MENUS.map(function (m) { return mobAcc(m.label, m.list, m.all); }).join('');
+
   var html =
     '<div class="sx-wrap" id="sx-wrap">' +
     '<div class="sx-top"><div class="sx-top__in">' +
@@ -183,21 +213,13 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
     '<header class="sx-header"><div class="sx-header__in">' +
     '<a class="sx-logo" href="/" aria-label="AIkonX home"><img src="/assets/images/logo.png" alt="AIkonX" width="128" height="51"></a>' +
     '<nav class="sx-nav" aria-label="Primary"><ul class="sx-nav__list">' +
-    '<li class="sx-item"><a class="sx-link" href="/">Home</a></li>' +
-    '<li class="sx-item sx-item--mega"><a class="sx-link" href="/services/" aria-haspopup="true" aria-expanded="false" aria-controls="sx-mega-services">Services' + CARET + '</a>' +
-    mega('sx-mega-services', SERVICES, { tag: 'Free', title: 'Marketing audit', text: 'We review your ads, tracking and website and show you exactly where budget is leaking.', href: '/contact/', cta: 'Get my free audit' }, ['/services/', 'View all services']) + '</li>' +
-    '<li class="sx-item sx-item--mega"><a class="sx-link" href="/about/" aria-haspopup="true" aria-expanded="false" aria-controls="sx-mega-company">Company' + CARET + '</a>' +
-    mega('sx-mega-company', COMPANY, { tag: 'Let\'s talk', title: 'Ready to grow?', text: 'Tell us your goals and we will come back with a plan within two business days.', href: '/contact/', cta: 'Get a Proposal' }, null) + '</li>' +
-    '<li class="sx-item"><a class="sx-link" href="#">Blog</a></li>' +
+    navItems +
     '</ul></nav>' +
     '<div class="sx-actions"><a class="sx-btn" href="/contact/"><span>Get a Proposal</span>' + ARROW + '</a></div>' +
     '<button class="sx-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sx-mobile"><span></span><span></span><span></span></button>' +
     '</div></header>' +
     '<div class="sx-mobile" id="sx-mobile" hidden>' +
-    '<a class="sx-m-link" href="/">Home</a>' +
-    mobAcc('Services', SERVICES, ['/services/', 'View all services']) +
-    mobAcc('Company', COMPANY, null) +
-    '<a class="sx-m-link" href="#">Blog</a>' +
+    mobItems +
     '<div class="sx-m-cta"><a class="sx-btn" href="/contact/"><span>Get a Proposal</span>' + ARROW + '</a><a class="sx-m-phone" href="' + TEL + '">' + PHONE + '</a></div>' +
     '</div></div>';
 
@@ -213,6 +235,25 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
   }
   dropLegacy();
   document.addEventListener('DOMContentLoaded', dropLegacy);
+
+  /* Blog lives in the footer (Company column) rather than the navbar. */
+  function addFooterBlog() {
+    if (document.querySelector('[data-sx-blog]')) return;
+    var cols = document.querySelectorAll('.footer__col'), target = null;
+    for (var i = 0; i < cols.length; i++) {
+      var h = cols[i].querySelector('h3');
+      if (h && /^(company|about)$/i.test(h.textContent.trim())) { target = cols[i]; break; }
+    }
+    if (!target && cols.length) target = cols[0];
+    if (!target) return;
+    var a = document.createElement('a');
+    a.href = '#';
+    a.textContent = 'Blog';
+    a.setAttribute('data-sx-blog', '');
+    target.appendChild(a);
+  }
+  addFooterBlog();
+  document.addEventListener('DOMContentLoaded', addFooterBlog);
 
   var wrap = document.getElementById('sx-wrap');
   var items = wrap.querySelectorAll('.sx-item--mega');
@@ -261,10 +302,17 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  var p = location.pathname;
-  var cur = p === '/' ? 'Home' : p.indexOf('/services') === 0 ? 'Services' : (p.indexOf('/about') === 0 ? 'Company' : '');
-  var links = wrap.querySelectorAll('.sx-nav__list > .sx-item > .sx-link');
+  var p = location.pathname, curId = '';
+  if (p.indexOf('/about') === 0) curId = 'sx-mega-about';
+  else if (p.indexOf('/services/') === 0) {
+    MENUS.forEach(function (m) {
+      m.list.forEach(function (g) {
+        g.l.forEach(function (l) { if (l[1] !== '/services/' && p.indexOf(l[1]) === 0) curId = m.id; });
+      });
+    });
+  }
+  var links = wrap.querySelectorAll('.sx-nav__list .sx-link');
   for (var k = 0; k < links.length; k++) {
-    if (links[k].textContent.replace(/\s+/g, ' ').trim() === cur) links[k].setAttribute('aria-current', 'page');
+    if (curId && links[k].getAttribute('aria-controls') === curId) links[k].setAttribute('aria-current', 'page');
   }
 })();
