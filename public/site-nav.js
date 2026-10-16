@@ -247,7 +247,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
     if (!target && cols.length) target = cols[0];
     if (!target) return;
     var a = document.createElement('a');
-    a.href = '#';
+    a.href = '/blog/';
     a.textContent = 'Blog';
     a.setAttribute('data-sx-blog', '');
     target.appendChild(a);
