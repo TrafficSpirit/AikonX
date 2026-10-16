@@ -93,8 +93,9 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-header{position:relative;background:#fff;border-bottom:1px solid #e6e8ea;transition:box-shadow .3s}
 .sx-wrap.is-scrolled .sx-header{box-shadow:0 12px 32px rgba(10,25,55,.12)}
 .sx-header__in{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px);height:76px;padding:0 var(--sx-pad)}
-.sx-logo{display:inline-flex;flex:0 0 auto}
-.sx-logo img{height:46px;width:auto;display:block}
+.sx-logo{display:inline-flex;flex-direction:column;align-items:flex-start;flex:0 0 auto}
+.sx-logo img{height:40px;width:auto;display:block}
+.sx-logo__tag{margin-top:4px;color:#6b7378;font-size:11.5px;font-weight:600;letter-spacing:.02em;line-height:1;white-space:nowrap}
 .sx-nav{align-self:stretch;display:flex}
 .sx-nav__list{display:flex;align-items:stretch}
 .sx-item{display:flex;align-items:stretch}
@@ -144,7 +145,8 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 :root{--sx-h:64px}
 .sx-top,.sx-nav,.sx-actions{display:none}
 .sx-header__in{height:64px}
-.sx-logo img{height:40px}
+.sx-logo img{height:34px}
+.sx-logo__tag{font-size:10px;margin-top:3px}
 .sx-burger{display:flex}
 .sx-mobile:not([hidden]){display:block;position:fixed;top:64px;left:0;right:0;bottom:0;overflow-y:auto;background:#fff;padding:8px var(--sx-pad) 40px;border-top:1px solid #e6e8ea}
 .sx-m-link,.sx-m-acc>summary{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #ececec;font-size:17px;font-weight:500;color:#0a0a0a;cursor:pointer;list-style:none}
@@ -211,7 +213,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
     '<div class="sx-top__right"><a class="sx-top__phone" href="' + TEL + '">' + PHONE + '</a><a class="sx-btn sx-btn--sm" href="/contact/">Get a Proposal</a></div>' +
     '</div></div>' +
     '<header class="sx-header"><div class="sx-header__in">' +
-    '<a class="sx-logo" href="/" aria-label="AIkonX home"><img src="/assets/images/logo.png" alt="AIkonX" width="128" height="51"></a>' +
+    '<a class="sx-logo" href="/" aria-label="AIkonX home"><img src="/assets/images/logo.png" alt="AIkonX" width="128" height="51"><span class="sx-logo__tag">Ready to Take Off&hellip;</span></a>' +
     '<nav class="sx-nav" aria-label="Primary"><ul class="sx-nav__list">' +
     navItems +
     '</ul></nav>' +
