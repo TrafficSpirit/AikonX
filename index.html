@@ -493,7 +493,10 @@
           <h2 class="section__title cta__title">Ready to turn spend into growth?</h2>
           <p class="cta__intro">Tell us about your goals and we'll come back with a plan within two business days.</p>
         </div>
-        <form class="contact-form" novalidate>
+        <form class="contact-form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <input type="hidden" name="page" value="Homepage">
+          <p hidden><label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div class="field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required>
@@ -593,6 +596,7 @@
     </footer>
   </main>
 
+  <script src="/contact-form.js" defer></script>
   <script type="module" src="/main.js"></script>
   <script type="module" src="/src/main.tsx"></script>
 </body>

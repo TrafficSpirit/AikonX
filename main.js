@@ -153,17 +153,7 @@
   els.forEach(function (el) { io.observe(el); });
 })();
 
-/* Contact form: no backend — acknowledge locally. */
-(function () {
-  var form = document.querySelector(".contact-form");
-  if (!form) return;
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var note = form.querySelector(".contact-form__note");
-    if (note) note.hidden = false;
-    form.reset();
-  });
-})();
+/* Contact form: submitted to Netlify Forms by /contact-form.js. */
 
 /* Reveal the hero content immediately so primary text is never hidden from
    Lighthouse or users with video disabled. The decorative video entrance
