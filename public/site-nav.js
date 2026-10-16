@@ -158,6 +158,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-m-cta .sx-btn{width:100%}
 .sx-m-phone{text-align:center;font-weight:600;color:#0a0a0a}
 }
+.footer__entity{display:block;margin-top:4px}
 @media(prefers-reduced-motion:reduce){.sx-wrap *{transition:none!important}}
 `;
 
@@ -253,6 +254,21 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
   }
   addFooterBlog();
   document.addEventListener('DOMContentLoaded', addFooterBlog);
+
+  /* Legal entity details (ABN/ACN) in the footer bottom bar, on every page. */
+  var ENTITY = 'Aikonx Pty Ltd &middot; ABN 73 699 508 480 &middot; ACN 699 508 480';
+  function addFooterEntity() {
+    if (document.querySelector('[data-sx-entity]')) return;
+    var copy = document.querySelector('.footer__copy');
+    if (!copy) return;
+    var s = document.createElement('span');
+    s.className = 'footer__entity';
+    s.setAttribute('data-sx-entity', '');
+    s.innerHTML = ENTITY;
+    copy.appendChild(s);
+  }
+  addFooterEntity();
+  document.addEventListener('DOMContentLoaded', addFooterEntity);
 
   var wrap = document.getElementById('sx-wrap');
   var items = wrap.querySelectorAll('.sx-item--mega');
