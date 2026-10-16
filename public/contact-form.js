@@ -32,7 +32,7 @@
       say('Thanks! We will be in touch within two business days.', true);
       form.reset();
     }).catch(function () {
-      say('Sorry, that did not send. Please email hello@aikonx.com or call 1300 000 000.', false);
+      say('Sorry, that did not send. Please email hello@aikonx.com.au or call 0413 082 803.', false);
     }).then(function () {
       if (btn) btn.disabled = false;
       if (label) label.textContent = idle;
