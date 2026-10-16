@@ -15,15 +15,15 @@ const avatar = (index: number, name: string) => {
 };
 
 const testimonials: Testimonial[] = [
-  { text: "Our cost per lead dropped by a third within two months. For the first time, we actually know which ads are paying for themselves.", image: "", name: "Lachlan Mitchell", role: "Marketing Manager", ...avatar(0, "Lachlan Mitchell") },
-  { text: "Onboarding was quick and painless. They had our tracking cleaned up and campaigns live in under three weeks.", image: "", name: "Chloe Henderson", role: "Operations Manager", ...avatar(1, "Chloe Henderson") },
-  { text: "The monthly reviews are in plain English. No jargon, just what's working, what isn't, and what's next.", image: "", name: "Jack O'Brien", role: "Managing Director", ...avatar(2, "Jack O'Brien") },
-  { text: "Our Google Ads were bleeding money before AIkonX took over. Now every dollar is accountable.", image: "", name: "Matilda Nguyen", role: "Founder", ...avatar(3, "Matilda Nguyen") },
-  { text: "They rebuilt our Meta campaigns from scratch and doubled qualified enquiries without increasing spend.", image: "", name: "Riley Thompson", role: "Head of Growth", ...avatar(4, "Riley Thompson") },
-  { text: "Our organic traffic has grown steadily every month since they took on our SEO. It's compounding exactly like they said it would.", image: "", name: "Sophie Walker", role: "Digital Marketing Lead", ...avatar(5, "Sophie Walker") },
-  { text: "Having one live dashboard for every channel has changed how our leadership team makes decisions.", image: "", name: "Harrison Kelly", role: "CEO", ...avatar(6, "Harrison Kelly") },
-  { text: "A genuinely senior team. We deal directly with the specialists running our account, not a junior account manager.", image: "", name: "Isla Campbell", role: "Brand Manager", ...avatar(7, "Isla Campbell") },
-  { text: "Our online sales jumped after they restructured our Shopping campaigns. ROAS has never been healthier.", image: "", name: "Cooper Davies", role: "E-commerce Manager", ...avatar(8, "Cooper Davies") },
+  { text: "Our cost per lead dropped by a third within two months. For the first time, we actually know which ads are paying for themselves.", image: "", name: "Lachlan Mitchell", role: "Marketing Manager, Physio Clinic", ...avatar(0, "Lachlan Mitchell") },
+  { text: "Onboarding was quick and painless. They had our tracking cleaned up and campaigns live in under three weeks.", image: "", name: "Chloe Henderson", role: "Operations Manager, Plumbing Services", ...avatar(1, "Chloe Henderson") },
+  { text: "The monthly reviews are in plain English. No jargon, just what's working, what isn't, and what's next.", image: "", name: "Jack O'Brien", role: "Managing Director, Accounting Firm", ...avatar(2, "Jack O'Brien") },
+  { text: "Our Google Ads were bleeding money before AIkonX took over. Now every dollar is accountable.", image: "", name: "Matilda Nguyen", role: "Founder, Small Bakery", ...avatar(3, "Matilda Nguyen") },
+  { text: "They rebuilt our Meta campaigns from scratch and doubled qualified enquiries without increasing spend.", image: "", name: "Riley Thompson", role: "Head of Growth, Real Estate Agency", ...avatar(4, "Riley Thompson") },
+  { text: "Our organic traffic has grown steadily every month since they took on our SEO. It's compounding exactly like they said it would.", image: "", name: "Sophie Walker", role: "Digital Marketing Lead, Dental Practice", ...avatar(5, "Sophie Walker") },
+  { text: "Having one live dashboard for every channel has changed how our leadership team makes decisions.", image: "", name: "Harrison Kelly", role: "CEO, Construction Company", ...avatar(6, "Harrison Kelly") },
+  { text: "A genuinely senior team. We deal directly with the specialists running our account, not a junior account manager.", image: "", name: "Isla Campbell", role: "Brand Manager, Fitness Studio", ...avatar(7, "Isla Campbell") },
+  { text: "Our online sales jumped after they restructured our Shopping campaigns. ROAS has never been healthier.", image: "", name: "Cooper Davies", role: "E-commerce Manager, Online Fashion Store", ...avatar(8, "Cooper Davies") },
 ];
 
 export function Testimonials() {
