@@ -28,18 +28,6 @@ observeOnce("testimonials-root", () => {
   );
 });
 
-observeOnce("process-root", () => {
-  import("react").then(({ createElement }) =>
-    import("react-dom/client").then(({ createRoot }) =>
-      import("./process").then(({ Process }) => {
-        const host = document.getElementById("process-root");
-        if (host && !host.dataset.mounted) {
-          host.dataset.mounted = "1";
-          createRoot(host).render(createElement(Process));
-        }
-      })
-    )
-  );
-});
+
 
 

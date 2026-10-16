@@ -53,7 +53,6 @@
     { t: 'Who we are', i: 'users', l: [
       ['About AIkonX', '/about/'],
       ['Our results', '/#results'],
-      ['How we work', '/#process'],
       ['Contact us', '/contact/']] },
     { t: 'Resources', i: 'book', l: [
       ['Free marketing audit', '/contact/'],
