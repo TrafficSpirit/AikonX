@@ -42,6 +42,8 @@ html.fx-js.fx-fail .fx-reveal{opacity:1!important;transform:none!important}
 .fx-link:hover::after{transform:translateX(5px)}
 /* plane */
 .fx-plane{display:block;width:100%;max-width:420px;height:auto;margin:0 auto;filter:drop-shadow(0 30px 40px rgba(10,25,55,.18))}
+/* pages.css gives every .split img a beige box (background, 3:2 crop); transparent mascots must not get it */
+.split img.fx-plane,.split img.fx-cutout{background:none;aspect-ratio:auto;object-fit:contain;height:auto}
 /* mini link cards */
 .fx-minis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
 .fx-mini{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border:1px solid #ececec;background:#fff;transition:border-color .2s,transform .25s,box-shadow .25s}
