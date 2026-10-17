@@ -208,7 +208,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
     '<div class="sx-wrap" id="sx-wrap">' +
     '<div class="sx-top"><div class="sx-top__in">' +
     '<a class="sx-top__promo" href="/contact/"><span class="sx-top__label">Free marketing audit</span><strong>See where your ad spend is leaking</strong></a>' +
-    '<div class="sx-top__right"><a class="sx-top__phone" href="' + TEL + '">' + PHONE + '</a><a class="sx-btn sx-btn--sm" href="/contact/">Get a Proposal</a></div>' +
+    '<div class="sx-top__right"><a class="sx-top__phone" href="' + TEL + '">' + PHONE + '</a></div>' +
     '</div></div>' +
     '<header class="sx-header"><div class="sx-header__in">' +
     '<a class="sx-logo" href="/" aria-label="AIkonX home"><img src="/assets/images/logo-slogan.svg" alt="AIkonX - Ready to Take Off" width="1764" height="532"></a>' +
