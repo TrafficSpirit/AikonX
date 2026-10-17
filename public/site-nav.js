@@ -94,7 +94,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-wrap.is-scrolled .sx-header{box-shadow:0 12px 32px rgba(10,25,55,.12)}
 .sx-header__in{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px);height:76px;padding:0 var(--sx-pad)}
 .sx-logo{display:inline-flex;flex:0 0 auto}
-.sx-logo img{height:44px;width:auto;display:block}
+.sx-logo img{height:34px;width:auto;display:block}
 .sx-nav{align-self:stretch;display:flex}
 .sx-nav__list{display:flex;align-items:stretch}
 .sx-item{display:flex;align-items:stretch}
