@@ -118,4 +118,14 @@ img,svg,video,iframe{max-width:100%}
 .related a,.faq-list summary{min-height:48px}
 .prose a{padding:4px 0;display:inline-block}
 }
+/* Shared header/menu/banner containment (injected by site-nav.js and analytics.js) */
+.sx-wrap,.sx-header,.sx-header__in,.sx-mobile{max-width:100%}
+.sx-header__in,.sx-logo{min-width:0}
+.sx-logo img{max-width:100%}
+.sx-mega{max-width:100vw}
+.pagehero>*{max-width:100%}
+.pagehero__img img,.split img,.figure{max-width:100%}
+table,pre{max-width:100%}
+pre{overflow-x:auto}
+@media(max-width:1000px){.sx-mega{display:none}.sx-wrap{width:100%}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}.faq-list details{padding:16px}.contact-form{padding:20px 16px}}
