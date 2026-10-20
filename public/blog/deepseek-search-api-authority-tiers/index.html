@@ -7,7 +7,7 @@
 .sp-cap{margin-top:6px;color:#6b7378;font-size:13px;line-height:1.5}
 .sp-refs li{font-size:15px;word-break:break-word}
 .dk-fig{margin:28px 0 0;padding:22px;border:1px solid #ececec;background:#fff}
-.dk-fig h4{font-size:1.05rem;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
+.dk-fig h3{font-size:1.05rem;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
 .dk-lbl{display:inline-block;margin-bottom:10px;color:#6b7378;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .dk-card{margin-top:16px;padding:18px;border:1px solid #c3cbd2;background:#fafafa}
 .dk-url{color:#006cd2;font-size:14px;word-break:break-all}
@@ -22,7 +22,7 @@
 .dk-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .dk-chip{padding:5px 10px;border:1px solid #c3cbd2;background:#fff;color:#1a1a1a;font-size:13px}
 .dk-scale{margin-top:18px}
-.dk-scale h5{font-size:.95rem;font-weight:600;color:#0a0a0a}
+.dk-scale h4{font-size:.95rem;font-weight:600;color:#0a0a0a}
 .dk-cells{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px}
 .dk-cell{display:flex;align-items:center;justify-content:center;min-height:44px;background:#f1f3f5;color:#59646d;font-size:15px;font-weight:600}
 .dk-cell.hi{background:#006cd2;color:#fff}
@@ -35,7 +35,7 @@
 .dk-inputs span{padding:5px 10px;border:1px solid #006cd2;color:#006cd2;font-size:13px;font-weight:600}
 .dk-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
 .dk-two>div{padding:16px;border:1px solid #ececec;background:#fafafa}
-.dk-two h5{font-size:1rem;font-weight:600;color:#0a0a0a}
+.dk-two h4{font-size:1rem;font-weight:600;color:#0a0a0a}
 .dk-two .kn{border-top:3px solid #006cd2}
 .dk-two .uk{border-top:3px solid #0a0a0a}
 .dk-two ul{margin:10px 0 0 18px;font-size:14px;line-height:1.5;color:#1a1a1a}
@@ -73,7 +73,7 @@
 
 <figure class="dk-fig" role="group" aria-labelledby="dk1t">
 <span class="dk-lbl">Infographic 1</span>
-<h4 id="dk1t">Anatomy of a DeepSeek search result</h4>
+<h3 id="dk1t">Anatomy of a DeepSeek search result</h3>
 <p class="sp-cap">An illustrative mock-up built from DeepSeek's documented fields. The values shown are examples, not real data.</p>
 <div class="dk-card">
 <div class="dk-url">www.example.com.au/guides/roof-restoration-costs</div>
@@ -98,16 +98,16 @@
 
 <figure class="dk-fig" role="group" aria-labelledby="dk2t">
 <span class="dk-lbl">Infographic 2</span>
-<h4 id="dk2t">Reading the scores</h4>
+<h3 id="dk2t">Reading the scores</h3>
 <div class="dk-scale">
-<h5>Authority tier</h5>
+<h4>Authority tier</h4>
 <div class="dk-cells" role="img" aria-label="Authority scale: minus 1 unknown, then 0 to 4. Tiers 3 and 4 are highly authoritative.">
 <span class="dk-cell un">&minus;1</span><span class="dk-cell">0</span><span class="dk-cell">1</span><span class="dk-cell">2</span><span class="dk-cell hi">3</span><span class="dk-cell hi">4</span>
 </div>
 <p class="dk-note">&minus;1 means unknown. Tier 3 and above (blue) is &quot;highly authoritative&quot;.</p>
 </div>
 <div class="dk-scale">
-<h5>Rerank score</h5>
+<h4>Rerank score</h4>
 <div class="dk-track" role="img" aria-label="Rerank scale from 0 to 3. Scores of 1.5 and above, the right half, count as high quality."><i></i></div>
 <div class="dk-ticks" aria-hidden="true"><span>0</span><span>1.5</span><span>3</span></div>
 <p class="dk-note">1.5 or above (blue) counts as high quality. The score blends three inputs:</p>
@@ -136,7 +136,7 @@
 
 <figure class="dk-fig" role="group" aria-labelledby="dk3t">
 <span class="dk-lbl">Infographic 3</span>
-<h4 id="dk3t">Timeline and cost</h4>
+<h3 id="dk3t">Timeline and cost</h3>
 <div class="dk-cols">
 <ol class="dk-tl">
 <li><b>15 May 2026</b>Google says its spam policies also apply to generative AI responses in Google Search.</li>
@@ -159,10 +159,10 @@
 
 <figure class="dk-fig" role="group" aria-labelledby="dk4t">
 <span class="dk-lbl">Infographic 4</span>
-<h4 id="dk4t">Known vs unknown</h4>
+<h3 id="dk4t">Known vs unknown</h3>
 <div class="dk-two">
-<div class="kn"><h5>Known</h5><ul><li>Authority tier runs 0 to 4, with &minus;1 for unknown</li><li>Rerank score runs 0 to 3</li><li>Pricing is US$0.75 per 1,000 successful requests</li><li>site: queries are supported</li><li>The crawler is designed to respect robots.txt where applicable, per the EU summary</li><li>DeepSeekBot is listed as a training crawler</li></ul></div>
-<div class="uk"><h5>Unknown</h5><ul><li>What GEO manipulation means</li><li>How tiers are set</li><li>Which crawler builds the search index</li><li>The user agent Fetch uses</li><li>Why a page might be missing from results</li><li>Whether queries still go to a third party</li></ul></div>
+<div class="kn"><h4>Known</h4><ul><li>Authority tier runs 0 to 4, with &minus;1 for unknown</li><li>Rerank score runs 0 to 3</li><li>Pricing is US$0.75 per 1,000 successful requests</li><li>site: queries are supported</li><li>The crawler is designed to respect robots.txt where applicable, per the EU summary</li><li>DeepSeekBot is listed as a training crawler</li></ul></div>
+<div class="uk"><h4>Unknown</h4><ul><li>What GEO manipulation means</li><li>How tiers are set</li><li>Which crawler builds the search index</li><li>The user agent Fetch uses</li><li>Why a page might be missing from results</li><li>Whether queries still go to a third party</li></ul></div>
 </div>
 <figcaption class="sp-cap" style="margin-top:14px">Sources: DeepSeek documentation, DeepSeek-V4 EU training-data summary, Known Agents.</figcaption>
 </figure>
