@@ -55,6 +55,8 @@ html.fx-js.fx-fail .fx-reveal{opacity:1!important;transform:none!important}
 .fx-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,5vw,72px);align-items:center}
 .fx-cta__img{width:clamp(200px,24vw,320px);margin:0}
 @media(max-width:820px){
+html.fx-js .fx-reveal--left,html.fx-js .fx-reveal--right{transform:translateY(26px)}
+html.fx-js .fx-reveal.is-in{transform:none}
 .fx-rows{grid-template-columns:1fr}
 .fx-row,.fx-row--flip{grid-template-columns:100px minmax(0,1fr);gap:18px;padding:20px}
 .fx-row__img .fx-cutout{max-width:100px;max-height:120px}
