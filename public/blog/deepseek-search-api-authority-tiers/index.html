@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DeepSeek Opens Its Search Engine: Authority Tiers Explained | AIkonX</title><meta name="description" content="DeepSeek's new Search API scores every page with an authority tier and filters &quot;GEO manipulation&quot;. Here is what it returns, what is still unknown and what to do."><link rel="canonical" href="https://aikonx.com.au/blog/deepseek-search-api-authority-tiers/"><link rel="icon" href="/favicon.ico"><meta property="og:type" content="article"><meta property="og:title" content="DeepSeek Opens Its Search Engine: Authority Tiers Explained"><meta property="og:description" content="DeepSeek's Search API gives every result an authority tier and a rerank score. Here is what is known, what is not and what to check on your own site."><meta property="og:url" content="https://aikonx.com.au/blog/deepseek-search-api-authority-tiers/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"><link rel="stylesheet" href="/pages.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"DeepSeek just opened its search engine. Every page now gets an authority score.","datePublished":"2026-10-20","dateModified":"2026-10-20","author":{"@type":"Organization","name":"AIkonX"},"publisher":{"@type":"Organization","name":"AIkonX","logo":{"@type":"ImageObject","url":"https://aikonx.com.au/assets/images/logo.png"}},"mainEntityOfPage":"https://aikonx.com.au/blog/deepseek-search-api-authority-tiers/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aikonx.com.au/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://aikonx.com.au/blog/"},{"@type":"ListItem","position":3,"name":"DeepSeek Search API and authority tiers","item":"https://aikonx.com.au/blog/deepseek-search-api-authority-tiers/"}]}</script>
+<style>
+.post-meta{margin-top:18px;color:#6b7378;font-size:15px}
+.prose ol,.prose ul{margin:14px 0 0 22px;color:#59646d;font-size:clamp(15px,1.25vw,18px);line-height:1.65}
+.prose li{margin-top:8px}
+.prose strong{color:#1a1a1a;font-weight:600}
+.sp-cap{margin-top:6px;color:#6b7378;font-size:13px;line-height:1.5}
+.sp-refs li{font-size:15px;word-break:break-word}
+.dk-fig{margin:28px 0 0;padding:22px;border:1px solid #ececec;background:#fff}
+.dk-fig h4{font-size:1.05rem;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
+.dk-lbl{display:inline-block;margin-bottom:10px;color:#6b7378;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.dk-card{margin-top:16px;padding:18px;border:1px solid #c3cbd2;background:#fafafa}
+.dk-url{color:#006cd2;font-size:14px;word-break:break-all}
+.dk-ttl{margin-top:2px;font-size:1.05rem;font-weight:600;color:#0a0a0a;line-height:1.3}
+.dk-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dk-badge{display:inline-block;padding:5px 10px;background:#006cd2;color:#fff;font-size:13px;font-weight:600}
+.dk-badge.k{background:#0a0a0a}
+.dk-part{margin-top:12px;padding:10px 12px;border-left:3px solid #006cd2;background:#fff;color:#1a1a1a;font-size:14px;line-height:1.5}
+.dk-part.opt{border-left-color:#c3cbd2;border-left-style:dashed;color:#59646d}
+.dk-part b{display:block;margin-bottom:2px;color:#006cd2;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.dk-part.opt b{color:#6b7378}
+.dk-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dk-chip{padding:5px 10px;border:1px solid #c3cbd2;background:#fff;color:#1a1a1a;font-size:13px}
+.dk-scale{margin-top:18px}
+.dk-scale h5{font-size:.95rem;font-weight:600;color:#0a0a0a}
+.dk-cells{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px}
+.dk-cell{display:flex;align-items:center;justify-content:center;min-height:44px;background:#f1f3f5;color:#59646d;font-size:15px;font-weight:600}
+.dk-cell.hi{background:#006cd2;color:#fff}
+.dk-cell.un{background:#fff;border:1px dashed #c3cbd2}
+.dk-track{position:relative;height:44px;margin-top:10px;background:#f1f3f5}
+.dk-track i{position:absolute;top:0;bottom:0;left:50%;right:0;background:#006cd2}
+.dk-ticks{display:flex;justify-content:space-between;margin-top:6px;color:#59646d;font-size:13px}
+.dk-note{margin-top:8px;color:#1a1a1a;font-size:14px;line-height:1.5}
+.dk-inputs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dk-inputs span{padding:5px 10px;border:1px solid #006cd2;color:#006cd2;font-size:13px;font-weight:600}
+.dk-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.dk-two>div{padding:16px;border:1px solid #ececec;background:#fafafa}
+.dk-two h5{font-size:1rem;font-weight:600;color:#0a0a0a}
+.dk-two .kn{border-top:3px solid #006cd2}
+.dk-two .uk{border-top:3px solid #0a0a0a}
+.dk-two ul{margin:10px 0 0 18px;font-size:14px;line-height:1.5;color:#1a1a1a}
+.dk-two li{margin-top:6px}
+.dk-tl{list-style:none;margin:14px 0 0;padding:0}
+.dk-tl li{position:relative;margin:0;padding:0 0 18px 22px;border-left:2px solid #c3cbd2;color:#1a1a1a;font-size:14px;line-height:1.5}
+.dk-tl li:last-child{padding-bottom:0}
+.dk-tl li:before{content:"";position:absolute;left:-7px;top:3px;width:12px;height:12px;background:#006cd2}
+.dk-tl b{display:block;color:#0a0a0a;font-size:15px}
+.dk-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:6px}
+.dk-cost{padding:16px;border:1px solid #ececec;background:#f3f8fd;align-self:start}
+.dk-cost b{display:block;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:#006cd2;letter-spacing:-.03em;line-height:1.1}
+.dk-cost span{display:block;margin-top:4px;color:#59646d;font-size:14px}
+.dk-cost ul{margin:12px 0 0 18px;font-size:14px;line-height:1.5;color:#1a1a1a}
+@media(max-width:640px){.dk-two,.dk-cols{grid-template-columns:1fr}.dk-fig{padding:16px}}
+</style></head><body><header class="nav"><nav class="nav__links" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="logo" href="/" aria-label="AIkonX"><img src="/assets/images/logo.png" alt="AIkonX" width="128" height="51"></a><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></header><div class="mobile-menu" id="mobile-menu" hidden><nav class="mobile-menu__links" aria-label="Mobile primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+
+<section class="pagehero"><p class="eyebrow"><a href="/blog/">Blog</a></p><h1 class="headline">DeepSeek just opened its search engine. <span>Every page now gets an authority score.</span></h1><p class="lede">A major AI lab now shows a page-level authority tier for every search result, and you can check your own site for under a cent. Here is what the tiers are, what DeepSeek has not said and what is worth doing this month.</p><p class="post-meta">20 October 2026 &middot; 7 minute read</p></section>
+
+<main class="section"><article class="prose">
+
+<p>On 17 October 2026, DeepSeek opened the search engine behind its own chat product to developers. The new Search API returns ranked web results, and every result carries an authority tier and a quality score. Search Engine Journal reported the launch on 19 October. The detail we rely on here comes from DeepSeek's own documentation.</p>
+
+<p>For an Australian business the point is simple. Until now, nobody outside an AI lab could see how that lab rates a page. With this API, anyone with a key can look up their own domain and read the result. You no longer have to guess whether an AI search product can see your pages, because you can ask it. What you cannot yet find out is why a page scored the way it did, and we will be plain about that gap throughout.</p>
+
+<h2>What DeepSeek actually launched</h2>
+
+<p>There are two tools. The Search API returns results for a query. A companion Fetch API retrieves a specific page and hands it back as Markdown. DeepSeek says the same engine already powers search on its website and in its API, that it indexes hundreds of billions of web pages and that it handles hundreds of millions of search requests a day. Those are DeepSeek's own figures, and we have no independent way to check them.</p>
+
+<p>The changelog also makes a claim about quality. It says the engine filters out SEO spam, "GEO manipulation" and low-quality AI-generated content, and it credits strict detection for that. The changelog does not define GEO manipulation and does not explain how the detection works. We come back to that below.</p>
+
+<h2>What a search result contains</h2>
+
+<p>Each result is more than a link and a title. It has two scores, two pieces of text written for different readers and, when you ask for it, the full page. The display snippet is short, usually 100 to 200 characters, and is meant for a person. The summary is longer, usually 600 to 800 characters, and is meant for the language model reading the results. Full page content comes back when you request it and when it is available. Queries can use <strong>site:</strong>, a language filter and a published-date filter.</p>
+
+<figure class="dk-fig" role="group" aria-labelledby="dk1t">
+<span class="dk-lbl">Infographic 1</span>
+<h4 id="dk1t">Anatomy of a DeepSeek search result</h4>
+<p class="sp-cap">An illustrative mock-up built from DeepSeek's documented fields. The values shown are examples, not real data.</p>
+<div class="dk-card">
+<div class="dk-url">www.example.com.au/guides/roof-restoration-costs</div>
+<div class="dk-ttl">Roof restoration costs in Melbourne, 2026</div>
+<div class="dk-badges"><span class="dk-badge">Authority tier: 3</span><span class="dk-badge k">Rerank score: 2.1</span></div>
+<div class="dk-part"><b>Authority tier</b>A whole number from 0 to 4. The value &minus;1 means unknown. Tier 3 and above is called &quot;highly authoritative&quot;.</div>
+<div class="dk-part"><b>Rerank score</b>A number from 0 to 3 blending relevance, authority and freshness. 1.5 or above counts as high quality.</div>
+<div class="dk-part"><b>Display snippet</b>Usually 100 to 200 characters, written for people.</div>
+<div class="dk-part"><b>Model summary</b>Usually 600 to 800 characters, written for the AI model.</div>
+<div class="dk-part opt"><b>Full page content (optional)</b>Returned when requested and available.</div>
+</div>
+<p class="dk-lbl" style="margin-top:16px">Filters you can add to a query</p>
+<div class="dk-filters"><span class="dk-chip">site: your domain</span><span class="dk-chip">Language filter</span><span class="dk-chip">Published-date filter</span></div>
+<figcaption class="sp-cap">Source: DeepSeek Search guide and API reference.</figcaption>
+</figure>
+
+<h2>Authority tiers and rerank scores</h2>
+
+<p>The authority field runs from 0 to 4, and &minus;1 means the engine does not know. The API reference calls tier 3 and above "highly authoritative". The rerank score is separate. It runs from 0 to 3 and blends relevance to the query, authority and freshness, so the same page can score differently for different searches. A score of 1.5 or above counts as high quality.</p>
+
+<p>The important caveat is that neither the guide nor the reference explains how tiers or scores are assigned. We do not know what signals feed a tier, whether it is judged per page or partly per site, or how often it changes. Any article that tells you how to reach tier 4 is guessing, and this one will not.</p>
+
+<figure class="dk-fig" role="group" aria-labelledby="dk2t">
+<span class="dk-lbl">Infographic 2</span>
+<h4 id="dk2t">Reading the scores</h4>
+<div class="dk-scale">
+<h5>Authority tier</h5>
+<div class="dk-cells" role="img" aria-label="Authority scale: minus 1 unknown, then 0 to 4. Tiers 3 and 4 are highly authoritative.">
+<span class="dk-cell un">&minus;1</span><span class="dk-cell">0</span><span class="dk-cell">1</span><span class="dk-cell">2</span><span class="dk-cell hi">3</span><span class="dk-cell hi">4</span>
+</div>
+<p class="dk-note">&minus;1 means unknown. Tier 3 and above (blue) is &quot;highly authoritative&quot;.</p>
+</div>
+<div class="dk-scale">
+<h5>Rerank score</h5>
+<div class="dk-track" role="img" aria-label="Rerank scale from 0 to 3. Scores of 1.5 and above, the right half, count as high quality."><i></i></div>
+<div class="dk-ticks" aria-hidden="true"><span>0</span><span>1.5</span><span>3</span></div>
+<p class="dk-note">1.5 or above (blue) counts as high quality. The score blends three inputs:</p>
+<div class="dk-inputs"><span>Relevance</span><span>Authority</span><span>Freshness</span></div>
+</div>
+<figcaption class="sp-cap" style="margin-top:14px">DeepSeek has not published how these are calculated.</figcaption>
+</figure>
+
+<h2>What &quot;GEO manipulation&quot; probably means</h2>
+
+<p><strong>This section is our interpretation, not DeepSeek's.</strong> DeepSeek has not defined the term. In plain terms, we read it as content produced to win citations from AI systems rather than to help a reader: pages stuffed with the exact phrasing a model might quote, near-duplicate pages across dozens of suburbs, or bulk text with nothing original in it.</p>
+
+<p>The reading is plausible because Google said something similar. On 15 May 2026 it stated that its spam policies also apply to generative AI responses in Google Search. Two very different companies have now said, in public, that tactics aimed at gaming AI answers are unwelcome. The practical takeaway is that citation-gaming tricks carry more risk than they did a year ago. Google has been busy policing its own results too, as we covered in our look at <a href="/blog/google-serp-poisoning-2026/">Google SERP poisoning</a>. If you want a sober view of where your content sits, our <a href="/services/ai-search-optimization/">AI Search Optimisation</a> work starts from that question.</p>
+
+<h2>The crawler and robots.txt question</h2>
+
+<p>Many site owners will want to know which bot to allow or block. DeepSeek has not said. Its EU training-data summary for DeepSeek-V4 says the crawler is designed to respect robots.txt where applicable, but it does not name the crawler. None of the launch pages name the crawler behind the search index, or the user agent that Fetch uses. Fetch itself is described as subject to the target site's availability and access policies.</p>
+
+<p>The Known Agents directory lists a user agent called DeepSeekBot and describes it as an AI training data crawler. That suggests blocking DeepSeekBot in robots.txt may only affect training, and may not change what appears in DeepSeek's search index. We want to be clear that this is unconfirmed. It is a reason not to assume a robots.txt rule does what you expect, not a finding.</p>
+
+<h2>Pricing and the 31 October billing date</h2>
+
+<p>Search and Fetch each cost US$0.75 per 1,000 successful requests. Empty results are not billed, and asking for 50 results costs the same as asking for one. A site: check on your own domain therefore costs under one cent and returns up to 50 of your pages, each with a tier and a relevance score.</p>
+
+<p>There is a date to note. Server-side searches and fetches made through coding tools such as Claude Code and Codex with the DeepSeek API are free until billing starts on 31 October 2026 at 16:00 UTC. In Melbourne (AEDT) that is 3:00am on 1 November.</p>
+
+<figure class="dk-fig" role="group" aria-labelledby="dk3t">
+<span class="dk-lbl">Infographic 3</span>
+<h4 id="dk3t">Timeline and cost</h4>
+<div class="dk-cols">
+<ol class="dk-tl">
+<li><b>15 May 2026</b>Google says its spam policies also apply to generative AI responses in Google Search.</li>
+<li><b>17 October 2026</b>DeepSeek launches the Search and Fetch APIs.</li>
+<li><b>31 October 2026, 16:00 UTC</b>Billing starts for server-side calls through coding tools. That is 3:00am on 1 November in Melbourne (AEDT).</li>
+</ol>
+<div class="dk-cost">
+<b>US$0.75</b><span>per 1,000 successful requests, for Search and for Fetch</span>
+<ul><li>Empty results are not billed</li><li>50 results cost the same as 1</li><li>A site: check costs under 1 cent</li></ul>
+</div>
+</div>
+<figcaption class="sp-cap" style="margin-top:14px">Sources: Google Search Central updates, DeepSeek changelog and API documentation.</figcaption>
+</figure>
+
+<h2>What we know and what we do not</h2>
+
+<p>One more piece of context, kept short. DeepSeek's privacy policy, revised on 10 February, mentions using third-party search APIs. Bocha, a Chinese search API company, says in a GitHub README that it is DeepSeek's official web search supplier. DeepSeek's launch pages do not mention Bocha, and it is unclear whether any queries still go to a third party.</p>
+
+<p>There is also a trap in the site: check. If one of your pages does not appear, it could be outside the index, caught by the quality filters or excluded for some other reason. The API offers no way to tell which. A missing page is a prompt to investigate, not a verdict.</p>
+
+<figure class="dk-fig" role="group" aria-labelledby="dk4t">
+<span class="dk-lbl">Infographic 4</span>
+<h4 id="dk4t">Known vs unknown</h4>
+<div class="dk-two">
+<div class="kn"><h5>Known</h5><ul><li>Authority tier runs 0 to 4, with &minus;1 for unknown</li><li>Rerank score runs 0 to 3</li><li>Pricing is US$0.75 per 1,000 successful requests</li><li>site: queries are supported</li><li>The crawler is designed to respect robots.txt where applicable, per the EU summary</li><li>DeepSeekBot is listed as a training crawler</li></ul></div>
+<div class="uk"><h5>Unknown</h5><ul><li>What GEO manipulation means</li><li>How tiers are set</li><li>Which crawler builds the search index</li><li>The user agent Fetch uses</li><li>Why a page might be missing from results</li><li>Whether queries still go to a third party</li></ul></div>
+</div>
+<figcaption class="sp-cap" style="margin-top:14px">Sources: DeepSeek documentation, DeepSeek-V4 EU training-data summary, Known Agents.</figcaption>
+</figure>
+
+<h2>What to do this month</h2>
+
+<p>None of this needs a large project. Most of it can be done in an afternoon, and the first step costs next to nothing.</p>
+
+<ol>
+<li><strong>Run a site: query against your domain.</strong> Record which pages come back and the tier on each. Save the output with the date so you can compare later.</li>
+<li><strong>Note important pages that are missing.</strong> Remember the API cannot tell you why, so check those pages for thin content, duplicated text or access problems before drawing conclusions.</li>
+<li><strong>Review your robots.txt rules for DeepSeekBot.</strong> Understand they may only affect training, not search. Do not rely on them to control what DeepSeek's search shows.</li>
+<li><strong>Cut thin or AI-padded pages</strong> that exist only to get cited. Merge them into one useful page or remove them.</li>
+<li><strong>Strengthen the pages that should carry authority.</strong> Original data, named authors and clear sourcing are good for readers whatever any scoring system does. Our <a href="/services/seo/">SEO</a> team can help with an audit.</li>
+<li><strong>Watch DeepSeek's docs.</strong> The three things to look for are a definition of GEO manipulation, a tier methodology and a named index crawler.</li>
+</ol>
+
+<p>If you would like a second pair of eyes on your results, see our <a href="/services/ai-search-optimization/">AI Search Optimisation service</a>.</p>
+
+<h2>Sources</h2>
+<ol class="sp-refs">
+<li>Search Engine Journal, DeepSeek opens its in-house search engine to developers, 19 October 2026. <a href="https://www.searchenginejournal.com/deepseek-opens-its-in-house-search-engine-to-developers/593526/" target="_blank" rel="noopener">searchenginejournal.com</a></li>
+<li>DeepSeek API docs, changelog. <a href="https://api-docs.deepseek.com/updates" target="_blank" rel="noopener">api-docs.deepseek.com/updates</a></li>
+<li>DeepSeek API docs, Search guide. <a href="https://api-docs.deepseek.com/guides/search/" target="_blank" rel="noopener">api-docs.deepseek.com/guides/search</a></li>
+<li>DeepSeek API docs, Search API reference. <a href="https://api-docs.deepseek.com/api/search" target="_blank" rel="noopener">api-docs.deepseek.com/api/search</a></li>
+<li>DeepSeek API docs, announcement of 17 October 2026. <a href="https://api-docs.deepseek.com/news/news261017" target="_blank" rel="noopener">api-docs.deepseek.com/news/news261017</a></li>
+<li>Google Search Central, search updates. <a href="https://developers.google.com/search/updates" target="_blank" rel="noopener">developers.google.com/search/updates</a></li>
+<li>Known Agents, DeepSeekBot. <a href="https://knownagents.com/agents/deepseekbot" target="_blank" rel="noopener">knownagents.com/agents/deepseekbot</a></li>
+<li>DEJAN, DeepSeek search engine analysis. <a href="https://dejan.ai/blog/deepseek-search-engine/" target="_blank" rel="noopener">dejan.ai/blog/deepseek-search-engine</a></li>
+</ol>
+
+</article></main>
+
+<footer class="footer"><div class="footer__top"><div><div class="footer__brand"><img src="/assets/images/logo.png" alt="AIkonX" width="290" height="116" loading="lazy"></div><p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p></div><nav class="footer__col" aria-label="Company"><h3>Company</h3><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></nav><nav class="footer__col" aria-label="Services"><h3>Services</h3><a href="/#services">Paid Search</a><a href="/#services">Paid Social</a><a href="/#services">SEO &amp; Content</a><a href="/#services">Analytics &amp; CRO</a></nav><div class="footer__col"><h3>Get in touch</h3><p class="footer__contact">02 Montague Ave<br>St Kilda East VIC 3183, Australia</p><a href="mailto:hello@aikonx.com.au">hello@aikonx.com.au</a><a href="tel:+61413082803">0413 082 803</a></div></div><div class="footer__bottom"><p class="footer__copy">&copy; 2026 AIkonX. All rights reserved.</p><div class="footer__legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></div></div></footer><script src="/pages.js"></script></body></html>
