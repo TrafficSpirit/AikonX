@@ -1,0 +1,60 @@
+name: Dapem performance verification
+on:
+  push:
+    branches: ['dapem/verify-*']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: candidate
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 'f225f089cb0ece3d5ac94f15ea714e90cb09e65e'
+          path: baseline
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare evidence
+        run: mkdir -p "$RUNNER_TEMP/dapem-evidence"
+      - name: Build unchanged baseline for regression comparison
+        working-directory: baseline
+        shell: bash
+        run: |
+          set -o pipefail
+          (npm ci && npm run build) 2>&1 | tee "$RUNNER_TEMP/dapem-evidence/baseline-build.log"
+          test -f 'dist/index.html'
+          cp -R 'dist' "$RUNNER_TEMP/dapem-baseline"
+      - name: Install and build exact candidate
+        shell: bash
+        run: |
+          set -o pipefail
+          (npm ci && npm run build) 2>&1 | tee "$RUNNER_TEMP/dapem-evidence/build.log"
+          test -f 'dist/index.html'
+      - name: Browser and performance verification
+        shell: bash
+        env:
+          DAPEM_DIST: dist
+          DAPEM_CARD: '3230'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/dapem-tools" --no-audit --no-fund puppeteer-core@24.4.0
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory 'dist' > "$RUNNER_TEMP/dapem-evidence/server.log" 2>&1 &
+          python3 -m http.server 4174 --bind 127.0.0.1 --directory "$RUNNER_TEMP/dapem-baseline" > "$RUNNER_TEMP/dapem-evidence/baseline-server.log" 2>&1 &
+          node '.dapem/performance-verification-0d27d750196a4911888728d1fbc71ffd.mjs' 2>&1 | tee "$RUNNER_TEMP/dapem-evidence/browser.log"
+      - name: Upload evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dapem-performance-evidence
+          path: ${{ runner.temp }}/dapem-evidence
+          retention-days: 7
+          if-no-files-found: error
