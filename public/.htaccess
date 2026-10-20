@@ -11,8 +11,15 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^www\.aikonx\.com\.au$ [NC]
 RewriteRule ^(.*)$ https://aikonx.com.au/$1 [R=301,L]
 
-# Static asset caching is configured in assets/.htaccess.
+# Static asset caching: root-level JS/CSS/images/fonts (site-nav.js, pages.css,
+# contact-form.js, pages.js, page-fx.*, blog/article.*, icons) get 7 days.
+# HTML and JSON are intentionally not matched. assets/.htaccess also sets this.
 # LocationMatch is not permitted in .htaccess files.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|png|jpe?g|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
 
 # Rule 3: HTTPS www -> HTTPS non-www (single 301)
 RewriteCond %{HTTPS} on
