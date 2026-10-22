@@ -31,7 +31,9 @@
       ['Local SEO', '/services/local-seo/']] },
     { t: 'Content &amp; Nurture', i: 'book', l: [
       ['Content Marketing', '/services/content-marketing/'],
-      ['Email Marketing &amp; Lead Nurture', '/services/email-marketing/']] }
+      ['Email Marketing &amp; Lead Nurture', '/services/email-marketing/']] },
+    { t: 'Industries', i: 'users', l: [
+      ['SEO for Tradies', '/industries/tradies/']] }
   ];
 
   var PAID = [
@@ -262,6 +264,24 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
   addFooterBlog();
   document.addEventListener('DOMContentLoaded', addFooterBlog);
 
+  /* Industry page link in the footer so it is crawlable from every page. */
+  function addFooterTradies() {
+    if (document.querySelector('[data-sx-tradies]')) return;
+    var cols = document.querySelectorAll('.footer__col'), target = null;
+    for (var i = 0; i < cols.length; i++) {
+      var h = cols[i].querySelector('h3');
+      if (h && /^services$/i.test(h.textContent.trim())) { target = cols[i]; break; }
+    }
+    if (!target) return;
+    var a = document.createElement('a');
+    a.href = '/industries/tradies/';
+    a.textContent = 'SEO for Tradies';
+    a.setAttribute('data-sx-tradies', '');
+    target.appendChild(a);
+  }
+  addFooterTradies();
+  document.addEventListener('DOMContentLoaded', addFooterTradies);
+
   /* Legal entity details (ABN/ACN) in the footer bottom bar, on every page. */
   var ENTITY = 'Aikonx Pty Ltd &middot; ABN 73 699 508 480 &middot; ACN 699 508 480';
   function addFooterEntity() {
@@ -326,6 +346,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 
   var p = location.pathname, curId = '';
   if (p.indexOf('/about') === 0) curId = 'sx-mega-about';
+  else if (p.indexOf('/industries/') === 0) curId = 'sx-mega-seo';
   else if (p.indexOf('/services/') === 0) {
     MENUS.forEach(function (m) {
       m.list.forEach(function (g) {
