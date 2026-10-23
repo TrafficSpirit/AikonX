@@ -64,7 +64,8 @@
     { t: 'Resources', i: 'book', l: [
       ['Free marketing audit', '/contact/'],
       ['Frequently asked questions', '/#faq'],
-      ['All services', '/services/']] },
+      ['All services', '/services/'],
+      ['Marketing for tradies', '/industries/tradies/']] },
     { t: 'Legal', i: 'shield', l: [
       ['Privacy policy', '/privacy/'],
       ['Terms of use', '/terms/']] }
