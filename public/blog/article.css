@@ -55,6 +55,10 @@
 @media(min-width:1400px){
 .toc--side{width:min(220px,calc(100% - 96px));margin-right:96px}
 }
+/* In-article call-to-action button: keep white text despite .prose a */
+.post-page .prose a.btn{color:#fff;font-weight:500;text-decoration:none;margin-top:6px}
+.post-page .prose a.btn:hover{text-decoration:none}
+
 /* Byline: author avatar, name, date and reading time */
 .post-byline{display:inline-flex;align-items:center;gap:12px;margin-top:22px;text-align:left}
 .post-byline img{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1px solid #dfe3e7;background:#fff;object-fit:cover}
