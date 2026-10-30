@@ -4,7 +4,7 @@
 /* Hero: centred on the same axis as the body */
 .post-page .pagehero{text-align:center}
 .post-page .pagehero .headline{max-width:900px;margin-left:auto;margin-right:auto;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.15}
-.post-page .pagehero .lede{margin-left:auto;margin-right:auto}
+.post-page .pagehero .lede{max-width:760px;margin-left:auto;margin-right:auto}
 .post-page .pagehero .post-meta{margin-top:18px}
 
 /* Reading column */
@@ -63,6 +63,7 @@
 
 /* Cover image: same centre axis as the reading column */
 .post-cover{max-width:960px;margin:clamp(28px,4vw,44px) auto 0}
+.post-cover figcaption{margin-top:8px;color:#6b7378;font-size:13px;text-align:left}
 .post-cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid #ececec}
 
 /* Graphs and tables sit exactly on the text column */
