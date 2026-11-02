@@ -4,8 +4,27 @@
      Uses the existing GA4 gtag (analytics.js); Consent Mode decides whether anything is stored.
      Parameters are non-personal only: no name, email, company or message. */
   var SENT_KEY = 'aikx_lead_sent';
+  /* Dapem Measurement browser script: a public script URL (not a secret; no signing credentials here). */
+  var DAPEM_SRC = 'https://dapem.toolsforscale.com/api/measurement/client/ff4f8cf5cd9d86cdf1655d586304859b588d92a921576354.js';
+  function consented() { try { return localStorage.getItem('aikx_cookie_consent') === 'granted'; } catch (e) { return false; } }
+  /* Sent only when the visitor accepted analytics; the script is not loaded otherwise. Form contents are never passed. */
+  function trackDapem() {
+    if (!consented()) return;
+    function send() {
+      var d = window.dapemMeasurement;
+      if (!d) return;
+      try { d.setConsent(true); d.track('enquiry_submitted', { formId: 'contact' }); } catch (e) {}
+    }
+    if (window.dapemMeasurement) { send(); return; }
+    var s = document.createElement('script');
+    s.src = DAPEM_SRC;
+    s.async = true;
+    s.onload = send;
+    document.head.appendChild(s);
+  }
   function trackLead(page) {
     function fire() {
+      trackDapem();
       if (typeof window.gtag !== 'function') return;
       window.gtag('event', 'generate_lead', { form_name: 'contact', form_page: page || location.pathname });
     }
