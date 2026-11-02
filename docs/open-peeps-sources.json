@@ -1,0 +1,11 @@
+{
+  "library": "Open Peeps by Pablo Stanley",
+  "site": "https://www.openpeeps.com/",
+  "license": "CC0 1.0",
+  "avatars": [
+    {"author": "Abhik Boruah", "source": "https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e5351f351970522b7a2499d_peep-15.svg"},
+    {"author": "Syafiqo Octaviano", "source": "https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e53583de35d386180675b6e_peep-56.svg"},
+    {"author": "Ayush Bhandari", "source": "https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e535a0dd3992316ad553c2e_peep-72.svg"},
+    {"author": "Brian H.", "source": "https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e535d4c5197057a87a74020_peep-100.svg"}
+  ]
+}
