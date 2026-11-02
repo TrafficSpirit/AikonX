@@ -15,6 +15,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Validate required private tracking configuration
+        env:
+          DAPEM_CONFIG: ${{ secrets.DAPEM_MEASUREMENT_CONFIG_B64 }}
+        run: |
+          node -e 'const c=JSON.parse(Buffer.from(process.env.DAPEM_CONFIG||"","base64").toString());if(!/^[a-f0-9]{64}$/.test(c.secret)||!/^https:\/\/dapem\.toolsforscale\.com\/api\/measurement\/server\/[a-f0-9]{48}$/.test(c.endpoint))process.exit(1)'
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -45,13 +51,23 @@ jobs:
 
       - name: Extract and publish
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          DAPEM_CONFIG: ${{ secrets.DAPEM_MEASUREMENT_CONFIG_B64 }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           password: ${{ secrets.DEPLOY_PASSWORD }}
           port: 22
+          envs: DAPEM_CONFIG
           script: |
             set -e
+            PRIVATE="/home/aikonx/.dapem"
+            mkdir -p "$PRIVATE"
+            chmod 700 "$PRIVATE"
+            umask 077
+            printf '%s' "$DAPEM_CONFIG" | base64 -d > "$PRIVATE/measurement.json.tmp"
+            php -r '$c=json_decode(file_get_contents($argv[1]),true);if(!is_array($c)||!preg_match("/^[a-f0-9]{64}$/",$c["secret"]??""))exit(1);' "$PRIVATE/measurement.json.tmp"
+            mv "$PRIVATE/measurement.json.tmp" "$PRIVATE/measurement.json"
             DOCROOT="/home/aikonx/public_html"
             mkdir -p "$DOCROOT"
             # Remove previous hashed JS/CSS bundles so they don't pile up.
