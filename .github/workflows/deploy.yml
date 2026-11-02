@@ -1,80 +1,29 @@
-name: Deploy to AWS
-
-# Builds the site and deploys it to the AWS server on every merge/push to main.
+name: Validate server-confirmed enquiry tracking
 on:
-  push:
-    branches: [main]
-  workflow_dispatch: {}
-
-# Never run two production deploys at once; let an in-flight deploy finish.
-concurrency:
-  group: production-deploy
-  cancel-in-progress: false
-
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  deploy:
+  contact:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate required private tracking configuration
-        env:
-          DAPEM_CONFIG: ${{ secrets.DAPEM_MEASUREMENT_CONFIG_B64 }}
-        run: |
-          node -e 'const c=JSON.parse(Buffer.from(process.env.DAPEM_CONFIG||"","base64").toString());if(!/^[a-f0-9]{64}$/.test(c.secret)||!/^https:\/\/dapem\.toolsforscale\.com\/api\/measurement\/server\/[a-f0-9]{48}$/.test(c.endpoint))process.exit(1)'
-
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Package build output
-        run: tar -czf dist.tar.gz -C dist .
-
-      - name: Upload build to server
-        uses: appleboy/scp-action@v0.1.7
+          php-version: '7.4'
+          extensions: curl, openssl, json
+          coverage: none
+      - run: |
+          php -l public/contact-submit.php
+          php -l public/contact-handler.php
+          php tests/contact-handler.test.php
+      - uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          password: ${{ secrets.DEPLOY_PASSWORD }}
-          port: 22
-          source: dist.tar.gz
-          target: /home/aikonx/tmp
-
-      - name: Extract and publish
-        uses: appleboy/ssh-action@v1.0.3
-        env:
-          DAPEM_CONFIG: ${{ secrets.DAPEM_MEASUREMENT_CONFIG_B64 }}
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          password: ${{ secrets.DEPLOY_PASSWORD }}
-          port: 22
-          envs: DAPEM_CONFIG
-          script: |
-            set -e
-            PRIVATE="/home/aikonx/.dapem"
-            mkdir -p "$PRIVATE"
-            chmod 700 "$PRIVATE"
-            umask 077
-            printf '%s' "$DAPEM_CONFIG" | base64 -d > "$PRIVATE/measurement.json.tmp"
-            php -r '$c=json_decode(file_get_contents($argv[1]),true);if(!is_array($c)||!preg_match("/^[a-f0-9]{64}$/",$c["secret"]??""))exit(1);' "$PRIVATE/measurement.json.tmp"
-            mv "$PRIVATE/measurement.json.tmp" "$PRIVATE/measurement.json"
-            DOCROOT="/home/aikonx/public_html"
-            mkdir -p "$DOCROOT"
-            # Remove previous hashed JS/CSS bundles so they don't pile up.
-            # Media (images/models/videos) and the Google verification file are left untouched.
-            rm -f "$DOCROOT"/assets/index-*.js "$DOCROOT"/assets/index-*.css
-            # Overlay the new build on top of the web root (does NOT delete the
-            # Google Search Console verification file or other server-only files).
-            tar -xzf /home/aikonx/tmp/dist.tar.gz -C "$DOCROOT"
-            rm -f /home/aikonx/tmp/dist.tar.gz
-            echo "Deploy complete: $(date)"
+          node-version: '20'
+      - run: |
+          node --test tests/contact-form.test.mjs
+          node --check public/contact-form.js
+          node --check public/analytics.js
+          npm ci
+          npm run build
