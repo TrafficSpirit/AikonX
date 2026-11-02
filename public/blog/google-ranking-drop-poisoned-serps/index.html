@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Google Ranking Drop? Check for Poisoned SERPs First | Aikonx</title><meta name="description" content="Not every Google ranking drop is real. Learn how poisoned SERPs fool rank trackers, how to verify a drop in Search Console, and how to explain it to clients."><link rel="canonical" href="https://aikonx.com.au/blog/google-ranking-drop-poisoned-serps/"><link rel="icon" href="/favicon.ico"><meta property="og:type" content="article"><meta property="og:site_name" content="AIkonX"><meta property="og:locale" content="en_AU"><meta property="og:title" content="Google Ranking Drop? Check for Poisoned SERPs First"><meta property="og:description" content="Not every Google ranking drop is real. Learn how poisoned SERPs fool rank trackers, how to verify a drop in Search Console, and how to explain it to clients."><meta property="og:url" content="https://aikonx.com.au/blog/google-ranking-drop-poisoned-serps/"><meta property="og:image" content="https://aikonx.com.au/assets/images/blog/ranking-drop-hero-1200.webp"><meta property="og:image:width" content="945"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Illustration of a misleading Google ranking drop on a rank tracker report"><meta property="article:published_time" content="2026-11-02"><meta property="article:modified_time" content="2026-11-02"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Google Ranking Drop? Check for Poisoned SERPs First"><meta name="twitter:description" content="Not every Google ranking drop is real. Learn how poisoned SERPs fool rank trackers, how to verify a drop in Search Console, and how to explain it to clients."><meta name="twitter:image" content="https://aikonx.com.au/assets/images/blog/ranking-drop-hero-1200.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"><link rel="stylesheet" href="/pages.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Ranking Drop or Poisoned SERP? How to Tell, and What to Tell Clients","description":"Not every Google ranking drop is real. Learn how poisoned SERPs fool rank trackers, how to verify a drop in Search Console, and how to explain it to clients.","datePublished":"2026-11-02","dateModified":"2026-11-02","inLanguage":"en-AU","author":{"@type":"Organization","name":"AIkonX","url":"https://aikonx.com.au/about/"},"image":"https://aikonx.com.au/assets/images/blog/ranking-drop-hero-1200.webp","publisher":{"@type":"Organization","name":"AIkonX","logo":{"@type":"ImageObject","url":"https://aikonx.com.au/assets/images/logo.png"}},"mainEntityOfPage":"https://aikonx.com.au/blog/google-ranking-drop-poisoned-serps/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a poisoned SERP?","acceptedAnswer":{"@type":"Answer","text":"A poisoned SERP is a search results page that Google returns to an automated tool, such as a rank tracker, that does not match what a real person would see. The page looks complete, but the results can be off-topic or scrambled, so the tool records a false ranking drop."}},{"@type":"Question","name":"How long should I wait before reacting to a Google ranking drop?","acceptedAnswer":{"@type":"Answer","text":"Wait three to seven days unless you find a clear technical fault, such as a noindex tag, a blocked page or a server error. Most tracking glitches and ordinary fluctuations reverse within that time, and changing a page in the middle of a fluctuation makes the cause harder to identify."}},{"@type":"Question","name":"Can Search Console show a poisoned SERP?","acceptedAnswer":{"@type":"Answer","text":"No. Search Console reports impressions, clicks and average position from searches real people ran on Google, so a bad results page handed to a tracker does not appear in it. That is why Search Console is the first place to check a reported drop."}},{"@type":"Question","name":"Why does my rank tracker show a different position from Search Console?","acceptedAnswer":{"@type":"Answer","text":"Trackers check one query from one location and device with no search history. Search Console averages the positions your page held across all real impressions, including different locations, devices and personalised results. The two numbers rarely match exactly, so compare the direction of change rather than the exact figure."}},{"@type":"Question","name":"Should I tell clients about every ranking fluctuation?","acceptedAnswer":{"@type":"Answer","text":"Not every small move, but explain the method. Agree in advance that normal fluctuations are reported as trends, and contact the client early when a large drop appears in more than one data source or when clicks and enquiries fall."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aikonx.com.au/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://aikonx.com.au/blog/"},{"@type":"ListItem","position":3,"name":"Google ranking drop or poisoned SERP","item":"https://aikonx.com.au/blog/google-ranking-drop-poisoned-serps/"}]}</script>
+<style>
+.post-meta{margin-top:18px;color:#6b7378;font-size:15px}
+.prose ol,.prose ul{margin:14px 0 0 22px;color:#59646d;font-size:clamp(15px,1.25vw,18px);line-height:1.65}
+.prose li{margin-top:8px}
+.prose strong{color:#1a1a1a;font-weight:600}
+.prose h3{margin-top:28px;font-size:1.15rem;font-weight:600;letter-spacing:-.015em;color:#0a0a0a}
+.sp-cap{margin-top:6px;color:#6b7378;font-size:13px;line-height:1.5}
+.rd-fig{margin:28px 0 0;padding:22px;border:1px solid #ececec;background:#fff}
+.rd-fig h3{margin:0;font-size:1.05rem}
+.rd-lbl{display:inline-block;margin-bottom:10px;color:#6b7378;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.rd-fig svg{display:block;width:100%;height:auto;margin-top:14px}
+.rd-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.rd-serp{padding:14px;border:1px solid #c3cbd2;background:#fafafa}
+.rd-serp h4{font-size:.95rem;font-weight:600;color:#0a0a0a}
+.rd-serp.bad{border-top:3px solid #0a0a0a}.rd-serp.ok{border-top:3px solid #006cd2}
+.rd-q{margin-top:8px;padding:6px 10px;border:1px solid #c3cbd2;background:#fff;color:#59646d;font-size:13px}
+.rd-res{margin-top:12px;padding-bottom:10px;border-bottom:1px solid #ececec}
+.rd-res:last-child{border-bottom:0;padding-bottom:0}
+.rd-u{color:#59646d;font-size:12px;word-break:break-all}
+.rd-t{color:#006cd2;font-size:15px;font-weight:600;line-height:1.3}
+.rd-s{color:#59646d;font-size:13px;line-height:1.45}
+.rd-res.me{background:#f3f8fd;margin-left:-6px;margin-right:-6px;padding:6px}
+.rd-res.me .rd-t:after{content:" (your page)";color:#0a0a0a;font-weight:500;font-size:12px}
+.rd-lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.rd-lists>div{padding:16px;border:1px solid #ececec;background:#fafafa}
+.rd-lists .n{border-top:3px solid #c3cbd2}.rd-lists .r{border-top:3px solid #006cd2}
+.rd-lists h3{margin:0;font-size:1rem}
+.rd-lists ul{margin:10px 0 0 18px;font-size:14px;line-height:1.5;color:#1a1a1a}
+.rd-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;list-style:none;padding:0}
+.rd-steps li{margin:0;padding:14px;border:1px solid #ececec;background:#fafafa;color:#1a1a1a;font-size:14px;line-height:1.4}
+.rd-steps b{display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin-bottom:8px;background:#006cd2;color:#fff;font-size:14px}
+.rd-steps strong{display:block;color:#0a0a0a;font-size:15px}
+.rd-mail{margin-top:18px;padding:20px;border:1px solid #ececec;border-left:3px solid #006cd2;background:#fafafa;color:#1a1a1a;font-size:15px;line-height:1.6}
+.rd-mail p{margin-top:12px}.rd-mail p:first-child{margin-top:0}
+@media(max-width:640px){.rd-two,.rd-lists{grid-template-columns:1fr}.rd-steps{grid-template-columns:1fr 1fr}.rd-fig{padding:16px}}
+</style><link rel="stylesheet" href="/blog/article.css?v=5"><script src="/blog/article.js?v=5" defer></script></head><body class="post-page"><header class="nav"><nav class="nav__links" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="logo" href="/" aria-label="AIkonX"><img src="/assets/images/logo-322.webp" srcset="/assets/images/logo-322.webp 322w, /assets/images/logo-508.webp 508w" sizes="(max-width:700px) 254px, 161px" alt="AIkonX" width="128" height="51"></a><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></header><div class="mobile-menu" id="mobile-menu" hidden><nav class="mobile-menu__links" aria-label="Mobile primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+
+<section class="pagehero"><p class="eyebrow"><a href="/blog/">Blog</a></p><h1 class="headline">Google Ranking Drop or Poisoned SERP? <span>How to Tell, and What to Tell Clients</span></h1><p class="lede">A sudden google ranking drop in a tracker report is not always a real drop. Here is how to check it properly, and how to explain it calmly to a client.</p><div class="post-byline"><img src="/assets/images/blog/author-aikonx-team.svg" alt="" width="48" height="48"><div><span class="post-byline__name">By AIkonX Team</span><span class="post-byline__meta"><time datetime="2026-11-02">2 November 2026</time> &middot; 10 minute read</span></div></div><figure class="post-cover"><img src="/assets/images/blog/ranking-drop-hero-1200.webp" srcset="/assets/images/blog/ranking-drop-hero-800.webp 630w, /assets/images/blog/ranking-drop-hero-1200.webp 945w" sizes="(max-width:1000px) calc(100vw - 32px), 945px" alt="Flat illustration of a rank tracker report showing a sharp ranking drop that may not be real" width="945" height="630" style="aspect-ratio:3/2;max-width:945px;margin:0 auto" fetchpriority="high"></figure></section>
+
+<main class="section"><article class="prose">
+
+<p>You open the weekly rank report and the keyword that matters most has fallen from position four to position eighteen. Your stomach drops. A client is about to see the same chart, and the first question will be what went wrong.</p>
+
+<p>Before anyone rewrites a page or changes a strategy, ask a different question. Did Google actually move your site, or did the tool measuring it receive a bad results page? Both produce the same ugly line on a chart, but only one of them is a problem with your website.</p>
+
+<p>This guide explains how a google ranking drop can turn out to be a measurement error, where poisoned SERPs fit in, and how to check in about ten minutes using data you already own. It also includes a plain email you can send a client, and a short list of what to do when the drop is real.</p>
+
+<h2>What a poisoned SERP is</h2>
+
+<p>A SERP is a search engine results page. A poisoned SERP is a results page that Google hands to an automated tool, such as a rank tracker, that does not match what a real person would see for the same search. The page looks complete, with ten results, titles and snippets. But the results can be off-topic, scrambled, padded with unrelated sites, or missing your pages altogether.</p>
+
+<p>&ldquo;Poisoned&rdquo; is a trade term rather than something Google has defined, so treat it as a description of the effect. The effect is what matters. The tracker records the bad page as if it were genuine, and the report shows your site sliding or vanishing. Nothing about your site changed, and no real searcher ever saw that page.</p>
+
+<p>We covered the scale of the problem in our article on <a href="/blog/google-serp-poisoning-2026/">Google SERP poisoning in 2026</a>, including the figures reported for Australia. This article is the practical follow-up: how to tell whether a particular drop is real, and what to say when someone asks about it.</p>
+
+<figure class="rd-fig" role="group" aria-labelledby="rd1t">
+<span class="rd-lbl">Illustration 1</span>
+<h3 id="rd1t">The same search, two very different pages</h3>
+<p class="sp-cap">An illustration with made-up businesses and fictional domains. It is not a screenshot of a real results page.</p>
+<div class="rd-two">
+<div class="rd-serp ok"><h4>What a real searcher sees</h4><div class="rd-q">emergency plumber geelong</div>
+<div class="rd-res me"><div class="rd-u">bayside-plumbing.example</div><div class="rd-t">24 hour emergency plumber in Geelong</div><div class="rd-s">Burst pipe or blocked drain? Licensed local plumbers on call.</div></div>
+<div class="rd-res"><div class="rd-u">geelong-pipes.example</div><div class="rd-t">Geelong plumbers, same day service</div><div class="rd-s">Fixed-price call-outs across Geelong and the Surf Coast.</div></div>
+<div class="rd-res"><div class="rd-u">tradefinder.example</div><div class="rd-t">Compare plumbers near you</div><div class="rd-s">Read reviews and request quotes from local trades.</div></div></div>
+<div class="rd-serp bad"><h4>What the tracker is handed</h4><div class="rd-q">emergency plumber geelong</div>
+<div class="rd-res"><div class="rd-u">garden-gnomes.example</div><div class="rd-t">Best garden ornaments this season</div><div class="rd-s">Our pick of the year&#39;s most popular lawn decorations.</div></div>
+<div class="rd-res"><div class="rd-u">cheapflights-deals.example</div><div class="rd-t">Last minute flight deals</div><div class="rd-s">Compare fares to over 400 destinations.</div></div>
+<div class="rd-res"><div class="rd-u">recipe-hub.example</div><div class="rd-t">Twenty easy weeknight dinners</div><div class="rd-s">Quick meals for busy households.</div></div></div>
+</div>
+</figure>
+
+<h2>Why rank trackers and Google disagree</h2>
+
+<p>Poisoned results are one cause of mismatch, and not even the most common one. Rank tracking is always an approximation, because a tool asks Google a question from a position that no real customer occupies. These are the main reasons two sources can tell different stories.</p>
+
+<ul>
+<li><strong>Location.</strong> Google tailors results to where the searcher is. A tracker set to Australia may query from a single point, while your customers search from Melbourne, Parramatta or the outer suburbs of Perth. For local searches, a few kilometres can reorder the page.</li>
+<li><strong>Device.</strong> Mobile and desktop results differ. If the tracker checks desktop and most of your customers use phones, the report describes a page few of them see.</li>
+<li><strong>Personalisation.</strong> Real searchers have accounts, history and past clicks. Trackers have none. Neither view is wrong, but they are different views.</li>
+<li><strong>Bot detection.</strong> Google works to recognise automated queries. When it suspects one, it may slow the tool down, show a challenge, or return a different page from the one a person would get. This is the most likely route to a poisoned SERP.</li>
+<li><strong>Test results.</strong> Google runs experiments all the time, showing a different layout or ordering to a small share of searches. A tracker can land in a test group by chance on any given day.</li>
+<li><strong>Data centre variance.</strong> Google&#39;s systems run across many servers, and changes reach them at slightly different times. Two requests a minute apart can get slightly different answers.</li>
+</ul>
+
+<p>Put together, this is why a single day&#39;s rank for a single keyword is a weak signal. The pattern over time, confirmed by a second source, is what counts.</p>
+
+<figure class="rd-fig" role="group" aria-labelledby="rd2t">
+<span class="rd-lbl">Illustration 2</span>
+<h3 id="rd2t">How a tracker can receive a bad results page</h3>
+<svg viewBox="0 0 720 300" role="img" aria-label="Diagram. A rank tracker, which is automated and has no search history, and a real searcher, who is signed in, local and on mobile, both send queries to Google. Google applies bot checks, tests and data centre differences. The tracker may get a poisoned results page and the report shows a drop, while the real searcher gets a normal results page and clicks stay steady." xmlns="http://www.w3.org/2000/svg" font-family="Inter,Arial,sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0a0a0a"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#006cd2"/></marker></defs>
+<rect x="10" y="20" width="180" height="80" fill="#fff" stroke="#0a0a0a"/><text x="100" y="55" text-anchor="middle" font-size="16" font-weight="600" fill="#0a0a0a">Rank tracker</text><text x="100" y="78" text-anchor="middle" font-size="13" fill="#59646d">Automated, no history</text>
+<rect x="10" y="200" width="180" height="80" fill="#fff" stroke="#006cd2"/><text x="100" y="235" text-anchor="middle" font-size="16" font-weight="600" fill="#0a0a0a">Real searcher</text><text x="100" y="258" text-anchor="middle" font-size="13" fill="#59646d">Signed in, local, mobile</text>
+<rect x="270" y="105" width="180" height="90" fill="#f5ece2" stroke="#ecdfcf"/><text x="360" y="137" text-anchor="middle" font-size="17" font-weight="600" fill="#0a0a0a">Google</text><text x="360" y="158" text-anchor="middle" font-size="12.5" fill="#59646d">Bot checks, live tests,</text><text x="360" y="175" text-anchor="middle" font-size="12.5" fill="#59646d">many data centres</text>
+<rect x="530" y="20" width="180" height="80" fill="#0a0a0a"/><text x="620" y="55" text-anchor="middle" font-size="16" font-weight="600" fill="#fff">Poisoned page</text><text x="620" y="78" text-anchor="middle" font-size="13" fill="#d9dde0">Report shows a drop</text>
+<rect x="530" y="200" width="180" height="80" fill="#006cd2"/><text x="620" y="235" text-anchor="middle" font-size="16" font-weight="600" fill="#fff">Normal page</text><text x="620" y="258" text-anchor="middle" font-size="13" fill="#e4f0fc">Clicks stay steady</text>
+<path d="M190 60L268 128" stroke="#0a0a0a" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+<path d="M190 240L268 172" stroke="#006cd2" stroke-width="2" fill="none" marker-end="url(#ab)"/>
+<path d="M452 128L528 62" stroke="#0a0a0a" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#ar)"/>
+<path d="M452 172L528 238" stroke="#006cd2" stroke-width="2" fill="none" marker-end="url(#ab)"/>
+</svg>
+<figcaption class="sp-cap">A simplified illustration. Google does not publish exactly how it treats automated queries.</figcaption>
+</figure>
+
+<h2>Normal ranking fluctuations versus a real drop</h2>
+
+<p>Some movement is normal. Google ranking fluctuations happen every day as new pages appear, competitors change theirs and Google adjusts its systems. On competitive searches, seo ranking fluctuations of a position or two, up one day and back the next, are usually noise rather than a message about your site.</p>
+
+<p>The skill is telling noise from a genuine change. These two lists are a starting point, not a rule. Several signs in the same column carry more weight than one.</p>
+
+<div class="rd-lists">
+<div class="n"><h3>More likely noise or a tracking error</h3><ul><li>Only one tracker shows the drop</li><li>One keyword, or a few, moved and the rest are steady</li><li>The jump is large and sudden, such as four to eighteen overnight</li><li>Search Console clicks and impressions are flat</li><li>The results the tracker saw look irrelevant</li><li>The position returns within a few days</li></ul></div>
+<div class="r"><h3>More likely a real drop</h3><ul><li>Several tools agree, and manual checks match</li><li>Many keywords or a whole section of the site fell together</li><li>Search Console clicks and impressions fall as well</li><li>A different page ranks, or yours has left the results</li><li>The drop lasts more than a week</li><li>It follows a site change or a confirmed Google update</li></ul></div>
+</div>
+
+<figure class="rd-fig" role="group" aria-labelledby="rd3t">
+<span class="rd-lbl">Illustration 3</span>
+<h3 id="rd3t">A tracker glitch that corrects itself</h3>
+<svg viewBox="0 0 680 300" role="img" aria-label="Line chart of a tracked keyword over ten days. The position holds near 4, falls to around 18 on days 5 and 6, then returns to position 4 by day 8. Annotations mark the reported drop and the recovery." xmlns="http://www.w3.org/2000/svg" font-family="Inter,Arial,sans-serif">
+<rect x="290" y="30" width="100" height="230" fill="#f5ece2"/>
+<g stroke="#ececec"><path d="M70 41H630"/><path d="M70 85H630"/><path d="M70 140H630"/><path d="M70 195H630"/><path d="M70 250H630"/></g>
+<g font-size="12" fill="#59646d" text-anchor="end"><text x="60" y="45">1</text><text x="60" y="89">5</text><text x="60" y="144">10</text><text x="60" y="199">15</text><text x="60" y="254">20</text></g>
+<text x="14" y="150" font-size="12" fill="#59646d" transform="rotate(-90 14 150)" text-anchor="middle">Tracked position</text>
+<polyline points="70,74 130,74 190,85 250,74 310,228 370,217 430,85 490,74 550,74 610,74" fill="none" stroke="#006cd2" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#006cd2"><circle cx="70" cy="74" r="4"/><circle cx="130" cy="74" r="4"/><circle cx="190" cy="85" r="4"/><circle cx="250" cy="74" r="4"/><circle cx="430" cy="85" r="4"/><circle cx="490" cy="74" r="4"/><circle cx="550" cy="74" r="4"/><circle cx="610" cy="74" r="4"/></g>
+<g fill="#0a0a0a"><circle cx="310" cy="228" r="5"/><circle cx="370" cy="217" r="5"/></g>
+<g font-size="12" fill="#59646d" text-anchor="middle"><text x="70" y="278">Day 1</text><text x="190" y="278">Day 3</text><text x="310" y="278">Day 5</text><text x="430" y="278">Day 7</text><text x="550" y="278">Day 9</text></g>
+<text x="340" y="112" font-size="13" font-weight="600" fill="#0a0a0a" text-anchor="middle">Tracker reports a drop</text><text x="340" y="129" font-size="12" fill="#59646d" text-anchor="middle">Search Console clicks steady</text>
+<path d="M340 138V205" stroke="#0a0a0a" stroke-dasharray="4 3"/>
+<text x="520" y="58" font-size="13" font-weight="600" fill="#006cd2" text-anchor="middle">Back to normal by day 7</text>
+</svg>
+<figcaption class="sp-cap">Illustrative data, not a real client. A lower number means a higher position on the page.</figcaption>
+</figure>
+
+<h2>A six-step checklist to verify a ranking drop</h2>
+
+<p>Work through these in order. The first three take minutes, and together they settle most cases.</p>
+
+<figure class="rd-fig" role="group" aria-labelledby="rd4t">
+<span class="rd-lbl">Illustration 4</span>
+<h3 id="rd4t">The six checks at a glance</h3>
+<ol class="rd-steps" aria-label="Six verification steps">
+<li><b>1</b><strong>Search Console</strong>Clicks, impressions, position</li>
+<li><b>2</b><strong>Manual check</strong>Private window, Australian location</li>
+<li><b>3</b><strong>Second tracker</strong>Does it agree?</li>
+<li><b>4</b><strong>Ranking URL</strong>Is the right page showing?</li>
+<li><b>5</b><strong>Indexing</strong>Indexed, crawlable, canonical</li>
+<li><b>6</b><strong>Wait 3 to 7 days</strong>Then check again</li>
+</ol>
+</figure>
+
+<h3>1. Check Search Console for clicks, impressions and position</h3>
+
+<p>Open the Performance report and compare the last seven days with the seven before. Filter by the query and the page involved. Look at clicks and impressions first, then average position. Search Console reports what real people did, so it is not fooled by a bad page handed to a tool. If clicks are steady, the drop is probably not hurting you. Allow for a delay of a day or two in the data.</p>
+
+<h3>2. Search manually in a private window with an Australian location</h3>
+
+<p>Open a private or incognito window so you are signed out, and search on google.com.au. For a local query, include the suburb or city the way a customer would, or use a location setting that matches the area you serve. Check on a phone as well as a desktop. You are not looking for an exact position. You are checking whether your page appears in a sensible place, and whether the results look relevant.</p>
+
+<h3>3. Compare with a second tracker</h3>
+
+<p>If you have access to another rank tool, or the same tool with a different location and device setting, compare the figures. When one source shows a collapse and another shows nothing unusual, suspect the source that disagrees. If both agree and Search Console moves the same way, take the drop seriously.</p>
+
+<h3>4. Check which URL is ranking</h3>
+
+<p>Sometimes the position is fine but a different page is ranking, such as a blog post instead of the service page that converts. A changed ranking URL can follow a redirect, a canonical tag change or a new page competing for the same term. In Search Console, filter by query and look at the pages listed.</p>
+
+<h3>5. Check indexing</h3>
+
+<p>Use the URL Inspection tool on the affected page. Confirm it is indexed, that Google can fetch it, that there is no noindex tag or robots.txt block, and that the canonical points where you expect. Then look at the Pages report for new server errors or exclusions. A technical fault is the one case where you should act straight away.</p>
+
+<h3>6. Wait three to seven days before acting</h3>
+
+<p>If steps one to five show nothing broken, hold still for three to seven days and run the checks again. Changing titles, content or links in the middle of a fluctuation makes it impossible to know what worked, and it can turn a temporary wobble into a real problem. Write down what you saw and when, so you can show a client the pattern later.</p>
+
+<h2>How to explain a ranking drop to a client</h2>
+
+<p>Clients rarely panic about the technical detail. They panic about silence, and about not knowing whether money is being wasted. The best response is early, short and based on enquiries rather than rank charts.</p>
+
+<p>Lead with what matters to their business: calls, forms, sales and clicks. Say plainly that you are checking whether the drop is real, and explain in one sentence that tracking tools sometimes receive unusual results pages from Google. Give a date for the next update, and keep to it. Do not hide the chart, and do not promise that nothing is wrong until you have checked. Here is a script you can adapt.</p>
+
+<div class="rd-mail">
+<p><strong>Subject: Ranking report, a drop we are checking</strong></p>
+<p>Hi [Name],</p>
+<p>You will see that &ldquo;[keyword]&rdquo; shows a large drop in this week&#39;s ranking report. Before we change anything, we are checking whether it is real. Rank tracking tools sometimes receive an unusual results page from Google, which makes a site look like it has fallen when it has not.</p>
+<p>So far, Search Console shows [clicks and impressions are steady / the following changes], and when we search from Australia in a private window your page [still appears around position X].</p>
+<p>We will check again on [date] using a second source. If the drop is real, we will tell you the cause and what we recommend. If it was a tracking glitch, there is nothing to fix. Your enquiries are [unchanged] at this stage.</p>
+<p>Call me any time if you would like to talk it through.</p>
+<p>Regards,<br>[Your name]</p>
+</div>
+
+<p>It also helps to agree on the method up front. If clients know that your reports show trends over several weeks, and that single-day moves are checked before they are reported as problems, a bad Monday on a chart will not feel like an emergency.</p>
+
+<h2>When a ranking drop is real, and what to do</h2>
+
+<p>Sometimes the checklist confirms the worst. Search Console clicks fall, more than one tool agrees, and the drop is still there after a week. At that point the job changes from verifying to diagnosing, and a calm order of work saves time.</p>
+
+<ol>
+<li><strong>Define the scope.</strong> Find out whether one page, one section or the whole site is affected, and which queries. A single page points to a page-level cause. A whole-site drop points to something technical or a broad update.</li>
+<li><strong>List recent changes.</strong> Think about redesigns, migrations, new redirects, plugin updates, changed titles, removed content and edits to robots.txt or canonical tags. Most real drops follow a change someone made.</li>
+<li><strong>Check technical health.</strong> Review the Pages report for new exclusions, look for server errors and slow responses, and check Search Console for any manual action or security issue.</li>
+<li><strong>Look at the competition and the intent.</strong> A competitor may have published something stronger, or the results may now favour a different kind of page, such as guides rather than product pages.</li>
+<li><strong>Check for confirmed updates.</strong> Google&#39;s Search Status Dashboard lists confirmed ranking updates. If your drop lines up with one, avoid knee-jerk edits and focus on page quality and usefulness.</li>
+<li><strong>Fix the cause, not the symptom.</strong> Change one thing at a time where you can, record the date, and keep the client informed with short updates.</li>
+</ol>
+
+<p>If you would like an experienced second opinion, our <a href="/services/seo/">SEO service</a> includes technical and content reviews that start from exactly this kind of question.</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>What is a poisoned SERP?</h3>
+<p>It is a results page that Google returns to an automated tool, such as a rank tracker, that does not match what a real person would see. The page looks complete, but the results can be off-topic or scrambled, so the tool records a false drop.</p>
+
+<h3>How long should I wait before reacting to a Google ranking drop?</h3>
+<p>Wait three to seven days unless you find a clear technical fault, such as a noindex tag, a blocked page or a server error. Most tracking glitches and ordinary fluctuations reverse in that time, and editing a page mid-fluctuation makes the cause harder to find.</p>
+
+<h3>Can Search Console show a poisoned SERP?</h3>
+<p>No. Search Console reports impressions, clicks and average position from searches real people ran, so a bad page handed to a tracker does not appear in it. That is why it is the first place to look.</p>
+
+<h3>Why does my rank tracker show a different position from Search Console?</h3>
+<p>A tracker checks one query from one location and device with no history. Search Console averages your positions across all real impressions, including different places, devices and personalised results. The numbers rarely match, so compare the direction of change rather than the exact figure.</p>
+
+<h3>Should I tell clients about every ranking fluctuation?</h3>
+<p>Not every small move, but explain your method. Agree in advance that normal fluctuations are reported as trends, and contact the client early when a large drop shows up in more than one data source, or when clicks and enquiries fall.</p>
+
+<p>If a drop has survived the checklist, or you would like a second pair of eyes on a report before it goes to a client, <a href="/contact/">get in touch with the Aikonx team</a> and we will take a look with you.</p>
+
+<div class="post-back"><a href="/blog/">&larr; Back to all articles</a></div>
+</article></main>
+
+<footer class="footer"><div class="footer__top"><div><div class="footer__brand"><img src="/assets/images/logo-508.webp" alt="AIkonX" width="290" height="116" loading="lazy"></div><p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p></div><nav class="footer__col" aria-label="Company"><h3>Company</h3><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></nav><nav class="footer__col" aria-label="Services"><h3>Services</h3><a href="/#services">Paid Search</a><a href="/#services">Paid Social</a><a href="/#services">SEO &amp; Content</a><a href="/#services">Analytics &amp; CRO</a></nav><div class="footer__col"><h3>Get in touch</h3><p class="footer__contact">02 Montague Ave<br>St Kilda East VIC 3183, Australia</p><a href="mailto:hello@aikonx.com.au">hello@aikonx.com.au</a><a href="tel:+61413082803">0413 082 803</a></div></div><div class="footer__bottom"><p class="footer__copy">&copy; 2026 AIkonX. All rights reserved.</p><div class="footer__legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></div></div></footer><script src="/pages.js"></script></body></html>
