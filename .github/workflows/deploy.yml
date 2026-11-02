@@ -68,6 +68,7 @@ jobs:
             printf '%s' "$DAPEM_CONFIG" | base64 -d > "$PRIVATE/measurement.json.tmp"
             php -r '$c=json_decode(file_get_contents($argv[1]),true);if(!is_array($c)||!preg_match("/^[a-f0-9]{64}$/",$c["secret"]??""))exit(1);' "$PRIVATE/measurement.json.tmp"
             mv "$PRIVATE/measurement.json.tmp" "$PRIVATE/measurement.json"
+            umask 022
             DOCROOT="/home/aikonx/public_html"
             mkdir -p "$DOCROOT"
             # Remove previous hashed JS/CSS bundles so they don't pile up.
