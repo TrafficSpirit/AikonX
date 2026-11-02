@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', '0');
+umask(0077);
 require_once __DIR__ . '/contact-handler.php';
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');

@@ -14,3 +14,5 @@ test('HTTP 200 without positive acceptance cannot create conversions',async()=>{
 test('confirmed enquiries create observations without forwarding form contents',async()=>{const f=fixture();await f.submit();assert.equal(f.requests[0].url,'/contact-submit.php');assert.equal(f.events.length,2);assert.equal(f.events[1].event,'enquiry_submitted');assert.equal(JSON.stringify(f.events).includes('visitor@example.test'),false);});
 test('consent denied still submits the enquiry without analytics',async()=>{const f=fixture({consent:'denied'});await f.submit();assert.equal(f.requests.length,1);assert.equal(f.events.length,0);});
 test('invalid forms and direct thank-you visits cannot count as enquiries',async()=>{const invalid=fixture({valid:false});await invalid.submit();assert.equal(invalid.requests.length,0);assert.equal(invalid.events.length,0);const thankyou=fixture({formPresent:false});assert.equal(thankyou.events.length,0);});
+
+test('overlapping submits cannot double count',async()=>{const f=fixture();await Promise.all([f.submit(),f.submit()]);assert.equal(f.requests.length,1);assert.equal(f.events.length,2);});
