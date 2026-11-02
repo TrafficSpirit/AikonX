@@ -31,6 +31,7 @@
   function setConsent(v) {
     store(v);
     gtag('consent', 'update', { analytics_storage: v });
+    window.dispatchEvent(new CustomEvent('aikx:analytics-consent', { detail: v === 'granted' }));
   }
 
   var css = '.aikx-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:560px;background:#0b1220;color:#fff;padding:20px 22px;font:400 14px/1.5 Inter,"Helvetica Neue",Arial,sans-serif;box-shadow:0 18px 48px rgba(10,25,55,.35)}' +

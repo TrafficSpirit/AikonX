@@ -1,0 +1,29 @@
+name: Validate server-confirmed enquiry tracking
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: curl, openssl, json
+          coverage: none
+      - run: |
+          php -l public/contact-submit.php
+          php -l public/contact-handler.php
+          php tests/contact-handler.test.php
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          node --test tests/contact-form.test.mjs
+          node --check public/contact-form.js
+          node --check public/analytics.js
+          npm ci
+          npm run build
