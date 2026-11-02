@@ -25,7 +25,7 @@ $window['count']++;
 ftruncate($rate, 0); rewind($rate); fwrite($rate, json_encode($window)); flock($rate, LOCK_UN); fclose($rate);
 if ($window['count'] > 10) { http_response_code(429); header('Retry-After: 900'); echo '{"accepted":false,"error":"Please wait before trying again."}'; exit; }
 $send = function ($replyTo, $subject, $body) {
-    return mail('hello@aikonx.com.au', $subject, $body, ['From' => 'hello@aikonx.com.au', 'Reply-To' => $replyTo, 'Content-Type' => 'text/plain; charset=UTF-8']);
+    return mail('hello@aikonx.com.au, abhik@trafficradius.com.au', $subject, $body, ['From' => 'hello@aikonx.com.au', 'Reply-To' => $replyTo, 'Content-Type' => 'text/plain; charset=UTF-8']);
 };
 $track = function ($event) use ($config) {
     $json = json_encode($event, JSON_UNESCAPED_SLASHES);
