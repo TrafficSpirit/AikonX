@@ -1,6 +1,9 @@
 # Redirect all non-canonical homepage variants to https://aikonx.com.au/ in a single 301
 RewriteEngine On
 
+# /tradies is not a real page; send it to the canonical industry page (single 301)
+RewriteRule ^tradies/?$ https://aikonx.com.au/industries/tradies/ [R=301,L]
+
 # Rule 1: HTTP non-www -> HTTPS non-www (single 301)
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^aikonx\.com\.au$ [NC]
