@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROAS Calculator — Return on Ad Spend Tool | AIkonX</title>
+<meta name="description" content="Calculate your return on ad spend (ROAS) and break-even ROAS instantly. Free calculator and guide for Google Ads and social campaigns from AIkonX.">
+<link rel="canonical" href="https://aikonx.com.au/tools/roas-calculator/">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/pages.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ROAS Calculator","url":"https://aikonx.com.au/tools/roas-calculator/","description":"Free online tool to calculate return on ad spend (ROAS) and break-even ROAS from ad revenue, ad spend and gross margin.","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"provider":{"@type":"Organization","name":"AIkonX","url":"https://aikonx.com.au/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aikonx.com.au/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://aikonx.com.au/tools/"},{"@type":"ListItem","position":3,"name":"ROAS Calculator","item":"https://aikonx.com.au/tools/roas-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is ROAS?","acceptedAnswer":{"@type":"Answer","text":"ROAS (return on ad spend) is the revenue generated for every dollar spent on advertising. A ROAS of 4 means each $1 of ad spend returned $4 in revenue."}},{"@type":"Question","name":"What is the formula for ROAS?","acceptedAnswer":{"@type":"Answer","text":"ROAS = Revenue from ads ÷ Ad spend. For example, $20,000 in revenue from $5,000 of ad spend gives a ROAS of 4 (often written 4:1, 4x or 400%)."}},{"@type":"Question","name":"What is a good ROAS?","acceptedAnswer":{"@type":"Answer","text":"There is no universal number because it depends on your margins. Work out your break-even ROAS by dividing 1 by your gross margin: with a 40% margin, break-even ROAS is 2.5. Anything above break-even is profitable before other overheads."}},{"@type":"Question","name":"What is the difference between ROAS and ROI?","acceptedAnswer":{"@type":"Answer","text":"ROAS compares revenue with ad spend only. ROI compares profit with the total investment, including product costs, fees and management. A campaign can have a healthy-looking ROAS and still lose money if margins are thin."}}]}</script>
+</head>
+<body>
+<header class="nav"><nav class="nav__links" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="logo" href="/" aria-label="AIkonX"><img src="/assets/images/logo-322.webp" srcset="/assets/images/logo-322.webp 322w, /assets/images/logo-508.webp 508w" sizes="(max-width:700px) 254px, 161px" alt="AIkonX" width="128" height="51"></a><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></header><div class="mobile-menu" id="mobile-menu" hidden><nav class="mobile-menu__links" aria-label="Mobile primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+<section class="pagehero"><p class="eyebrow"><a href="/tools/">Free tools</a> / Calculator</p><h1 class="headline">ROAS <span>Calculator</span></h1><p class="lede">Work out your return on ad spend in seconds. Add your margin to see your break-even ROAS and whether a campaign is actually making money.</p></section>
+<main>
+<section class="section">
+<form class="calc-box" id="roas-form" novalidate>
+<h2>Calculate your ROAS</h2>
+<div class="calc-fields">
+<div class="calc-field"><label for="roas-rev">Revenue from ads ($)</label><input type="number" id="roas-rev" name="rev" min="0" step="any" placeholder="e.g. 20000" inputmode="decimal" required></div>
+<div class="calc-field"><label for="roas-spend">Ad spend ($)</label><input type="number" id="roas-spend" name="spend" min="0.01" step="any" placeholder="e.g. 5000" inputmode="decimal" required></div>
+<div class="calc-field calc-field--full"><label for="roas-margin">Gross margin % (optional)</label><input type="number" id="roas-margin" name="margin" min="1" max="100" step="any" placeholder="e.g. 40" inputmode="decimal"></div>
+<button type="submit" class="calc-btn">Calculate ROAS</button>
+</div>
+<p class="calc-error" id="roas-error" role="alert" hidden></p>
+<div class="calc-result" id="roas-result" aria-live="polite" hidden><span class="rate" id="roas-rate">0x</span><span class="label" id="roas-label">Return on ad spend</span><div class="calc-extra" id="roas-extra" hidden><div><b id="roas-be"></b><span>Break-even ROAS</span></div><div><b id="roas-profit"></b><span>Gross profit after ad spend</span></div></div><p class="benchmark" id="roas-note"></p></div>
+</form>
+</section>
+<section class="section section--alt">
+<div class="prose">
+<h2 style="margin-top:0">How to calculate ROAS</h2>
+<p>Return on ad spend tells you how much revenue your advertising generates for every dollar you put in. It is the quickest way to compare campaigns, platforms and audiences on the same scale.</p>
+<p class="formula">ROAS = Revenue from ads ÷ Ad spend</p>
+<p><strong>Worked example:</strong> a Google Shopping campaign spends $5,000 in a month and drives $20,000 in tracked sales. $20,000 ÷ $5,000 = a <strong>ROAS of 4</strong>, also written as 4:1, 4x or 400%.</p>
+<h2>Find your break-even ROAS</h2>
+<p>A ROAS figure only means something next to your margins. Your break-even ROAS is the point where gross profit from ad-driven sales exactly covers the ad spend:</p>
+<p class="formula">Break-even ROAS = 1 ÷ Gross margin</p>
+<p>With a 40% gross margin, break-even ROAS is 1 ÷ 0.40 = 2.5. A campaign at ROAS 4 is profitable for that business; the same ROAS 4 would lose money for a business with a 20% margin, whose break-even ROAS is 5.</p>
+<h2>How to improve ROAS</h2>
+<ul class="checks"><li>Make sure conversion tracking records real sales and leads, with values</li><li>Cut search terms, placements and audiences that spend without converting</li><li>Shift budget towards your highest-margin products and services</li><li>Use bidding strategies that optimise for conversion value, not clicks</li><li>Improve landing page conversion rate so every click is worth more</li><li>Refresh ad creative before performance fades</li></ul>
+<p>Want specialists to manage this for you? See our <a href="/services/google-ads/">Google Ads management</a> and <a href="/services/paid-social/">paid social</a> services.</p>
+</div>
+</section>
+<section class="section"><h2 class="title">Questions, answered</h2><div class="faq-list">
+<details><summary>What is ROAS?</summary><p>ROAS (return on ad spend) is the revenue generated for every dollar spent on advertising. A ROAS of 4 means each $1 of ad spend returned $4 in revenue.</p></details>
+<details><summary>What is the formula for ROAS?</summary><p>ROAS = Revenue from ads ÷ Ad spend. For example, $20,000 in revenue from $5,000 of ad spend gives a ROAS of 4 (often written 4:1, 4x or 400%).</p></details>
+<details><summary>What is a good ROAS?</summary><p>There is no universal number because it depends on your margins. Work out your break-even ROAS by dividing 1 by your gross margin: with a 40% margin, break-even ROAS is 2.5. Anything above break-even is profitable before other overheads.</p></details>
+<details><summary>What is the difference between ROAS and ROI?</summary><p>ROAS compares revenue with ad spend only. ROI compares profit with the total investment, including product costs, fees and management. A campaign can have a healthy-looking ROAS and still lose money if margins are thin.</p></details>
+</div></section>
+<section class="section cta-band"><div class="prose"><h2 style="margin-top:0">Stop guessing what your ads return</h2><p>Get a free ads audit showing where budget is leaking and how to fix it.</p><a class="btn btn--nav" href="/contact/"><span class="btn__label">Get my free Ads audit</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></section>
+<section class="section"><h2 class="title">Related</h2><div class="related"><a href="/services/google-ads/">Google &amp; Microsoft Ads</a><a href="/services/paid-social/">Paid Social</a><a href="/tools/conversion-rate-calculator/">Conversion Rate Calculator</a></div></section>
+</main>
+<footer class="footer"><div class="footer__top"><div><div class="footer__brand"><img src="/assets/images/logo-508.webp" alt="AIkonX" width="290" height="116" loading="lazy"></div><p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p></div><nav class="footer__col" aria-label="Company"><h3>Company</h3><a href="/about/">About</a><a href="/services/">Services</a><a href="/contact/">Contact</a></nav><nav class="footer__col" aria-label="Services"><h3>Services</h3><a href="/services/seo/">SEO</a><a href="/services/google-ads/">Google Ads</a><a href="/services/paid-social/">Paid Social</a><a href="/services/conversion-rate-optimization/">Conversion Optimization</a></nav><div class="footer__col"><h3>Get in touch</h3><p class="footer__contact">02 Montague Ave<br>St Kilda East VIC 3183, Australia</p><a href="mailto:hello@aikonx.com.au">hello@aikonx.com.au</a><a href="tel:+61413082803">0413 082 803</a></div></div><div class="footer__bottom"><p class="footer__copy">&copy; 2026 AIkonX. All rights reserved.</p><div class="footer__legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></div></div></footer>
+<script>
+(function(){
+var f=document.getElementById('roas-form'),out=document.getElementById('roas-result'),err=document.getElementById('roas-error'),ex=document.getElementById('roas-extra');
+function num(x,d){return x.toLocaleString('en-AU',{minimumFractionDigits:0,maximumFractionDigits:d});}
+function aud(x){return x.toLocaleString('en-AU',{style:'currency',currency:'AUD',minimumFractionDigits:0,maximumFractionDigits:0});}
+f.addEventListener('submit',function(ev){
+ev.preventDefault();out.hidden=true;err.hidden=true;
+var rev=parseFloat(f.elements.rev.value),sp=parseFloat(f.elements.spend.value),ms=f.elements.margin.value.trim(),m=ms===''?null:parseFloat(ms);
+if(!isFinite(rev)||rev<0||!isFinite(sp)||sp<=0){err.textContent='Enter revenue of 0 or more and ad spend greater than 0.';err.hidden=false;return;}
+if(m!==null&&(!isFinite(m)||m<=0||m>100)){err.textContent='Enter a gross margin between 1 and 100, or leave it blank.';err.hidden=false;return;}
+var roas=rev/sp,n;
+document.getElementById('roas-rate').textContent=num(roas,2)+'x';
+document.getElementById('roas-label').textContent='Return on ad spend: $'+roas.toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2})+' revenue per $1 spent ('+num(roas*100,0)+'%)';
+if(m!==null){
+var be=100/m,p=rev*m/100-sp;
+document.getElementById('roas-be').textContent=num(be,2)+'x';
+document.getElementById('roas-profit').textContent=aud(p);
+ex.hidden=false;
+n=roas>=be?'Profitable: your ROAS is above your break-even of '+num(be,2)+'x, so ad-driven sales cover their ad cost before other overheads.':'Below break-even: you need at least '+num(be,2)+'x at a '+num(m,1)+'% margin. Each sale is costing more in ads than it earns in gross profit.';
+}else{ex.hidden=true;n='Add your gross margin to see your break-even ROAS and whether this campaign is profitable.';}
+document.getElementById('roas-note').textContent=n;out.hidden=false;
+});
+})();
+</script>
+<script src="/pages.js"></script>
+</body>
+</html>

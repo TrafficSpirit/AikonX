@@ -129,3 +129,25 @@ table,pre{max-width:100%}
 pre{overflow-x:auto}
 @media(max-width:1000px){.sx-mega{display:none}.sx-wrap{width:100%}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}.faq-list details{padding:16px}.contact-form{padding:20px 16px}}
+/* Free tools: calculators */
+.calc-box{background:#f7f7f8;border:1px solid #e3e6ea;padding:clamp(24px,4vw,48px);max-width:680px}
+.calc-box h2{font-size:1.35rem;font-weight:600;letter-spacing:-.02em;margin-bottom:24px;color:#0a0a0a}
+.calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.calc-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.calc-field--full{grid-column:1/-1}
+.calc-field label{font-size:.85rem;font-weight:600;color:#1a1a1a}
+.calc-field input{font:inherit;font-size:1.1rem;width:100%;max-width:100%;padding:14px 16px;border:1.5px solid #d0d5dd;background:#fff;color:#0a0a0a;border-radius:0}
+.calc-field input:focus{outline:2px solid #006cd2;outline-offset:1px;border-color:#006cd2}
+.calc-btn{grid-column:1/-1;margin-top:4px;min-height:52px;padding:0 28px;background:#006cd2;color:#fff;font-size:1rem;font-weight:600;width:100%;transition:background .2s}
+.calc-btn:hover,.calc-btn:focus-visible{background:#004a96}
+.calc-result{margin-top:24px;padding:20px 24px;background:#006cd2;color:#fff}
+.calc-result .rate{display:block;font-size:clamp(2.2rem,5vw,2.8rem);font-weight:700;letter-spacing:-.04em;line-height:1}
+.calc-result .label{display:block;font-size:.9rem;opacity:.85;margin-top:6px}
+.calc-extra{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.calc-extra b{display:block;font-size:1.3rem;font-weight:600}
+.calc-extra span{font-size:.85rem;opacity:.85}
+.calc-result .benchmark{margin-top:16px;font-size:.95rem;line-height:1.5;border-top:1px solid rgba(255,255,255,.25);padding-top:14px}
+.calc-error{color:#b42318;font-size:.95rem;margin-top:12px}
+.formula{margin-top:14px;padding:16px 20px;background:#fff;border-left:3px solid #006cd2;font-weight:600;color:#0a0a0a!important;overflow-wrap:anywhere}
+.prose ul.checks{margin-top:14px}
+@media(max-width:520px){.calc-fields{grid-template-columns:1fr}}

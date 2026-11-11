@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversion Rate Calculator — Free CRO Tool | AIkonX</title>
+<meta name="description" content="Calculate your website conversion rate instantly. Enter your visits and conversions to see your rate, then use AIkonX's free guide to improve it.">
+<link rel="canonical" href="https://aikonx.com.au/tools/conversion-rate-calculator/">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/pages.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Conversion Rate Calculator","url":"https://aikonx.com.au/tools/conversion-rate-calculator/","description":"Free online tool to calculate website or campaign conversion rate from visits and conversions.","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"provider":{"@type":"Organization","name":"AIkonX","url":"https://aikonx.com.au/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aikonx.com.au/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://aikonx.com.au/tools/"},{"@type":"ListItem","position":3,"name":"Conversion Rate Calculator","item":"https://aikonx.com.au/tools/conversion-rate-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good conversion rate for a website?","acceptedAnswer":{"@type":"Answer","text":"A good website conversion rate depends on the channel and goal. For lead generation landing pages in Australia, 2–5% is a reasonable benchmark. Top-performing pages can reach 10%+. E-commerce checkout pages typically convert at 1–3%."}},{"@type":"Question","name":"What is the formula for conversion rate?","acceptedAnswer":{"@type":"Answer","text":"Conversion Rate (%) = (Conversions ÷ Total Visitors) × 100. For example, 50 leads from 2,000 visitors gives a 2.5% conversion rate."}},{"@type":"Question","name":"How do I improve my conversion rate?","acceptedAnswer":{"@type":"Answer","text":"Start with a CRO audit: analyse where visitors drop off using heatmaps and session recordings, then run A/B tests on headlines, CTAs, forms and page flow. Even small improvements compound across every traffic channel."}},{"@type":"Question","name":"What is the difference between conversion rate and click-through rate?","acceptedAnswer":{"@type":"Answer","text":"CTR measures the share of people who clicked an ad or link. Conversion rate measures the share of visitors who completed a desired action on a page (e.g. submitted a form or purchased). CTR happens before the landing; conversion rate happens after."}}]}</script>
+</head>
+<body>
+<header class="nav"><nav class="nav__links" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="logo" href="/" aria-label="AIkonX"><img src="/assets/images/logo-322.webp" srcset="/assets/images/logo-322.webp 322w, /assets/images/logo-508.webp 508w" sizes="(max-width:700px) 254px, 161px" alt="AIkonX" width="128" height="51"></a><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></header><div class="mobile-menu" id="mobile-menu" hidden><nav class="mobile-menu__links" aria-label="Mobile primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+<section class="pagehero"><p class="eyebrow"><a href="/tools/">Free tools</a> / Calculator</p><h1 class="headline">Conversion Rate <span>Calculator</span></h1><p class="lede">Enter your visits and conversions to get your conversion rate instantly, plus benchmarks and a practical guide to improving it.</p></section>
+<main>
+<section class="section">
+<form class="calc-box" id="cr-form" novalidate>
+<h2>Calculate your conversion rate</h2>
+<div class="calc-fields">
+<div class="calc-field"><label for="cr-visits">Total visitors / sessions</label><input type="number" id="cr-visits" name="visits" min="1" step="any" placeholder="e.g. 5000" inputmode="decimal" required></div>
+<div class="calc-field"><label for="cr-convs">Total conversions</label><input type="number" id="cr-convs" name="convs" min="0" step="any" placeholder="e.g. 120" inputmode="decimal" required></div>
+<button type="submit" class="calc-btn">Calculate conversion rate</button>
+</div>
+<p class="calc-error" id="cr-error" role="alert" hidden></p>
+<div class="calc-result" id="cr-result" aria-live="polite" hidden><span class="rate" id="cr-rate">0%</span><span class="label">Conversion rate</span><p class="benchmark" id="cr-note"></p></div>
+</form>
+</section>
+<section class="section section--alt">
+<div class="prose">
+<h2 style="margin-top:0">How to calculate conversion rate</h2>
+<p>Conversion rate is the share of visitors who complete the action you want, such as submitting an enquiry form, calling, booking or buying.</p>
+<p class="formula">Conversion rate (%) = (Conversions ÷ Total visitors) × 100</p>
+<p><strong>Worked example:</strong> a landing page receives 2,000 visitors in a month and generates 50 enquiries. 50 ÷ 2,000 = 0.025, × 100 = a <strong>2.5% conversion rate</strong>.</p>
+<p>Use the same date range and the same definition of a visitor (users or sessions) for both numbers, and count one type of conversion at a time so you know exactly what you are measuring.</p>
+<h2>What is a good conversion rate?</h2>
+<p>It depends on the channel, the offer and the goal. As a rough guide for Australian businesses, lead generation landing pages commonly convert at 2–5%, top-performing pages can reach 10% or more, and e-commerce checkout pages typically convert at 1–3%. Your own trend over time is the most useful benchmark.</p>
+<h2>How to improve your conversion rate</h2>
+<ul class="checks"><li>Find where visitors drop off, using analytics funnels, heatmaps and session recordings</li><li>Match the headline and offer to the ad or search that brought the visitor</li><li>Give the page one clear call to action and remove distractions around it</li><li>Shorten forms to the fields you genuinely need</li><li>Add proof near the decision point: reviews, guarantees, credentials</li><li>Check page speed and the mobile layout</li><li>A/B test changes rather than relying on opinion</li></ul>
+<p>Want experts to do this for you? See our <a href="/services/conversion-rate-optimization/">conversion rate optimisation service</a>.</p>
+</div>
+</section>
+<section class="section"><h2 class="title">Questions, answered</h2><div class="faq-list">
+<details><summary>What is a good conversion rate for a website?</summary><p>A good website conversion rate depends on the channel and goal. For lead generation landing pages in Australia, 2–5% is a reasonable benchmark. Top-performing pages can reach 10%+. E-commerce checkout pages typically convert at 1–3%.</p></details>
+<details><summary>What is the formula for conversion rate?</summary><p>Conversion Rate (%) = (Conversions ÷ Total Visitors) × 100. For example, 50 leads from 2,000 visitors gives a 2.5% conversion rate.</p></details>
+<details><summary>How do I improve my conversion rate?</summary><p>Start with a CRO audit: analyse where visitors drop off using heatmaps and session recordings, then run A/B tests on headlines, CTAs, forms and page flow. Even small improvements compound across every traffic channel.</p></details>
+<details><summary>What is the difference between conversion rate and click-through rate?</summary><p>CTR measures the share of people who clicked an ad or link. Conversion rate measures the share of visitors who completed a desired action on a page (e.g. submitted a form or purchased). CTR happens before the landing; conversion rate happens after.</p></details>
+</div></section>
+<section class="section cta-band"><div class="prose"><h2 style="margin-top:0">Find out where your site leaks leads</h2><p>Get a free conversion review of your key pages and funnel.</p><a class="btn btn--nav" href="/contact/"><span class="btn__label">Get my CRO review</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></section>
+<section class="section"><h2 class="title">Related</h2><div class="related"><a href="/services/conversion-rate-optimization/">Conversion Rate Optimization</a><a href="/services/landing-pages/">Landing Pages &amp; Funnels</a><a href="/tools/ctr-calculator/">CTR Calculator</a></div></section>
+</main>
+<footer class="footer"><div class="footer__top"><div><div class="footer__brand"><img src="/assets/images/logo-508.webp" alt="AIkonX" width="290" height="116" loading="lazy"></div><p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p></div><nav class="footer__col" aria-label="Company"><h3>Company</h3><a href="/about/">About</a><a href="/services/">Services</a><a href="/contact/">Contact</a></nav><nav class="footer__col" aria-label="Services"><h3>Services</h3><a href="/services/seo/">SEO</a><a href="/services/google-ads/">Google Ads</a><a href="/services/paid-social/">Paid Social</a><a href="/services/conversion-rate-optimization/">Conversion Optimization</a></nav><div class="footer__col"><h3>Get in touch</h3><p class="footer__contact">02 Montague Ave<br>St Kilda East VIC 3183, Australia</p><a href="mailto:hello@aikonx.com.au">hello@aikonx.com.au</a><a href="tel:+61413082803">0413 082 803</a></div></div><div class="footer__bottom"><p class="footer__copy">&copy; 2026 AIkonX. All rights reserved.</p><div class="footer__legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></div></div></footer>
+<script>
+(function(){
+var f=document.getElementById('cr-form'),out=document.getElementById('cr-result'),err=document.getElementById('cr-error');
+f.addEventListener('submit',function(ev){
+ev.preventDefault();out.hidden=true;err.hidden=true;
+var v=parseFloat(f.elements.visits.value),c=parseFloat(f.elements.convs.value);
+if(!isFinite(v)||v<=0||!isFinite(c)||c<0){err.textContent='Enter visitors greater than 0 and conversions of 0 or more.';err.hidden=false;return;}
+var r=c/v*100,n;
+if(r>100)n='Above 100% usually means more than one conversion per visitor is being counted. Check that both numbers use the same definition.';
+else if(r>=10)n='Excellent. That is top-performing territory (10%+). Keep testing to protect it as traffic grows.';
+else if(r>=5)n='Strong. Above the 2\u20135% range commonly seen on lead generation pages.';
+else if(r>=2)n='Healthy. Within the 2\u20135% range commonly seen on lead generation pages, with room to grow.';
+else if(r>=1)n='In the 1\u20133% range typical for e-commerce checkouts, but low for a lead generation page.';
+else n='Below 1%. There is likely friction in your offer, page or form worth investigating.';
+document.getElementById('cr-rate').textContent=r.toLocaleString('en-AU',{maximumFractionDigits:2})+'%';
+document.getElementById('cr-note').textContent=n;out.hidden=false;
+});
+})();
+</script>
+<script src="/pages.js"></script>
+</body>
+</html>

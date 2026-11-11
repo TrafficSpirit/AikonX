@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTR Calculator — Click-Through Rate Tool | AIkonX</title>
+<meta name="description" content="Calculate click-through rate (CTR) for ads, emails or search listings instantly. Add spend to see CPC and CPM, plus a free guide to improving CTR.">
+<link rel="canonical" href="https://aikonx.com.au/tools/ctr-calculator/">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/pages.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CTR Calculator","url":"https://aikonx.com.au/tools/ctr-calculator/","description":"Free online tool to calculate click-through rate from impressions and clicks, with optional cost per click and CPM.","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"provider":{"@type":"Organization","name":"AIkonX","url":"https://aikonx.com.au/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aikonx.com.au/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://aikonx.com.au/tools/"},{"@type":"ListItem","position":3,"name":"CTR Calculator","item":"https://aikonx.com.au/tools/ctr-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is click-through rate (CTR)?","acceptedAnswer":{"@type":"Answer","text":"CTR is the percentage of people who saw your ad, email or search listing and clicked it. It shows how relevant and compelling your message is to the people seeing it."}},{"@type":"Question","name":"What is the formula for CTR?","acceptedAnswer":{"@type":"Answer","text":"CTR (%) = (Clicks ÷ Impressions) × 100. For example, 150 clicks from 5,000 impressions gives a 3% CTR."}},{"@type":"Question","name":"What is a good CTR?","acceptedAnswer":{"@type":"Answer","text":"It depends on the network, industry, ad position and whether the keyword includes your brand. Search ads usually earn higher CTRs than display or social ads. The most useful benchmark is your own baseline for the same campaign type, tracked over time."}},{"@type":"Question","name":"Is a higher CTR always better?","acceptedAnswer":{"@type":"Answer","text":"Not on its own. Clicks that do not convert still cost money. Judge CTR alongside conversion rate and ROAS so you attract the right clicks, not just more of them."}}]}</script>
+</head>
+<body>
+<header class="nav"><nav class="nav__links" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="logo" href="/" aria-label="AIkonX"><img src="/assets/images/logo-322.webp" srcset="/assets/images/logo-322.webp 322w, /assets/images/logo-508.webp 508w" sizes="(max-width:700px) 254px, 161px" alt="AIkonX" width="128" height="51"></a><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></header><div class="mobile-menu" id="mobile-menu" hidden><nav class="mobile-menu__links" aria-label="Mobile primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">Company</a><a href="/blog/">Blog</a></nav><a class="btn btn--nav" href="/contact/"><span class="btn__label">Book Demo</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+<section class="pagehero"><p class="eyebrow"><a href="/tools/">Free tools</a> / Calculator</p><h1 class="headline">CTR <span>Calculator</span></h1><p class="lede">Enter impressions and clicks to get your click-through rate instantly. Add spend to see cost per click and CPM, then use the guide to earn more of the right clicks.</p></section>
+<main>
+<section class="section">
+<form class="calc-box" id="ctr-form" novalidate>
+<h2>Calculate your click-through rate</h2>
+<div class="calc-fields">
+<div class="calc-field"><label for="ctr-impr">Impressions</label><input type="number" id="ctr-impr" name="impr" min="1" step="any" placeholder="e.g. 5000" inputmode="decimal" required></div>
+<div class="calc-field"><label for="ctr-clicks">Clicks</label><input type="number" id="ctr-clicks" name="clicks" min="0" step="any" placeholder="e.g. 150" inputmode="decimal" required></div>
+<div class="calc-field calc-field--full"><label for="ctr-spend">Ad spend $ (optional)</label><input type="number" id="ctr-spend" name="spend" min="0" step="any" placeholder="e.g. 600" inputmode="decimal"></div>
+<button type="submit" class="calc-btn">Calculate CTR</button>
+</div>
+<p class="calc-error" id="ctr-error" role="alert" hidden></p>
+<div class="calc-result" id="ctr-result" aria-live="polite" hidden><span class="rate" id="ctr-rate">0%</span><span class="label">Click-through rate</span><div class="calc-extra" id="ctr-extra" hidden><div><b id="ctr-cpc"></b><span>Cost per click (CPC)</span></div><div><b id="ctr-cpm"></b><span>Cost per 1,000 impressions (CPM)</span></div></div><p class="benchmark" id="ctr-note"></p></div>
+</form>
+</section>
+<section class="section section--alt">
+<div class="prose">
+<h2 style="margin-top:0">How to calculate CTR</h2>
+<p>Click-through rate is the share of people who saw your ad, email or search listing and clicked it. It is an early signal of how relevant your message is to the audience seeing it.</p>
+<p class="formula">CTR (%) = (Clicks ÷ Impressions) × 100</p>
+<p><strong>Worked example:</strong> a search ad is shown 5,000 times and clicked 150 times. 150 ÷ 5,000 = 0.03, × 100 = a <strong>3% CTR</strong>. If that cost $600, the cost per click is $600 ÷ 150 = $4.</p>
+<h2>What is a good CTR?</h2>
+<p>There is no single number. CTR varies by network, industry, ad position and whether the search includes your brand name, and search ads usually earn higher CTRs than display or social ads. Compare against your own baseline for the same campaign type and watch the trend over time.</p>
+<h2>How to improve CTR</h2>
+<ul class="checks"><li>Tighten targeting so ads show to people searching for what you actually sell</li><li>Add negative keywords to stop irrelevant impressions</li><li>Put the searcher's words and your strongest benefit in the headline</li><li>Use every relevant asset: sitelinks, callouts, structured snippets and calls</li><li>Test new hooks and creative regularly, especially on social</li><li>For organic results, write title tags and meta descriptions that answer the query</li></ul>
+<p>Remember that a click is only worth paying for if it converts. Pair CTR with our <a href="/tools/conversion-rate-calculator/">conversion rate calculator</a> and <a href="/tools/roas-calculator/">ROAS calculator</a>, or let our <a href="/services/google-ads/">Google Ads management</a> team handle it.</p>
+</div>
+</section>
+<section class="section"><h2 class="title">Questions, answered</h2><div class="faq-list">
+<details><summary>What is click-through rate (CTR)?</summary><p>CTR is the percentage of people who saw your ad, email or search listing and clicked it. It shows how relevant and compelling your message is to the people seeing it.</p></details>
+<details><summary>What is the formula for CTR?</summary><p>CTR (%) = (Clicks ÷ Impressions) × 100. For example, 150 clicks from 5,000 impressions gives a 3% CTR.</p></details>
+<details><summary>What is a good CTR?</summary><p>It depends on the network, industry, ad position and whether the keyword includes your brand. Search ads usually earn higher CTRs than display or social ads. The most useful benchmark is your own baseline for the same campaign type, tracked over time.</p></details>
+<details><summary>Is a higher CTR always better?</summary><p>Not on its own. Clicks that do not convert still cost money. Judge CTR alongside conversion rate and ROAS so you attract the right clicks, not just more of them.</p></details>
+</div></section>
+<section class="section cta-band"><div class="prose"><h2 style="margin-top:0">Get more of the right clicks</h2><p>Get a free ads audit covering targeting, ad copy and wasted spend.</p><a class="btn btn--nav" href="/contact/"><span class="btn__label">Get my free Ads audit</span><span class="btn__icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h10.2M10.4 5.6 15.2 10l-4.8 4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></section>
+<section class="section"><h2 class="title">Related</h2><div class="related"><a href="/services/google-ads/">Google &amp; Microsoft Ads</a><a href="/services/paid-social/">Paid Social</a><a href="/tools/roas-calculator/">ROAS Calculator</a></div></section>
+</main>
+<footer class="footer"><div class="footer__top"><div><div class="footer__brand"><img src="/assets/images/logo-508.webp" alt="AIkonX" width="290" height="116" loading="lazy"></div><p class="footer__tag">Full-funnel digital marketing that turns ad spend into predictable, measurable growth.</p></div><nav class="footer__col" aria-label="Company"><h3>Company</h3><a href="/about/">About</a><a href="/services/">Services</a><a href="/contact/">Contact</a></nav><nav class="footer__col" aria-label="Services"><h3>Services</h3><a href="/services/seo/">SEO</a><a href="/services/google-ads/">Google Ads</a><a href="/services/paid-social/">Paid Social</a><a href="/services/conversion-rate-optimization/">Conversion Optimization</a></nav><div class="footer__col"><h3>Get in touch</h3><p class="footer__contact">02 Montague Ave<br>St Kilda East VIC 3183, Australia</p><a href="mailto:hello@aikonx.com.au">hello@aikonx.com.au</a><a href="tel:+61413082803">0413 082 803</a></div></div><div class="footer__bottom"><p class="footer__copy">&copy; 2026 AIkonX. All rights reserved.</p><div class="footer__legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></div></div></footer>
+<script>
+(function(){
+var f=document.getElementById('ctr-form'),out=document.getElementById('ctr-result'),err=document.getElementById('ctr-error'),ex=document.getElementById('ctr-extra');
+function aud(x){return x.toLocaleString('en-AU',{style:'currency',currency:'AUD',minimumFractionDigits:2,maximumFractionDigits:2});}
+f.addEventListener('submit',function(ev){
+ev.preventDefault();out.hidden=true;err.hidden=true;
+var im=parseFloat(f.elements.impr.value),cl=parseFloat(f.elements.clicks.value),ss=f.elements.spend.value.trim(),sp=ss===''?null:parseFloat(ss);
+if(!isFinite(im)||im<=0||!isFinite(cl)||cl<0){err.textContent='Enter impressions greater than 0 and clicks of 0 or more.';err.hidden=false;return;}
+if(cl>im){err.textContent='Clicks can\u2019t be higher than impressions. Check your numbers.';err.hidden=false;return;}
+if(sp!==null&&(!isFinite(sp)||sp<0)){err.textContent='Enter ad spend of 0 or more, or leave it blank.';err.hidden=false;return;}
+var r=cl/im*100;
+document.getElementById('ctr-rate').textContent=r.toLocaleString('en-AU',{minimumFractionDigits:0,maximumFractionDigits:2})+'%';
+if(sp!==null){document.getElementById('ctr-cpc').textContent=cl>0?aud(sp/cl):'\u2014';document.getElementById('ctr-cpm').textContent=aud(sp/im*1000);ex.hidden=false;}else{ex.hidden=true;}
+document.getElementById('ctr-note').textContent=cl===0?'No clicks yet. Check that the ad is relevant to the audience seeing it and that targeting is tight enough.':'Compare this against your own average for the same network and campaign type. A rising CTR with a steady conversion rate means you are attracting more of the right people.';
+out.hidden=false;
+});
+})();
+</script>
+<script src="/pages.js"></script>
+</body>
+</html>
