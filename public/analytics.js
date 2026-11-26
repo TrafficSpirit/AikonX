@@ -36,7 +36,7 @@
 
   var css = '.aikx-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:560px;background:#0b1220;color:#fff;padding:20px 22px;font:400 14px/1.5 Inter,"Helvetica Neue",Arial,sans-serif;box-shadow:0 18px 48px rgba(10,25,55,.35)}' +
     '.aikx-cc[hidden]{display:none}' +
-    '.aikx-cc h2{margin:0 0 6px;font-size:16px;font-weight:600;color:#fff}' +
+    '.aikx-cc__t{display:block;margin:0 0 6px;font-size:16px;font-weight:600;color:#fff}' +
     '.aikx-cc p{margin:0 0 14px;color:rgba(255,255,255,.8)}' +
     '.aikx-cc a{color:#7eb6ee;text-decoration:underline}' +
     '.aikx-cc__row{display:flex;gap:10px;flex-wrap:wrap}' +
@@ -55,7 +55,7 @@
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', 'Cookie consent');
     box.hidden = true;
-    box.innerHTML = '<h2>Cookies on AIkonX</h2><p>We use analytics cookies to understand how the site is used and improve it. They are only set if you accept. See our <a href="/privacy/">Privacy Policy</a>.</p>' +
+    box.innerHTML = '<div class="aikx-cc__t">Cookies on AIkonX</div><p>We use analytics cookies to understand how the site is used and improve it. They are only set if you accept. See our <a href="/privacy/">Privacy Policy</a>.</p>' +
       '<div class="aikx-cc__row"><button type="button" class="aikx-cc__ok">Accept analytics</button><button type="button" class="aikx-cc__no">Decline</button></div>';
     document.body.appendChild(box);
     box.querySelector('.aikx-cc__ok').addEventListener('click', function () { setConsent('granted'); box.hidden = true; });

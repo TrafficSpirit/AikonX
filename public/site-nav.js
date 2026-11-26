@@ -125,7 +125,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-group li a:hover{color:var(--sx-blue);transform:translateX(3px)}
 .sx-feature{background:var(--sx-navy);color:#fff;padding:26px 24px}
 .sx-feature__tag{display:inline-block;color:#7eb6ee;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.sx-feature h3{margin:10px 0 0;font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.sx-feature__title{display:block;margin:10px 0 0;font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:#fff}
 .sx-feature p{margin:10px 0 18px;color:rgba(255,255,255,.66);font-size:14px;line-height:1.55}
 .sx-mega__foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ececec;padding-top:14px}
 .sx-all{color:var(--sx-blue)!important;font-weight:600;font-size:14.5px}
@@ -138,7 +138,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
 .sx-cols-2{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:normal}
 .sx-group li a{padding-left:0}
 .sx-feature{grid-column:1/-1;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.sx-feature h3,.sx-feature p{margin:0}
+.sx-feature__title,.sx-feature p{margin:0}
 .sx-feature p{flex:1 1 260px}
 }
 .sx-burger{display:none;width:44px;height:44px;margin-left:auto;background:none;border:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
@@ -181,7 +181,7 @@ body .pagehero{padding-top:calc(var(--sx-h) + clamp(40px,6vw,80px))}
   }
   function mega(id, list, f, all) {
     return '<div class="sx-mega" id="' + id + '"><div class="sx-mega__in sx-cols-' + list.length + '">' + groups(list) +
-      '<aside class="sx-feature"><span class="sx-feature__tag">' + f.tag + '</span><h3>' + f.title + '</h3><p>' + f.text + '</p>' +
+      '<aside class="sx-feature"><span class="sx-feature__tag">' + f.tag + '</span><div class="sx-feature__title">' + f.title + '</div><p>' + f.text + '</p>' +
       '<a class="sx-btn sx-btn--light" href="' + f.href + '"><span>' + f.cta + '</span>' + ARROW + '</a></aside>' +
       '<div class="sx-mega__foot">' + (all ? '<a class="sx-all" href="' + all[0] + '">' + all[1] + ' &rarr;</a>' : '') +
       '<button type="button" class="sx-close">Close <span aria-hidden="true">&times;</span></button></div></div></div>';
