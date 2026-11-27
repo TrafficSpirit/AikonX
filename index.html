@@ -518,6 +518,25 @@
             <label for="cf-company">Company</label>
             <input id="cf-company" name="company" type="text" autocomplete="organization" placeholder="Company name">
           </div>
+          <div class="field">
+            <label for="cf-budget">Monthly marketing budget</label>
+            <select id="cf-budget" name="budget_band" required>
+              <option value="">Select a budget</option>
+              <option value="under-1500">Under $1,500</option>
+              <option value="1500-3000">$1,500&ndash;$3,000</option>
+              <option value="3000-6000">$3,000&ndash;$6,000</option>
+              <option value="6000-plus">$6,000+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-term">Open to a 12-month engagement?</label>
+            <select id="cf-term" name="term_openness" required>
+              <option value="">Select an answer</option>
+              <option value="yes">Yes</option>
+              <option value="maybe">Maybe</option>
+              <option value="no">No</option>
+            </select>
+          </div>
           <div class="field field--full">
             <label for="cf-msg">What do you need help with?</label>
             <textarea id="cf-msg" name="message" rows="3" placeholder="A few words about your goals..."></textarea>

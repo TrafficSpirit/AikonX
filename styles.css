@@ -672,6 +672,11 @@ body.is-ready .nav{ opacity:1; }
 .field input:hover,.field textarea:hover{ border-color:#b8cfe5; }
 .field input:focus,.field textarea:focus{ outline:none; border-color:#006cd2; background:#fff; box-shadow:0 0 0 3px rgba(0,108,210,.15); }
 .field textarea{ resize:vertical; min-height:96px; }
+.field select{ font:inherit; font-size:0.98rem; color:#0a0a0a; background:#eef4fb; border:1px solid #dfe7ef; border-radius:0; padding:12px 14px; width:100%; transition:border-color .15s ease, background .15s ease; }
+.field select:hover{ border-color:#b8cfe5; }
+.field select:focus{ outline:none; border-color:#006cd2; background:#fff; box-shadow:0 0 0 3px rgba(0,108,210,.15); }
+.field [aria-invalid="true"]{ border-color:#b3261e; }
+.field__error{ color:#b3261e; font-size:0.85rem; font-weight:500; margin:0; }
 .btn--cta{ grid-column:1 / -1; justify-self:start; background:#006cd2; color:#fff; }
 .btn--cta::before{ background:#004a96; }
 .btn--cta .btn__icon{ background:#0053a3; color:#fff; }
