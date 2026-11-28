@@ -27,6 +27,34 @@ try {
   $retried=aikxContact($retry,[],[],$send,$track,$dir);
   check($mailCount===3 && $retried[1]['trackingRecorded'],'Collector failures retry without resending the enquiry');
   check($events[1]['testId']===$retry['dapem_test_id'],'Labelled tests retain their collector challenge');
+  // Qualifier fields: allowlist, email body labels, length caps, no leakage to tracking.
+  $bodies = []; $sendBody = function($reply,$subject,$body) use (&$bodies) { $bodies[] = $body; return true; };
+  $before = count($events);
+  $q = $base; $q['dapem_event_id'] = '00000000-0000-4000-a000-000000000010';
+  $q += ['budget_band'=>'1500-3000','term_openness'=>'maybe','landing_page'=>'/services/seo/','referrer_page'=>'https://www.google.com/search','branch'=>'AI Search & SEO'];
+  $r = aikxContact($q,[],[],$sendBody,$track,$dir);
+  check($r[0]===200 && $r[1]['accepted'],'Valid qualifier answers are accepted');
+  $b = $bodies[0];
+  check(strpos($b,"\nMonthly budget: \$1,500–\$3,000\n")!==false,'Email carries the budget label');
+  check(strpos($b,"\nOpen to 12 months: Maybe\n")!==false,'Email carries the 12-month answer');
+  check(strpos($b,"\nLanding page: /services/seo/\n")!==false,'Email carries the landing page');
+  check(strpos($b,"\nReferrer: https://www.google.com/search\n")!==false,'Email carries the referrer');
+  check(strpos($b,"\nBranch: AI Search & SEO\n")!==false,'Email carries the branch');
+  echo "--- delivered email body ---\n" . $b . "\n--- end ---\n";
+  check(count($events)===$before+1 && !preg_match('/budget|landing|branch|referrer/i', json_encode($events[count($events)-1])),'Tracking event carries no qualifier data');
+  foreach ([['budget_band','free'],['budget_band','under-1500'."\n".'Bcc: x'],['budget_band',['x']],['term_openness','sometimes']] as $i => $case) {
+    $u = $base; $u['dapem_event_id'] = sprintf('00000000-0000-4000-a000-0000000001%02d', $i); $u[$case[0]] = $case[1];
+    $n = count($bodies); $res = aikxContact($u,[],[],$sendBody,$track,$dir);
+    check($res[0]===422 && count($bodies)===$n,'Unknown '.$case[0].' is rejected with 422 and nothing is sent');
+  }
+  $long = $base; $long['dapem_event_id'] = '00000000-0000-4000-a000-000000000020';
+  $long['landing_page'] = "/a\r\nBcc: x@example.test" . str_repeat('z', 500); $long['referrer_page'] = str_repeat('r', 500); $long['branch'] = "B\nC";
+  aikxContact($long,[],[],$sendBody,$track,$dir);
+  $lb = end($bodies); $lines = explode("\n", $lb);
+  $lp = array_values(array_filter($lines, function($l){ return strpos($l,'Landing page: ')===0; }));
+  check(count($lp)===1 && strlen($lp[0])<=300+strlen('Landing page: '),'Landing page is capped and single-line');
+  check(strpos($lb,"\nBcc:")===false && strpos($lb,"\nReferrer: ".str_repeat('r',300)."\n")!==false && strpos($lb,"\nBranch: B C\n")!==false,'Newlines stripped and referrer capped at 300');
+  check(strpos($lb,"\nMonthly budget: Not provided\n")!==false,'Missing answers are labelled Not provided');
   echo "Contact acceptance, consent, deduplication, collector retries and PII isolation pass.\n";
 } finally {
   foreach(glob($dir.'/*.json')?:[] as $file) unlink($file);
